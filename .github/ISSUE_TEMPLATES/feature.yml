@@ -1,0 +1,35 @@
+name: "✨ 새로운 기능"
+description: "새로운 기능에 대한 이슈를 작성하세요!"
+title: "[새기능] "
+labels: "새기능"
+body:
+  - type: input
+    attributes:
+      label: ✨ 개요
+      description: 새로운 기능에 대한 설명을 작성해 주세요.
+      placeholder: 꼼꼼하게 적을수록 좋습니다!
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: ✅ 해야 할 일
+      description: 해야 할 일을 작성해 주세요.
+      placeholder: |
+        - [ ] 회원가입 API 구현
+        - [ ] 회원가입 API 테스트 코드 작성
+        - [ ] 회원가입 API 문서화
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 🙏🏻 요구사항
+      description: 개발시 유의해야 할 요구사항을 정리해 주세요.
+      placeholder: |
+        - [ ] 하나의 전화번호로 한 번만 가입할 수 있다.
+        - [ ] 전화번호는 반드시 11글자여야 한다.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: 🙋🏻 덧붙일 말
+      description: 더 하고 싶은 말이 있다면 작성해 주세요.
