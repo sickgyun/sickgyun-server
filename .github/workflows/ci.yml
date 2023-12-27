@@ -24,3 +24,9 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew clean build
+
+      - name: Execute checkstyleMain
+        run: ./gradlew clean checkstyleMain
+
+      - name: Execute checkstyleTest
+        run: ./gradlew clean checkstyleTest
