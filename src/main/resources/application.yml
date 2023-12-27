@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url : ${URL}
+    username: ${USER}
+    password: ${PASSWORD}
+
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: debug
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
