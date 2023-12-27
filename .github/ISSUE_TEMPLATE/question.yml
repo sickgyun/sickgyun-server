@@ -1,6 +1,6 @@
 name: "🙋🏻 질문하기"
 description: "질문이 있나요?"
-title: ""
+title: " "
 labels: "질문"
 body:
   - type: textarea
