@@ -1,6 +1,6 @@
 name: "🙌 개선하기"
 description: "더 나은 서비스를 위하여! 위하여~"
-title: "[개선] "
+title: " "
 labels: "개선"
 body:
   - type: textarea
