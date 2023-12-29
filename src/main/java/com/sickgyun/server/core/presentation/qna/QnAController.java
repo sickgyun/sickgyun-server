@@ -40,4 +40,10 @@ public class QnAController {
     ) {
         commandQnAService.updateQnA(qnAId, request);
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{qna-id}")
+    public void deleteQnA(@PathVariable(name = "qna-id") Long qnAId) {
+        commandQnAService.deleteQnA(qnAId);
+    }
 }
