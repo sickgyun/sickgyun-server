@@ -1,5 +1,6 @@
 package com.sickgyun.server.core.qna;
 
+import com.sickgyun.server.core.qna.value.Category;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -25,9 +26,13 @@ public class QnA {
 
     private LocalDateTime createTime;
 
-    public QnA(String title, String content) {
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    public QnA(String title, String content, Category category) {
         this.title = title;
         this.content = content;
+        this.category = category;
         this.createTime = LocalDateTime.now();
     }
 }
