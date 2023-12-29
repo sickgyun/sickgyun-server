@@ -32,6 +32,11 @@ public class QnAController {
         return queryQnAService.findAllByCategory(category);
     }
 
+    @GetMapping("/{qna-id}")
+    public QnAResponse findOne(@PathVariable(name = "qna-id") Long qnAId) {
+        return queryQnAService.findOne(qnAId);
+    }
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{qna-id}")
     public void updateQnA(
