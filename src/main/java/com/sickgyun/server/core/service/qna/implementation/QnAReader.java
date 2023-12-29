@@ -16,4 +16,8 @@ public class QnAReader {
     public List<QnA> readAll() {
         return qnARepository.findAllByOrderByIdDesc();
     }
+
+    public QnA read(Long qnAId) {
+        return qnARepository.getById(qnAId);
+    }
 }

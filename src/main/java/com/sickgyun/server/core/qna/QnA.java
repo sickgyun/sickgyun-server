@@ -1,5 +1,6 @@
 package com.sickgyun.server.core.qna;
 
+import com.sickgyun.server.core.presentation.qna.dto.CreateQnARequest;
 import com.sickgyun.server.core.qna.value.Category;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -34,5 +35,11 @@ public class QnA {
         this.content = content;
         this.category = category;
         this.createTime = LocalDateTime.now();
+    }
+
+    public void update(CreateQnARequest request) {
+        this.title = request.title();
+        this.content = request.content();
+        this.category = request.category();
     }
 }

@@ -28,4 +28,13 @@ public class QnAController {
     public List<QnAResponse> findAll() {
         return queryQnAService.findAll();
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{qna-id}")
+    public void updateQnA(
+            @PathVariable(name = "qna-id") Long qnAId,
+            @RequestBody CreateQnARequest request
+    ) {
+        commandQnAService.updateQnA(qnAId, request);
+    }
 }
