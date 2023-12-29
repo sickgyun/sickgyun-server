@@ -20,4 +20,10 @@ public class QueryQnAService {
                 .map(QnAResponse::from)
                 .toList();
     }
+
+    public List<QnAResponse> findAllByCategory(String category) {
+        return qnAReader.readAllByCategory(category).stream()
+                .map(QnAResponse::from)
+                .toList();
+    }
 }

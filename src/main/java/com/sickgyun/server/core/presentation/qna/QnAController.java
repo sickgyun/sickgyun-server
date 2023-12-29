@@ -25,8 +25,11 @@ public class QnAController {
     }
 
     @GetMapping
-    public List<QnAResponse> findAll() {
-        return queryQnAService.findAll();
+    public List<QnAResponse> findAll(@RequestParam(name = "category", required = false, defaultValue = "ALL") String category) {
+        if (category.equals("ALL")) {
+            return queryQnAService.findAll();
+        }
+        return queryQnAService.findAllByCategory(category);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
