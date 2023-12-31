@@ -260,7 +260,7 @@ The following rules in the Naver coding convention cannot be checked by this con
 		</module>
 		<module name="OperatorWrap">
 			<property name="option" value="NL"/>
-			<property name="tokens" value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, QUESTION, SL, SR, STAR "/>
+			<property name="tokens" value="BAND, BOR, BSR, BXOR, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF, LOR, LT, MINUS, MOD, NOT_EQUAL, QUESTION, SL, SR, STAR "/>
 			<message key="line.new"
 					 value="[line-wrapping-position] ''{0}'' should be on a new line."/>
 		</module>
