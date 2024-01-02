@@ -3,6 +3,7 @@ package com.sickgyun.server.commnet.presentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -17,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/comment")
+@RequestMapping("/comments")
 public class CommentController {
 
 	private final UserTempService userTempService;
@@ -31,5 +32,15 @@ public class CommentController {
 	) {
 		User writer = userTempService.getUserId1();
 		commandCommentService.createComment(qnAId, writer, request.toEntity());
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PutMapping("/{comment-id}")
+	public void updateComment(
+		@PathVariable(name = "comment-id") Long commentId,
+		@RequestBody CreateCommentRequest request
+	) {
+		User writer = userTempService.getUserId1();
+		commandCommentService.updateComment(commentId, request.toEntity(), writer);
 	}
 }
