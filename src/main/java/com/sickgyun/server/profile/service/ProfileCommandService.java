@@ -18,7 +18,7 @@ public class ProfileCommandService {
 
 	@Transactional
 	public void create(Profile profile, User writer) {
-		profileValidator.hasAnotherProfile(writer);
+		profileValidator.shouldHaveAnotherProfile(writer);
 
 		profileCreator.create(profile, writer);
 	}
