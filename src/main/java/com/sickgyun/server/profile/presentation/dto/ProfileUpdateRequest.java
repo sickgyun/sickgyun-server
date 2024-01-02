@@ -9,16 +9,11 @@ import com.sickgyun.server.profile.domain.value.OnlineProfile;
 import jakarta.validation.constraints.NotNull;
 
 public record ProfileUpdateRequest(
-	@NotNull
-	Long userId,
 	String imageUrl,
-	@NotNull
-	String introduction,
-	@NotNull
-	String githubUrl,
-	@NotNull
-	Major major,
-	String admissionYear,
+	@NotNull String introduction,
+	@NotNull String githubUrl,
+	@NotNull Major major,
+	@NotNull Integer admissionYear,
 	String resume,
 	Boolean isRecruited,
 	String company,

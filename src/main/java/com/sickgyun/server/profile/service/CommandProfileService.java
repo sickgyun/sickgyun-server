@@ -1,6 +1,7 @@
 package com.sickgyun.server.profile.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.service.implementation.ProfileCreator;
@@ -8,7 +9,6 @@ import com.sickgyun.server.profile.service.implementation.ProfileReader;
 import com.sickgyun.server.profile.service.implementation.ProfileValidator;
 import com.sickgyun.server.user.domain.User;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
