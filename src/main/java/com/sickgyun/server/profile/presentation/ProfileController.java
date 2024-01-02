@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sickgyun.server.profile.presentation.dto.ProfileCreateRequestDto;
-import com.sickgyun.server.profile.service.ProfileCommandService;
+import com.sickgyun.server.profile.presentation.dto.ProfileCreateRequest;
+import com.sickgyun.server.profile.service.CommandProfileService;
 import com.sickgyun.server.user.domain.User;
 import com.sickgyun.server.user.service.UserTempService;
 
@@ -19,12 +19,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("profiles")
 public class ProfileController {
-	private final ProfileCommandService commandService;
+	private final CommandProfileService commandService;
 	private final UserTempService userTempService;
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@Valid @RequestBody ProfileCreateRequestDto requestDto) {
+	public void create(@Valid @RequestBody ProfileCreateRequest requestDto) {
 		//TODO getCurrent User
 		User writer = userTempService.getUserId1();
 

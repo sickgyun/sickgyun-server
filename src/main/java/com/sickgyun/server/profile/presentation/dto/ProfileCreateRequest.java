@@ -7,7 +7,7 @@ import com.sickgyun.server.profile.domain.value.OnlineProfile;
 
 import jakarta.validation.constraints.NotNull;
 
-public record ProfileCreateRequestDto(
+public record ProfileCreateRequest(
 	@NotNull
 	Long userId,
 	String imageUrl,

@@ -1,4 +1,4 @@
-package com.sickgyun.server.core.presentation.qna;
+package com.sickgyun.server.core.qna.presentation;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sickgyun.server.core.presentation.qna.dto.CreateQnARequest;
-import com.sickgyun.server.core.presentation.qna.dto.QnAResponse;
-import com.sickgyun.server.core.service.qna.CommandQnAService;
-import com.sickgyun.server.core.service.qna.QueryQnAService;
+import com.sickgyun.server.core.qna.presentation.dto.CreateQnARequest;
+import com.sickgyun.server.core.qna.presentation.dto.QnAResponse;
+import com.sickgyun.server.core.qna.service.CommandQnAService;
+import com.sickgyun.server.core.qna.service.QueryQnAService;
 
 import lombok.RequiredArgsConstructor;
 

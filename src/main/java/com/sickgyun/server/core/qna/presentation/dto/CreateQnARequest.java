@@ -1,4 +1,4 @@
-package com.sickgyun.server.core.presentation.qna.dto;
+package com.sickgyun.server.core.qna.presentation.dto;
 
 import com.sickgyun.server.core.qna.QnA;
 import com.sickgyun.server.core.qna.value.Category;

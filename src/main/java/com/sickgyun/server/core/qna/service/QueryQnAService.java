@@ -1,4 +1,4 @@
-package com.sickgyun.server.core.service.qna;
+package com.sickgyun.server.core.qna.service;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.core.qna.QnA;
-import com.sickgyun.server.core.service.qna.implementation.QnAReader;
+import com.sickgyun.server.core.qna.service.implementation.QnAReader;
 
 import lombok.RequiredArgsConstructor;
 
