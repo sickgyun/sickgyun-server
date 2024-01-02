@@ -1,13 +1,13 @@
-package com.sickgyun.server.core.qna.service;
+package com.sickgyun.server.core.service.qna;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.core.qna.QnA;
-import com.sickgyun.server.core.qna.service.implementation.QnACreator;
-import com.sickgyun.server.core.qna.service.implementation.QnADeleter;
-import com.sickgyun.server.core.qna.service.implementation.QnAReader;
-import com.sickgyun.server.core.qna.service.implementation.QnAUpdater;
+import com.sickgyun.server.core.service.qna.implementation.QnACreator;
+import com.sickgyun.server.core.service.qna.implementation.QnADeleter;
+import com.sickgyun.server.core.service.qna.implementation.QnAReader;
+import com.sickgyun.server.core.service.qna.implementation.QnAUpdater;
 
 import lombok.RequiredArgsConstructor;
 

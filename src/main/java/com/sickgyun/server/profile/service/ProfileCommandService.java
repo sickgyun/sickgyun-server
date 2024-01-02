@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class CommandProfileService {
+public class ProfileCommandService {
 	private final ProfileCreator profileCreator;
 	private final ProfileValidator profileValidator;
 
