@@ -2,7 +2,6 @@ package com.sickgyun.server.user.domain;
 
 import com.sickgyun.server.profile.domain.Profile;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -20,9 +19,8 @@ public class User {
 	private Long id;
 
 	@OneToOne(
-		cascade = CascadeType.REMOVE,
-		orphanRemoval = true,
-		fetch = FetchType.LAZY
+		fetch = FetchType.LAZY,
+		mappedBy = "writer"
 	)
 	@JoinColumn(name = "PROFILE")
 	Profile profile;

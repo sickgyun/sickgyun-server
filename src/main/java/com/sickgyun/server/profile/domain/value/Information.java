@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 public class Information {
 	String imageUrl;
 	String introduction;
-	String major;
+	Major major;
 	String admissionYear;
 }
