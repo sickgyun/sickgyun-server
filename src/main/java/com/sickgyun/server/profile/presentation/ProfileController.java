@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("profiles")
+@RequestMapping("/profiles")
 public class ProfileController {
 	private final CommandProfileService commandService;
 	private final QueryProfileService queryService;

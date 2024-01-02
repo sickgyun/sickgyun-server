@@ -18,6 +18,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private String name;
+
 	@OneToOne(
 		fetch = FetchType.LAZY,
 		mappedBy = "writer"
