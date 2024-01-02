@@ -53,7 +53,7 @@ public class ProfileController {
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)
-	public List<SimpleProfileResponse> readAll(@Valid FilterRequest filterRequest) {
+	public List<SimpleProfileResponse> readAll(FilterRequest filterRequest) {
 		return queryService.readAll(filterRequest.toDomain())
 			.stream()
 			.map(SimpleProfileResponse::from)
