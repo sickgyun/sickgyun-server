@@ -43,4 +43,12 @@ public class Comment {
 		this.content = content;
 		this.createTime = LocalDateTime.now();
 	}
+
+	public void updateQnA(QnA qnA) {
+		this.qnA = qnA;
+	}
+
+	public void updateWriter(User writer) {
+		this.writer = writer;
+	}
 }
