@@ -13,19 +13,18 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommandProfileService {
 	private final ProfileCreator profileCreator;
 	private final ProfileValidator profileValidator;
 	private final ProfileReader profileReader;
 
-	@Transactional
 	public void create(Profile profile, User writer) {
 		profileValidator.shouldHaveAnotherProfile(writer);
 
 		profileCreator.create(profile, writer);
 	}
 
-	@Transactional
 	public void update(Profile profile, User writer) {
 		Profile updatableProfile = profileReader.findProfileByWriter(writer);
 
