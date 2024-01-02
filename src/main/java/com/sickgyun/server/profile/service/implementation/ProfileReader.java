@@ -25,4 +25,8 @@ public class ProfileReader {
 	public List<Profile> readAll(Filter filter) {
 		return queryRepository.findAllFiltered(filter);
 	}
+
+	public Profile readById(Long profileId) {
+		return profileRepository.getById(profileId);
+	}
 }

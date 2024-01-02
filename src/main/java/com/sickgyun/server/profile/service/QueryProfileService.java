@@ -20,4 +20,8 @@ public class QueryProfileService {
 	public List<Profile> readAll(Filter filter) {
 		return profileReader.readAll(filter);
 	}
+
+	public Profile readOne(Long profileId) {
+		return profileReader.readById(profileId);
+	}
 }

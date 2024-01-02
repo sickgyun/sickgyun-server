@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sickgyun.server.profile.presentation.dto.FilterRequest;
 import com.sickgyun.server.profile.presentation.dto.ProfileCreateRequest;
+import com.sickgyun.server.profile.presentation.dto.ProfileResponse;
 import com.sickgyun.server.profile.presentation.dto.ProfileUpdateRequest;
 import com.sickgyun.server.profile.presentation.dto.SimpleProfileResponse;
 import com.sickgyun.server.profile.service.CommandProfileService;
@@ -56,5 +58,11 @@ public class ProfileController {
 			.stream()
 			.map(SimpleProfileResponse::from)
 			.toList();
+	}
+
+	@GetMapping("/{profileId}")
+	@ResponseStatus(HttpStatus.OK)
+	public ProfileResponse readOne(@PathVariable(name = "profileId") Long profileId) {
+		return ProfileResponse.from(queryService.readOne(profileId));
 	}
 }

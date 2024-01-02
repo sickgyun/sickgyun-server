@@ -13,8 +13,13 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
 
 	Optional<Profile> findByWriter(User writer);
 
+	default Profile getById(Long id) {
+		return findById(id)
+			.orElseThrow(() -> new ProfileNotFoundException(id));
+	}
+
 	default Profile getByWriter(User writer) {
 		return findByWriter(writer)
-			.orElseThrow(() -> new ProfileNotFoundException(writer.getId()));
+			.orElseThrow(() -> new ProfileNotFoundException(writer));
 	}
 }
