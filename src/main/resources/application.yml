@@ -1,7 +1,12 @@
+server:
+  port: 8080
+  servlet:
+    contextPath: /api
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url : ${URL}
+    url: ${URL}
     username: ${USER}
     password: ${PASSWORD}
 
