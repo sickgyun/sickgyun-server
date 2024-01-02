@@ -1,8 +1,8 @@
-package com.sickgyun.server.core.qna;
+package com.sickgyun.server.qna;
 
 import java.time.LocalDateTime;
 
-import com.sickgyun.server.core.qna.value.Category;
+import com.sickgyun.server.qna.value.Category;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
