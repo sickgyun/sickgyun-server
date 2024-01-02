@@ -32,21 +32,20 @@ public class QnAController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
 	public void createQnA(@RequestBody CreateQnARequest request) {
-		commandQnAService.createQnA(request);
+		commandQnAService.createQnA(request.toEntity());
 	}
 
 	@GetMapping
 	public List<QnAResponse> findAll(
 		@RequestParam(name = "category", required = false, defaultValue = "ALL") String category) {
-		if (category.equals("ALL")) {
-			return queryQnAService.findAll();
-		}
-		return queryQnAService.findAllByCategory(category);
+		return queryQnAService.findAllByCategory(category).stream()
+			.map(QnAResponse::from)
+			.toList();
 	}
 
 	@GetMapping("/{qna-id}")
 	public QnAResponse findOne(@PathVariable(name = "qna-id") Long qnAId) {
-		return queryQnAService.findOne(qnAId);
+		return QnAResponse.from(queryQnAService.findOne(qnAId));
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -55,7 +54,7 @@ public class QnAController {
 		@PathVariable(name = "qna-id") Long qnAId,
 		@RequestBody CreateQnARequest request
 	) {
-		commandQnAService.updateQnA(qnAId, request);
+		commandQnAService.updateQnA(qnAId, request.toEntity());
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)

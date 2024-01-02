@@ -13,7 +13,7 @@ public class QnACreator {
 
 	private final QnARepository qnARepository;
 
-	public void save(QnA qnA) {
+	public void create(QnA qnA) {
 		qnARepository.save(qnA);
 	}
 }

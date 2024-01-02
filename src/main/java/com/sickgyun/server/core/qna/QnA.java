@@ -2,7 +2,6 @@ package com.sickgyun.server.core.qna;
 
 import java.time.LocalDateTime;
 
-import com.sickgyun.server.core.presentation.qna.dto.CreateQnARequest;
 import com.sickgyun.server.core.qna.value.Category;
 
 import jakarta.persistence.Column;
@@ -44,9 +43,9 @@ public class QnA {
 		this.createTime = LocalDateTime.now();
 	}
 
-	public void update(CreateQnARequest request) {
-		this.title = request.title();
-		this.content = request.content();
-		this.category = request.category();
+	public void update(QnA qnA) {
+		this.title = qnA.getTitle();
+		this.content = qnA.getContent();
+		this.category = qnA.getCategory();
 	}
 }

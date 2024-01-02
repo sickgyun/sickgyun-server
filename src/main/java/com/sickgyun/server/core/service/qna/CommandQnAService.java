@@ -3,7 +3,6 @@ package com.sickgyun.server.core.service.qna;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sickgyun.server.core.presentation.qna.dto.CreateQnARequest;
 import com.sickgyun.server.core.qna.QnA;
 import com.sickgyun.server.core.service.qna.implementation.QnACreator;
 import com.sickgyun.server.core.service.qna.implementation.QnADeleter;
@@ -22,13 +21,13 @@ public class CommandQnAService {
 	private final QnAReader qnAReader;
 	private final QnADeleter qnADeleter;
 
-	public void createQnA(CreateQnARequest request) {
-		qnACreator.save(request.toEntity());
+	public void createQnA(QnA qnA) {
+		qnACreator.create(qnA);
 	}
 
-	public void updateQnA(Long qnAId, CreateQnARequest request) {
-		QnA qnA = qnAReader.read(qnAId);
-		qnAUpdater.update(qnA, request);
+	public void updateQnA(Long qnAId, QnA qnA) {
+		QnA updatableQnA = qnAReader.read(qnAId);
+		qnAUpdater.update(updatableQnA, qnA);
 	}
 
 	public void deleteQnA(Long qnAId) {
