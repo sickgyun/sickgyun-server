@@ -1,4 +1,4 @@
-package com.sickgyun.server.core.service.qna.implementation;
+package com.sickgyun.server.core.qna.service.implementation;
 
 import org.springframework.stereotype.Service;
 

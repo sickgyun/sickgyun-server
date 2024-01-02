@@ -1,4 +1,4 @@
-package com.sickgyun.server.core.presentation.qna.dto;
+package com.sickgyun.server.core.qna.presentation.dto;
 
 import java.time.LocalDateTime;
 
