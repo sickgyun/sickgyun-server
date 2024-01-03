@@ -34,13 +34,13 @@ public class CommandCommentService {
 
 	public void updateComment(Long commentId, Comment comment, User writer) {
 		Comment updatableComment = commentReader.read(commentId);
-		commentValidator.validateWriter(updatableComment, writer);
+		commentValidator.shouldBeSameUser(updatableComment.getWriter(), writer);
 		commentUpdater.update(updatableComment, comment);
 	}
 
 	public void deleteComment(Long commentId, User writer) {
 		Comment comment = commentReader.read(commentId);
-		commentValidator.validateWriter(comment, writer);
+		commentValidator.shouldBeSameUser(comment.getWriter(), writer);
 		commentDeleter.delete(comment);
 	}
 }

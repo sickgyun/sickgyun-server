@@ -2,7 +2,6 @@ package com.sickgyun.server.comment.domain;
 
 import java.time.LocalDateTime;
 
-import com.sickgyun.server.comment.exception.NotMatchCommentWriterException;
 import com.sickgyun.server.qna.QnA;
 import com.sickgyun.server.user.domain.User;
 
@@ -51,12 +50,6 @@ public class Comment {
 
 	public void updateWriter(User writer) {
 		this.writer = writer;
-	}
-
-	public void validateWriter(User writer) {
-		if (!this.writer.equals(writer)) {
-			throw new NotMatchCommentWriterException();
-		}
 	}
 
 	public void update(Comment comment) {
