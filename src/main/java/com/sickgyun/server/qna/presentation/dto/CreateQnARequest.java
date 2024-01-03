@@ -1,7 +1,7 @@
-package com.sickgyun.server.core.qna.presentation.dto;
+package com.sickgyun.server.qna.presentation.dto;
 
-import com.sickgyun.server.core.qna.QnA;
-import com.sickgyun.server.core.qna.value.Category;
+import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.value.Category;
 
 public record CreateQnARequest(
 	String title,

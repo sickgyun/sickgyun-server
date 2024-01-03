@@ -1,8 +1,8 @@
-package com.sickgyun.server.core.qna.service.implementation;
+package com.sickgyun.server.qna.service.implementation;
 
 import org.springframework.stereotype.Service;
 
-import com.sickgyun.server.core.qna.QnA;
+import com.sickgyun.server.qna.QnA;
 
 import lombok.RequiredArgsConstructor;
 
