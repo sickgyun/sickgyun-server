@@ -1,10 +1,10 @@
-package com.sickgyun.server.commnet.domain.repository;
+package com.sickgyun.server.comment.domain.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sickgyun.server.commnet.domain.Comment;
+import com.sickgyun.server.comment.domain.Comment;
 import com.sickgyun.server.qna.QnA;
 
 import jakarta.persistence.EntityNotFoundException;

@@ -1,8 +1,8 @@
-package com.sickgyun.server.commnet.domain;
+package com.sickgyun.server.comment.domain;
 
 import java.time.LocalDateTime;
 
-import com.sickgyun.server.commnet.exception.NotMatchCommentWriterException;
+import com.sickgyun.server.comment.exception.NotMatchCommentWriterException;
 import com.sickgyun.server.qna.QnA;
 import com.sickgyun.server.user.domain.User;
 

@@ -1,4 +1,4 @@
-package com.sickgyun.server.commnet.presentation;
+package com.sickgyun.server.comment.presentation;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sickgyun.server.commnet.presentation.dto.CommentResponse;
-import com.sickgyun.server.commnet.presentation.dto.CreateCommentRequest;
-import com.sickgyun.server.commnet.service.CommandCommentService;
-import com.sickgyun.server.commnet.service.QueryCommentService;
+import com.sickgyun.server.comment.presentation.dto.CommentResponse;
+import com.sickgyun.server.comment.presentation.dto.CreateCommentRequest;
+import com.sickgyun.server.comment.service.CommandCommentService;
+import com.sickgyun.server.comment.service.QueryCommentService;
 import com.sickgyun.server.user.domain.User;
 import com.sickgyun.server.user.service.UserTempService;
 

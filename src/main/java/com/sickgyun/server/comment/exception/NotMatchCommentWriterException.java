@@ -1,4 +1,4 @@
-package com.sickgyun.server.commnet.exception;
+package com.sickgyun.server.comment.exception;
 
 import org.springframework.http.HttpStatus;
 
