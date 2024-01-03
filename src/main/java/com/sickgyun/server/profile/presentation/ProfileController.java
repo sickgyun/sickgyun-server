@@ -43,7 +43,7 @@ public class ProfileController {
 	}
 
 	@PutMapping
-	@ResponseStatus(HttpStatus.CREATED)
+	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@Valid @RequestBody ProfileUpdateRequest requestDto) {
 		//TODO getCurrent User
 		User writer = userTempService.getUserId1();
@@ -60,9 +60,9 @@ public class ProfileController {
 			.toList();
 	}
 
-	@GetMapping("/{profileId}")
+	@GetMapping("/{profile-id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ProfileResponse readOne(@PathVariable(name = "profileId") Long profileId) {
+	public ProfileResponse readOne(@PathVariable(name = "profile-id") Long profileId) {
 		return ProfileResponse.from(queryService.readOne(profileId));
 	}
 }
