@@ -9,8 +9,8 @@ import com.sickgyun.server.commnet.service.implementation.CommentDeleter;
 import com.sickgyun.server.commnet.service.implementation.CommentReader;
 import com.sickgyun.server.commnet.service.implementation.CommentUpdater;
 import com.sickgyun.server.commnet.service.implementation.CommentValidator;
-import com.sickgyun.server.core.qna.QnA;
-import com.sickgyun.server.core.qna.service.implementation.QnAReader;
+import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.service.implementation.QnAReader;
 import com.sickgyun.server.user.domain.User;
 
 import lombok.RequiredArgsConstructor;

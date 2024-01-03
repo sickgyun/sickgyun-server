@@ -3,7 +3,7 @@ package com.sickgyun.server.commnet.domain;
 import java.time.LocalDateTime;
 
 import com.sickgyun.server.commnet.exception.NotMatchCommentWriterException;
-import com.sickgyun.server.core.qna.QnA;
+import com.sickgyun.server.qna.QnA;
 import com.sickgyun.server.user.domain.User;
 
 import jakarta.persistence.Column;

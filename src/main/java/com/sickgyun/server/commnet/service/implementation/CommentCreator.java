@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.sickgyun.server.commnet.domain.Comment;
 import com.sickgyun.server.commnet.domain.repository.CommentRepository;
-import com.sickgyun.server.core.qna.QnA;
+import com.sickgyun.server.qna.QnA;
 import com.sickgyun.server.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
