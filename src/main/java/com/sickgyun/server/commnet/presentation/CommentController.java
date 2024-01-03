@@ -3,6 +3,7 @@ package com.sickgyun.server.commnet.presentation;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,5 +56,12 @@ public class CommentController {
 		return queryCommentService.findByQnA(qnAId).stream()
 			.map(comment -> CommentResponse.of(comment, comment.getWriter()))
 			.toList();
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{comment-id}")
+	public void deleteComment(@PathVariable(name = "comment-id") Long commentId) {
+		User writer = userTempService.getUserId1();
+		commandCommentService.deleteComment(commentId, writer);
 	}
 }

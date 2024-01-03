@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.commnet.domain.Comment;
 import com.sickgyun.server.commnet.service.implementation.CommentCreator;
+import com.sickgyun.server.commnet.service.implementation.CommentDeleter;
 import com.sickgyun.server.commnet.service.implementation.CommentReader;
 import com.sickgyun.server.commnet.service.implementation.CommentUpdater;
 import com.sickgyun.server.commnet.service.implementation.CommentValidator;
@@ -23,6 +24,7 @@ public class CommandCommentService {
 	private final CommentReader commentReader;
 	private final CommentCreator commentCreator;
 	private final CommentUpdater commentUpdater;
+	private final CommentDeleter commentDeleter;
 	private final CommentValidator commentValidator;
 
 	public void createComment(Long qnaId, User writer, Comment comment) {
@@ -34,5 +36,11 @@ public class CommandCommentService {
 		Comment updatableComment = commentReader.read(commentId);
 		commentValidator.validateWriter(updatableComment, writer);
 		commentUpdater.update(updatableComment, comment);
+	}
+
+	public void deleteComment(Long commentId, User writer) {
+		Comment comment = commentReader.read(commentId);
+		commentValidator.validateWriter(comment, writer);
+		commentDeleter.delete(comment);
 	}
 }
