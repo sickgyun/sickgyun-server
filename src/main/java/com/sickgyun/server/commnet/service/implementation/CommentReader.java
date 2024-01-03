@@ -1,9 +1,12 @@
 package com.sickgyun.server.commnet.service.implementation;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.sickgyun.server.commnet.domain.Comment;
 import com.sickgyun.server.commnet.domain.repository.CommentRepository;
+import com.sickgyun.server.core.qna.QnA;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,5 +18,9 @@ public class CommentReader {
 
 	public Comment read(Long commentId) {
 		return commentRepository.getById(commentId);
+	}
+
+	public List<Comment> readByQnA(QnA qnA) {
+		return commentRepository.findByQnA(qnA);
 	}
 }
