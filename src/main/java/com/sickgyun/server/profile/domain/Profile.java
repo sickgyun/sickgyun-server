@@ -5,12 +5,14 @@ import com.sickgyun.server.profile.domain.value.Information;
 import com.sickgyun.server.profile.domain.value.OnlineProfile;
 import com.sickgyun.server.user.domain.User;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,9 +37,11 @@ public class Profile {
 	OnlineProfile onlineProfile;
 
 	@OneToOne(
-		mappedBy = "profile",
-		fetch = FetchType.EAGER
+		cascade = CascadeType.REMOVE,
+		orphanRemoval = true,
+		fetch = FetchType.LAZY
 	)
+	@JoinColumn(name = "user_id")
 	User writer;
 
 	public Profile(Information information, Company company, OnlineProfile onlineProfile) {
@@ -49,5 +53,11 @@ public class Profile {
 	public void updateWriter(User writer) {
 		writer.updateProfile(this);
 		this.writer = writer;
+	}
+
+	public void update(Profile profile) {
+		this.information = profile.getInformation();
+		this.company = profile.getCompany();
+		this.onlineProfile = profile.getOnlineProfile();
 	}
 }

@@ -3,21 +3,17 @@ package com.sickgyun.server.profile.presentation.dto;
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Company;
 import com.sickgyun.server.profile.domain.value.Information;
+import com.sickgyun.server.profile.domain.value.Major;
 import com.sickgyun.server.profile.domain.value.OnlineProfile;
 
 import jakarta.validation.constraints.NotNull;
 
-public record ProfileCreateRequestDto(
-	@NotNull
-	Long userId,
+public record ProfileCreateRequest(
 	String imageUrl,
-	@NotNull
-	String introduction,
-	@NotNull
-	String githubUrl,
-	@NotNull
-	String major,
-	String admissionYear,
+	@NotNull String introduction,
+	@NotNull String githubUrl,
+	@NotNull Major major,
+	@NotNull Integer admissionYear,
 	String resume,
 	Boolean isRecruited,
 	String company,

@@ -17,7 +17,7 @@ public class ProfileValidator {
 		boolean isExist = profileRepository.existsProfileByWriter(writer);
 
 		if (isExist) {
-			throw new AlreadyUploadProfileException();
+			throw new AlreadyUploadProfileException(writer.getId());
 		}
 	}
 }
