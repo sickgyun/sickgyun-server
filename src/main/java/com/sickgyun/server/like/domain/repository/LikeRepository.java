@@ -14,6 +14,8 @@ public interface LikeRepository extends JpaRepository<Like, Long> {
 
 	Optional<Like> findByQnAAndUser(QnA qnA, User user);
 
+	void deleteByQnA(QnA qnA);
+
 	default Like getLike(QnA qnA, User user) {
 		return findByQnAAndUser(qnA, user)
 			.orElseThrow(LikeNotFoundException::new);

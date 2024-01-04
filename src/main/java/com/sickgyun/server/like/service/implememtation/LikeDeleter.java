@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.sickgyun.server.like.domain.Like;
 import com.sickgyun.server.like.domain.repository.LikeRepository;
+import com.sickgyun.server.qna.QnA;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,5 +16,9 @@ public class LikeDeleter {
 
 	public void delete(Like like) {
 		likeRepository.delete(like);
+	}
+
+	public void deleteByQnA(QnA qnA) {
+		likeRepository.deleteByQnA(qnA);
 	}
 }
