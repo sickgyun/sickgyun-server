@@ -1,6 +1,7 @@
 package com.sickgyun.server.like.presentation;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +27,12 @@ public class LikeController {
 	public void createLike(@PathVariable(name = "qna-id") Long qnAId) {
 		User user = userTempService.getUserId1();
 		commandLikeService.createLike(qnAId, user);
+	}
+
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/{qna-id}")
+	public void deleteLike(@PathVariable(name = "qna-id") Long qnAId) {
+		User user = userTempService.getUserId1();
+		commandLikeService.deleteLike(qnAId, user);
 	}
 }
