@@ -8,7 +8,7 @@ import com.sickgyun.server.profile.domain.value.OnlineProfile;
 
 import jakarta.validation.constraints.NotNull;
 
-public record ProfileCreateRequest(
+public record ProfileUpdateRequest(
 	String imageUrl,
 	@NotNull String introduction,
 	@NotNull String githubUrl,

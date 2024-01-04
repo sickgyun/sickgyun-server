@@ -54,4 +54,10 @@ public class Profile {
 		writer.updateProfile(this);
 		this.writer = writer;
 	}
+
+	public void update(Profile profile) {
+		this.information = profile.getInformation();
+		this.company = profile.getCompany();
+		this.onlineProfile = profile.getOnlineProfile();
+	}
 }

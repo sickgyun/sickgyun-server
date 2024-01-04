@@ -3,6 +3,7 @@ package com.sickgyun.server.qna.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.sickgyun.server.comment.service.implementation.CommentDeleter;
 import com.sickgyun.server.qna.QnA;
 import com.sickgyun.server.qna.service.implementation.QnACreator;
