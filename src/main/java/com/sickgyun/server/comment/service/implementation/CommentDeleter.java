@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.sickgyun.server.comment.domain.Comment;
 import com.sickgyun.server.comment.domain.repository.CommentRepository;
+import com.sickgyun.server.qna.QnA;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,5 +16,9 @@ public class CommentDeleter {
 
 	public void delete(Comment comment) {
 		commentRepository.delete(comment);
+	}
+
+	public void deleteByQnA(QnA qnA) {
+		commentRepository.deleteByQnA(qnA);
 	}
 }
