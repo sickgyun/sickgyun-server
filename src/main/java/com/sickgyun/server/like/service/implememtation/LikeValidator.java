@@ -22,4 +22,8 @@ public class LikeValidator {
 			throw new AlreadyLikeException();
 		}
 	}
+
+	public boolean checkLiked(QnA qnA, User user) {
+		return likeRepository.existsByQnAAndUser(qnA, user);
+	}
 }
