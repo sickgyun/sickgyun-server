@@ -25,13 +25,13 @@ public class CommandLikeService {
 	private final LikeValidator likeValidator;
 	private final QnAReader qnAReader;
 
-	public void createLike(Long qnAId, User user) {
+	public void create(Long qnAId, User user) {
 		QnA qnA = qnAReader.read(qnAId);
-		likeValidator.shouldBeAlreadyLike(qnA, user);
+		likeValidator.shouldNotExistLike(qnA, user);
 		likeCreator.create(new Like(user, qnA));
 	}
 
-	public void deleteLike(Long qnAId, User user) {
+	public void delete(Long qnAId, User user) {
 		QnA qnA = qnAReader.read(qnAId);
 		Like like = likeReader.read(qnA, user);
 		likeDeleter.delete(like);

@@ -29,14 +29,14 @@ public class LikeController {
 	@PostMapping("/{qna-id}")
 	public void createLike(@PathVariable(name = "qna-id") Long qnAId) {
 		User user = userTempService.getUserId1();
-		commandLikeService.createLike(qnAId, user);
+		commandLikeService.create(qnAId, user);
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{qna-id}")
 	public void deleteLike(@PathVariable(name = "qna-id") Long qnAId) {
 		User user = userTempService.getUserId1();
-		commandLikeService.deleteLike(qnAId, user);
+		commandLikeService.delete(qnAId, user);
 	}
 
 	@GetMapping("/{qna-id}")

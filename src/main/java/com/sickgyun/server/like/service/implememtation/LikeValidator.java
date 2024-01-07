@@ -15,7 +15,7 @@ public class LikeValidator {
 
 	private final LikeRepository likeRepository;
 
-	public void shouldBeAlreadyLike(QnA qnA, User user) {
+	public void shouldNotExistLike(QnA qnA, User user) {
 		boolean isExist = likeRepository.existsByQnAAndUser(qnA, user);
 
 		if (isExist) {
