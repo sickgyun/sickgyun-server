@@ -3,8 +3,8 @@ package com.sickgyun.server.qna.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.sickgyun.server.comment.service.implementation.CommentDeleter;
+import com.sickgyun.server.like.service.implememtation.LikeDeleter;
 import com.sickgyun.server.qna.QnA;
 import com.sickgyun.server.qna.service.implementation.QnACreator;
 import com.sickgyun.server.qna.service.implementation.QnADeleter;
@@ -23,6 +23,7 @@ public class CommandQnAService {
 	private final QnAReader qnAReader;
 	private final QnADeleter qnADeleter;
 	private final CommentDeleter commentDeleter;
+	private final LikeDeleter likeDeleter;
 
 	public void createQnA(QnA qnA) {
 		qnACreator.create(qnA);
@@ -37,5 +38,6 @@ public class CommandQnAService {
 		QnA qnA = qnAReader.read(qnAId);
 		qnADeleter.delete(qnA);
 		commentDeleter.deleteByQnA(qnA);
+		likeDeleter.deleteByQnA(qnA);
 	}
 }
