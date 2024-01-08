@@ -26,6 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.3'
 
 	//querydsl
 	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
@@ -40,6 +41,17 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testRuntimeOnly 'com.h2database:h2'
+}
+
+//openFeign
+ext {
+	set('springCloudVersion', "2023.0.0")
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 
