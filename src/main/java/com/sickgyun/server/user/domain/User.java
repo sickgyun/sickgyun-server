@@ -25,8 +25,6 @@ public class User {
 
 	private String email;
 
-	private Role role;
-
 	@OneToOne(
 		fetch = FetchType.LAZY,
 		mappedBy = "writer"
