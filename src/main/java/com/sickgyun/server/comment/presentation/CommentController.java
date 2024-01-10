@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sickgyun.server.auth.repository.AuthRepository;
 import com.sickgyun.server.comment.presentation.dto.CommentResponse;
 import com.sickgyun.server.comment.presentation.dto.CreateCommentRequest;
 import com.sickgyun.server.comment.service.CommandCommentService;
 import com.sickgyun.server.comment.service.QueryCommentService;
-import com.sickgyun.server.user.domain.User;
-import com.sickgyun.server.user.service.UserTempService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/comments")
 public class CommentController {
 
-	private final UserTempService userTempService;
+	private final AuthRepository authRepository;
 	private final CommandCommentService commandCommentService;
 	private final QueryCommentService queryCommentService;
 
@@ -37,8 +36,7 @@ public class CommentController {
 		@PathVariable(name = "qna-id") Long qnAId,
 		@RequestBody CreateCommentRequest request
 	) {
-		User writer = userTempService.getUserId1();
-		commandCommentService.createComment(qnAId, writer, request.toEntity());
+		commandCommentService.createComment(qnAId, authRepository.getCurrentUser(), request.toEntity());
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -47,8 +45,7 @@ public class CommentController {
 		@PathVariable(name = "comment-id") Long commentId,
 		@RequestBody CreateCommentRequest request
 	) {
-		User writer = userTempService.getUserId1();
-		commandCommentService.updateComment(commentId, request.toEntity(), writer);
+		commandCommentService.updateComment(commentId, request.toEntity(), authRepository.getCurrentUser());
 	}
 
 	@GetMapping("/{qna-id}")
@@ -61,7 +58,6 @@ public class CommentController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{comment-id}")
 	public void deleteComment(@PathVariable(name = "comment-id") Long commentId) {
-		User writer = userTempService.getUserId1();
-		commandCommentService.deleteComment(commentId, writer);
+		commandCommentService.deleteComment(commentId, authRepository.getCurrentUser());
 	}
 }
