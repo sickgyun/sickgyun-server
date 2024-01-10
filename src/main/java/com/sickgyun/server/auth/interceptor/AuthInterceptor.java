@@ -1,5 +1,7 @@
 package com.sickgyun.server.auth.interceptor;
 
+import static org.springframework.http.HttpHeaders.*;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -30,7 +32,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		if (handler instanceof HandlerMethod hm) {
 			if (hm.hasMethodAnnotation(LoginRequired.class)) {
-				String jwt = BearerTokenExtractor.extract(request);
+				String jwt = BearerTokenExtractor.extract(request.getHeader(AUTHORIZATION));
 				Long userId = jwtParser.getIdFromJwt(jwt);
 
 				User user = userRepository.findById(userId)
