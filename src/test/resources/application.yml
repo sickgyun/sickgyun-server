@@ -16,3 +16,9 @@ spring:
   h2:
     console:
       enabled: true
+
+
+jwt:
+  secret-key: hahathisissecretkeyhahathisissecretkeyhahathisissecretkey
+  access-token-expiration-time: 10
+  refresh-token-expiration-time: 15
