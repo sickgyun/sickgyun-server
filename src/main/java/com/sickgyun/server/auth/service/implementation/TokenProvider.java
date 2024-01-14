@@ -24,7 +24,7 @@ public class TokenProvider {
 		);
 	}
 
-	private String createAccessToken(User user) {
+	public String createAccessToken(User user) {
 		return createToken(user, jwtCredentials.accessTokenExpirationTime());
 	}
 
