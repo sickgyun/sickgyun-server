@@ -5,9 +5,10 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.sickgyun.server.auth.interceptor.AuthInterceptor;
-import com.sickgyun.server.auth.repository.AuthRepository;
+import com.sickgyun.server.auth.service.implementation.AuthReader;
+import com.sickgyun.server.auth.service.implementation.AuthUpdater;
 import com.sickgyun.server.auth.util.JwtParser;
-import com.sickgyun.server.user.domain.repository.UserRepository;
+import com.sickgyun.server.user.service.implementation.UserReader;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,11 +16,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class InterceptorConfig implements WebMvcConfigurer {
 	private final JwtParser jwtParser;
-	private final AuthRepository authRepository;
-	private final UserRepository userRepository;
+	private final AuthUpdater authUpdater;
+	private final AuthReader authReader;
+	private final UserReader userReader;
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AuthInterceptor(jwtParser, authRepository, userRepository));
+		registry.addInterceptor(new AuthInterceptor(jwtParser, authUpdater, authReader, userReader));
 	}
 }

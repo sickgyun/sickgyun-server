@@ -9,13 +9,13 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import com.sickgyun.server.auth.annotation.AdminOnly;
 import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.exception.UserIsNotAdminException;
-import com.sickgyun.server.auth.repository.AuthRepository;
+import com.sickgyun.server.auth.service.implementation.AuthReader;
+import com.sickgyun.server.auth.service.implementation.AuthUpdater;
 import com.sickgyun.server.auth.util.BearerTokenExtractor;
 import com.sickgyun.server.auth.util.JwtParser;
 import com.sickgyun.server.user.domain.User;
-import com.sickgyun.server.user.domain.repository.UserRepository;
 import com.sickgyun.server.user.domain.role.Role;
-import com.sickgyun.server.user.exception.UserNotFoundException;
+import com.sickgyun.server.user.service.implementation.UserReader;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,8 +25,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthInterceptor implements HandlerInterceptor {
 	private final JwtParser jwtParser;
-	private final AuthRepository authRepository;
-	private final UserRepository userRepository;
+	private final AuthUpdater authUpdater;
+	private final AuthReader authReader;
+	private final UserReader userReader;
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -35,13 +36,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 				String jwt = BearerTokenExtractor.extract(request.getHeader(AUTHORIZATION));
 				Long userId = jwtParser.getIdFromJwt(jwt);
 
-				User user = userRepository.findById(userId)
-					.orElseThrow(() -> new UserNotFoundException(userId));
+				User user = userReader.readUser(userId);
 
-				authRepository.updateCurrentUser(user);
+				authUpdater.updateCurrentUser(user);
 			}
 			if (hm.hasMethodAnnotation(AdminOnly.class)) {
-				User currentUser = authRepository.getCurrentUser();
+				User currentUser = authReader.getCurrentUser();
 				shouldUserAdmin(currentUser);
 			}
 		}
