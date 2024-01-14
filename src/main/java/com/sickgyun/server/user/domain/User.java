@@ -1,8 +1,11 @@
 package com.sickgyun.server.user.domain;
 
 import com.sickgyun.server.profile.domain.Profile;
+import com.sickgyun.server.user.domain.role.Role;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +23,9 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
 
 	private String name;
 

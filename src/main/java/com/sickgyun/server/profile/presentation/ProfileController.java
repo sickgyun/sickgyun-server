@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sickgyun.server.auth.annotation.LoginRequired;
+import com.sickgyun.server.auth.repository.AuthRepository;
 import com.sickgyun.server.profile.presentation.dto.FilterRequest;
 import com.sickgyun.server.profile.presentation.dto.ProfileCreateRequest;
 import com.sickgyun.server.profile.presentation.dto.ProfileResponse;
@@ -19,8 +21,6 @@ import com.sickgyun.server.profile.presentation.dto.ProfileUpdateRequest;
 import com.sickgyun.server.profile.presentation.dto.SimpleProfileResponse;
 import com.sickgyun.server.profile.service.CommandProfileService;
 import com.sickgyun.server.profile.service.QueryProfileService;
-import com.sickgyun.server.user.domain.User;
-import com.sickgyun.server.user.service.UserTempService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,24 +31,20 @@ import lombok.RequiredArgsConstructor;
 public class ProfileController {
 	private final CommandProfileService commandService;
 	private final QueryProfileService queryService;
-	private final UserTempService userTempService;
+	private final AuthRepository authRepository;
 
 	@PostMapping
+	@LoginRequired
 	@ResponseStatus(HttpStatus.CREATED)
 	public void create(@Valid @RequestBody ProfileCreateRequest requestDto) {
-		//TODO getCurrent User
-		User writer = userTempService.getUserId1();
 
-		commandService.create(requestDto.toEntity(), writer);
+		commandService.create(requestDto.toEntity(), authRepository.getCurrentUser());
 	}
 
 	@PutMapping
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@Valid @RequestBody ProfileUpdateRequest requestDto) {
-		//TODO getCurrent User
-		User writer = userTempService.getUserId1();
-
-		commandService.update(requestDto.toEntity(), writer);
+		commandService.update(requestDto.toEntity(), authRepository.getCurrentUser());
 	}
 
 	@GetMapping
