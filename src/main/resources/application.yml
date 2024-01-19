@@ -38,3 +38,8 @@ jwt:
   secret-key: ${JWT_SECRET_KEY}
   access-token-expiration-time: ${ACCESS_TOKEN_EXPIRATION_TIME}
   refresh-token-expiration-time: ${REFRESH_TOKEN_EXPIRATION_TIME}
+
+---
+#Reqruit
+reqruit:
+  url: ${REQRUIT_URL}
