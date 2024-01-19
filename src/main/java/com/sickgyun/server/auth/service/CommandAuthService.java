@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.auth.domain.Token;
+import com.sickgyun.server.auth.infra.feign.GoogleOauthFeign;
 import com.sickgyun.server.auth.service.implementation.AuthReader;
 import com.sickgyun.server.auth.service.implementation.AuthValidator;
 import com.sickgyun.server.auth.service.implementation.TokenProvider;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class CommandAuthService {
 	private final TokenProvider tokenProvider;
 	private final AuthReader authReader;
+	private final GoogleOauthFeign googleOauthFeign;
 	private final AuthValidator authValidator;
 	private final UserValidator userValidator;
 	private final UserUpdater userUpdater;
@@ -29,7 +31,8 @@ public class CommandAuthService {
 	private final UserReader userReader;
 
 	public Token login(String accessToken) {
-		User user = authReader.getGoogleUser(accessToken);
+		User user = googleOauthFeign.getInfo(accessToken).toUser();
+		;
 		authValidator.shouldBeBssmEmail(user);
 
 		User updatedUser;
