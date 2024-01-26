@@ -32,17 +32,20 @@ public class CoffeeChat {
 	private State state;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "to_user_id")
 	private User toUser;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "from_user_id")
 	private User fromUser;
 
-	public CoffeeChat(String message, State state, User toUser, User fromUser) {
+	public CoffeeChat(String message, State state, User fromUser) {
 		this.message = message;
 		this.state = state;
-		this.toUser = toUser;
 		this.fromUser = fromUser;
+	}
+
+	public void updateToUser(User toUser) {
+		this.toUser = toUser;
 	}
 }
