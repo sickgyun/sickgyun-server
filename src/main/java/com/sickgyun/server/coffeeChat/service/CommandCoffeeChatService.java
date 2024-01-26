@@ -37,4 +37,11 @@ public class CommandCoffeeChatService {
 		coffeeChatValidator.shouldAlreadyBeAccepted(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, State.ACCEPT);
 	}
+
+	public void reject(User user, Long coffeeChatId) {
+		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
+		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
+		coffeeChatValidator.shouldAlreadyBeRejected(coffeeChat);
+		coffeeChatUpdater.updateState(coffeeChat, State.REJECT);
+	}
 }

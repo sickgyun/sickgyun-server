@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.sickgyun.server.coffeeChat.domain.CoffeeChat;
 import com.sickgyun.server.coffeeChat.domain.value.State;
 import com.sickgyun.server.coffeeChat.exception.AlreadyAcceptedException;
+import com.sickgyun.server.coffeeChat.exception.AlreadyRejectedException;
 import com.sickgyun.server.coffeeChat.exception.NotMatchFromUserException;
 import com.sickgyun.server.user.domain.User;
 
@@ -23,6 +24,12 @@ public class CoffeeChatValidator {
 	public void shouldAlreadyBeAccepted(CoffeeChat coffeeChat) {
 		if (!coffeeChat.getState().equals(State.ACCEPT)) {
 			throw new AlreadyAcceptedException(coffeeChat);
+		}
+	}
+
+	public void shouldAlreadyBeRejected(CoffeeChat coffeeChat) {
+		if (!coffeeChat.getState().equals(State.REJECT)) {
+			throw new AlreadyRejectedException(coffeeChat);
 		}
 	}
 }

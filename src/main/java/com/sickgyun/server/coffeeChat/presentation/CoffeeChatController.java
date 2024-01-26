@@ -34,10 +34,17 @@ public class CoffeeChatController {
 		commandCoffeeChatService.create(request.toEntity(authRepository.getCurrentUser()), toUserId);
 	}
 
-	@PutMapping("/{chat-id}")
+	@PutMapping("/accept/{chat-id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@LoginRequired
 	public void accept(@PathVariable(name = "chat-id") Long coffeeChatId) {
 		commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId);
+	}
+
+	@PutMapping("/reject/{chat-id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@LoginRequired
+	public void reject(@PathVariable(name = "chat-id") Long coffeeChatId) {
+		commandCoffeeChatService.reject(authRepository.getCurrentUser(), coffeeChatId);
 	}
 }
