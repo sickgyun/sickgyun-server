@@ -1,6 +1,6 @@
-package com.sickgyun.server.coffeeChat.domain;
+package com.sickgyun.server.coffeechat.domain;
 
-import com.sickgyun.server.coffeeChat.domain.value.State;
+import com.sickgyun.server.coffeechat.domain.value.State;
 import com.sickgyun.server.user.domain.User;
 
 import jakarta.persistence.Column;

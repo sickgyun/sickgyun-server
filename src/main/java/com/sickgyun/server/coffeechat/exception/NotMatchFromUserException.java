@@ -1,4 +1,4 @@
-package com.sickgyun.server.coffeeChat.exception;
+package com.sickgyun.server.coffeechat.exception;
 
 import org.springframework.http.HttpStatus;
 

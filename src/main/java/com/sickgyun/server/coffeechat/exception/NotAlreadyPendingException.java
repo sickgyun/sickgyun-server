@@ -1,8 +1,8 @@
-package com.sickgyun.server.coffeeChat.exception;
+package com.sickgyun.server.coffeechat.exception;
 
 import org.springframework.http.HttpStatus;
 
-import com.sickgyun.server.coffeeChat.domain.CoffeeChat;
+import com.sickgyun.server.coffeechat.domain.CoffeeChat;
 import com.sickgyun.server.common.exception.SickgyunException;
 
 public class NotAlreadyPendingException extends SickgyunException {

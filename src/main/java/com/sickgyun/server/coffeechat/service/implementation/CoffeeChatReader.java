@@ -1,9 +1,9 @@
-package com.sickgyun.server.coffeeChat.service.implementation;
+package com.sickgyun.server.coffeechat.service.implementation;
 
 import org.springframework.stereotype.Service;
 
-import com.sickgyun.server.coffeeChat.domain.CoffeeChat;
-import com.sickgyun.server.coffeeChat.domain.repository.CoffeeChatRepository;
+import com.sickgyun.server.coffeechat.domain.CoffeeChat;
+import com.sickgyun.server.coffeechat.domain.repository.CoffeeChatRepository;
 
 import lombok.RequiredArgsConstructor;
 

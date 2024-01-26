@@ -1,4 +1,4 @@
-package com.sickgyun.server.coffeeChat.presentation;
+package com.sickgyun.server.coffeechat.presentation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.repository.AuthRepository;
-import com.sickgyun.server.coffeeChat.presentation.dto.CoffeeChatRequest;
-import com.sickgyun.server.coffeeChat.service.CommandCoffeeChatService;
+import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatRequest;
+import com.sickgyun.server.coffeechat.service.CommandCoffeeChatService;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,14 +1,14 @@
-package com.sickgyun.server.coffeeChat.service;
+package com.sickgyun.server.coffeechat.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sickgyun.server.coffeeChat.domain.CoffeeChat;
-import com.sickgyun.server.coffeeChat.domain.value.State;
-import com.sickgyun.server.coffeeChat.service.implementation.CoffeeChatCreator;
-import com.sickgyun.server.coffeeChat.service.implementation.CoffeeChatReader;
-import com.sickgyun.server.coffeeChat.service.implementation.CoffeeChatUpdater;
-import com.sickgyun.server.coffeeChat.service.implementation.CoffeeChatValidator;
+import com.sickgyun.server.coffeechat.domain.CoffeeChat;
+import com.sickgyun.server.coffeechat.domain.value.State;
+import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatCreator;
+import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatReader;
+import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatUpdater;
+import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatValidator;
 import com.sickgyun.server.user.domain.User;
 import com.sickgyun.server.user.service.implementation.UserReader;
 
