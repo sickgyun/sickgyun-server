@@ -34,14 +34,14 @@ public class CommandCoffeeChatService {
 	public void accept(User user, Long coffeeChatId) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
-		coffeeChatValidator.shouldAlreadyBeAccepted(coffeeChat);
+		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, State.ACCEPT);
 	}
 
 	public void reject(User user, Long coffeeChatId) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
-		coffeeChatValidator.shouldAlreadyBeRejected(coffeeChat);
+		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, State.REJECT);
 	}
 }
