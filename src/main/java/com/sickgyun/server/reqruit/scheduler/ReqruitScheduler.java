@@ -29,7 +29,6 @@ public class ReqruitScheduler {
 
 	@Scheduled(cron = "0 0 5 * * ?") // 매일 오전 5시
 	public void getReqruitInformation() {
-		System.out.println("asdfkjaslkfjakslfjdaskl");
 		Document document = connectToServer();
 		Elements rawReqruits = getReqruit(document);
 		reqruitDeleter.deleteAll();
