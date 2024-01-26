@@ -11,9 +11,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserCreator {
 
-	private final UserRepository repository;
+	private final UserRepository userRepository;
 
 	public User create(User user) {
-		return repository.save(user);
+		return userRepository.save(user);
 	}
 }
