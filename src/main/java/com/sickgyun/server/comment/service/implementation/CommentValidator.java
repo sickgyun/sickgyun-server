@@ -9,7 +9,7 @@ import com.sickgyun.server.user.domain.User;
 public class CommentValidator {
 
 	public void shouldBeSameUser(User commentWriter, User writer) {
-		if (commentWriter.getId().equals(writer.getId())) {
+		if (!commentWriter.getId().equals(writer.getId())) {
 			throw new NotMatchCommentWriterException();
 		}
 	}

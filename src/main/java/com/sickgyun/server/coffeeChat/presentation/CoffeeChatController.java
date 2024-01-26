@@ -3,6 +3,7 @@ package com.sickgyun.server.coffeeChat.presentation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -12,7 +13,6 @@ import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.repository.AuthRepository;
 import com.sickgyun.server.coffeeChat.presentation.dto.CoffeeChatRequest;
 import com.sickgyun.server.coffeeChat.service.CommandCoffeeChatService;
-import com.sickgyun.server.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -31,7 +31,13 @@ public class CoffeeChatController {
 		@PathVariable(name = "to-user-id") Long toUserId,
 		@RequestBody CoffeeChatRequest request
 	) {
-		User fromUser = authRepository.getCurrentUser();
-		commandCoffeeChatService.create(request.toEntity(fromUser), toUserId);
+		commandCoffeeChatService.create(request.toEntity(authRepository.getCurrentUser()), toUserId);
+	}
+
+	@PutMapping("/{chat-id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@LoginRequired
+	public void accept(@PathVariable(name = "chat-id") Long coffeeChatId) {
+		commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId);
 	}
 }

@@ -48,4 +48,8 @@ public class CoffeeChat {
 	public void updateToUser(User toUser) {
 		this.toUser = toUser;
 	}
+
+	public void updateState(State state) {
+		this.state = state;
+	}
 }
