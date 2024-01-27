@@ -7,7 +7,9 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.sickgyun.server.auth.annotation.AdminOnly;
+import com.sickgyun.server.auth.annotation.LoginOrNot;
 import com.sickgyun.server.auth.annotation.LoginRequired;
+import com.sickgyun.server.auth.exception.TokenNotExistException;
 import com.sickgyun.server.auth.exception.UserIsNotAdminException;
 import com.sickgyun.server.auth.service.implementation.AuthReader;
 import com.sickgyun.server.auth.service.implementation.AuthUpdater;
@@ -32,13 +34,25 @@ public class AuthInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 		if (handler instanceof HandlerMethod hm) {
+			if (hm.hasMethodAnnotation(LoginOrNot.class)) {
+				String bearer = request.getHeader(AUTHORIZATION);
+
+				if (bearer == null) {
+					authUpdater.updateCurrentUser(null);
+				} else {
+					String jwt = BearerTokenExtractor.extract(bearer);
+					Long userId = jwtParser.getIdFromJwt(jwt);
+
+					User user = userReader.readUser(userId);
+
+					authUpdater.updateCurrentUser(user);
+				}
+			}
+
 			if (hm.hasMethodAnnotation(LoginRequired.class)) {
-				String jwt = BearerTokenExtractor.extract(request.getHeader(AUTHORIZATION));
-				Long userId = jwtParser.getIdFromJwt(jwt);
-
-				User user = userReader.readUser(userId);
-
-				authUpdater.updateCurrentUser(user);
+				if (authReader.getCurrentUser() == null) {
+					throw new TokenNotExistException();
+				}
 			}
 			if (hm.hasMethodAnnotation(AdminOnly.class)) {
 				User currentUser = authReader.getCurrentUser();
