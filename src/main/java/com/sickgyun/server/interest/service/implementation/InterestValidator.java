@@ -27,8 +27,7 @@ public class InterestValidator {
 	}
 
 	public void shouldNotAlreadyNotInterested(User user, Long partyId, Type partyType) {
-		boolean isAlreadyExist = notInterestedRepository.existsByUserIdAndPartyIdAndPartyType(user.getId(), partyId,
-			partyType);
+		boolean isAlreadyExist = notInterestedRepository.existsBy(user.getId(), partyId, partyType);
 
 		if (isAlreadyExist) {
 			throw new AlreadyNotInterestedException(partyId);
