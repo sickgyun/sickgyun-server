@@ -23,7 +23,7 @@ public class CoffeeChat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "coffeeChat_id")
+	@Column(name = "coffee_chat_id")
 	private Long id;
 
 	private String message;
