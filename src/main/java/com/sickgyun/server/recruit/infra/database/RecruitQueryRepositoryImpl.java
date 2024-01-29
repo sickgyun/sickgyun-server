@@ -1,7 +1,7 @@
-package com.sickgyun.server.reqruit.infra.database;
+package com.sickgyun.server.recruit.infra.database;
 
 import static com.sickgyun.server.interest.domain.QNotInterested.*;
-import static com.sickgyun.server.reqruit.domain.QReqruit.*;
+import static com.sickgyun.server.recruit.domain.QRecruit.*;
 
 import java.util.List;
 
@@ -11,25 +11,25 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sickgyun.server.interest.domain.type.Type;
-import com.sickgyun.server.reqruit.domain.Reqruit;
-import com.sickgyun.server.reqruit.domain.repository.ReqruitQueryRepository;
+import com.sickgyun.server.recruit.domain.Recruit;
+import com.sickgyun.server.recruit.domain.repository.RecruitQueryRepository;
 import com.sickgyun.server.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class ReqruitQueryRepositoryImpl implements ReqruitQueryRepository {
+public class RecruitQueryRepositoryImpl implements RecruitQueryRepository {
 
 	private final JPAQueryFactory queryFactory;
 
 	@Override
-	public List<Reqruit> findWithoutNotInterested(User user, Long size) {
+	public List<Recruit> findWithoutNotInterested(User user, Long size) {
 		return queryFactory
-			.selectFrom(reqruit)
+			.selectFrom(recruit)
 			.leftJoin(notInterested)
 			.on(
-				reqruit.id.eq(notInterested.partyId),
+				recruit.id.eq(notInterested.partyId),
 				userEq(user),
 				notInterested.partyType.eq(Type.REQRUIT)
 			)

@@ -1,4 +1,4 @@
-package com.sickgyun.server.reqruit.presentation;
+package com.sickgyun.server.recruit.presentation;
 
 import java.util.List;
 
@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sickgyun.server.auth.annotation.LoginOrNot;
 import com.sickgyun.server.auth.service.implementation.AuthReader;
-import com.sickgyun.server.reqruit.presentation.dto.ReqruitResponse;
-import com.sickgyun.server.reqruit.service.QueryReqruitService;
+import com.sickgyun.server.recruit.presentation.dto.RecruitResponse;
+import com.sickgyun.server.recruit.service.QueryRecruitService;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/reqruit")
-public class ReqruitController {
-	private final QueryReqruitService queryReqruitService;
+public class RecruitController {
+	private final QueryRecruitService queryRecruitService;
 	private final AuthReader authReader;
 
 	@GetMapping
 	@LoginOrNot
-	public List<ReqruitResponse> getReqruits(@RequestParam(defaultValue = "6") Long size) {
-		return queryReqruitService.getReqruits(authReader.getNullableCurrentUser(), size)
+	public List<RecruitResponse> getReqruits(@RequestParam(defaultValue = "6") Long size) {
+		return queryRecruitService.getReqruits(authReader.getNullableCurrentUser(), size)
 			.stream()
-			.map(ReqruitResponse::new)
+			.map(RecruitResponse::new)
 			.toList();
 	}
 }

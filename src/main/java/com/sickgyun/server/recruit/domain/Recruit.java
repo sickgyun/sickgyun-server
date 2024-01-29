@@ -1,4 +1,4 @@
-package com.sickgyun.server.reqruit.domain;
+package com.sickgyun.server.recruit.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Reqruit {
+public class Recruit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "reqruit_id")
+	@Column(name = "recruit_id")
 	private Long id;
 
 	private String company;
@@ -26,7 +26,7 @@ public class Reqruit {
 
 	private String skills;
 
-	public Reqruit(String company, String imageSrc, String reqruitName, String skills) {
+	public Recruit(String company, String imageSrc, String reqruitName, String skills) {
 		this.company = company;
 		this.imageSrc = imageSrc;
 		this.reqruitName = reqruitName;
