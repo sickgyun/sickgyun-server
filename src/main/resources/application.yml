@@ -39,3 +39,8 @@ jwt:
 #Reqruit
 reqruit:
   url: ${REQRUIT_URL}
+
+---
+#event
+event:
+  url: ${REQRUIT_URL}
