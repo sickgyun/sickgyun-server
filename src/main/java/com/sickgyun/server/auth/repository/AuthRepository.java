@@ -16,6 +16,11 @@ public class AuthRepository {
 		return currentUser;
 	}
 
+	public User getNullableCurrentUser() {
+		return currentUser;
+	}
+
+
 	public void updateCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}

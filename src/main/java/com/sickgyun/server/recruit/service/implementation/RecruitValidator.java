@@ -1,4 +1,4 @@
-package com.sickgyun.server.reqruit.service.implementation;
+package com.sickgyun.server.recruit.service.implementation;
 
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class ReqruitValidator {
+public class RecruitValidator {
 	private final RecruitRepository recruitRepository;
 
 	public void requiredShouldBeExist(Long requireId) {

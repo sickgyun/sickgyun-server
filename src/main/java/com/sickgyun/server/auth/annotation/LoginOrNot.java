@@ -7,6 +7,5 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@LoginOrNot
-public @interface LoginRequired {
+public @interface LoginOrNot {
 }

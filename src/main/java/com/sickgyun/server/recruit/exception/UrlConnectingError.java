@@ -1,4 +1,4 @@
-package com.sickgyun.server.reqruit.exception;
+package com.sickgyun.server.recruit.exception;
 
 import org.springframework.http.HttpStatus;
 
