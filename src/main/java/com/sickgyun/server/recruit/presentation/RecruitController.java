@@ -26,7 +26,7 @@ public class RecruitController {
 	public List<RecruitResponse> getReqruits(@RequestParam(defaultValue = "6") Long size) {
 		return queryRecruitService.getReqruits(authReader.getNullableCurrentUser(), size)
 			.stream()
-			.map(RecruitResponse::new)
+			.map(RecruitResponse::from)
 			.toList();
 	}
 }

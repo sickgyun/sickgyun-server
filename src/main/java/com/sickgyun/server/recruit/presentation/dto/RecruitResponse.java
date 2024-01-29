@@ -10,8 +10,8 @@ public record RecruitResponse(
 	String skills
 ) {
 
-	public RecruitResponse(Recruit recruit) {
-		this(
+	public static RecruitResponse from(Recruit recruit) {
+		return new RecruitResponse(
 			recruit.getId(),
 			recruit.getCompany(),
 			recruit.getImageSrc(),
