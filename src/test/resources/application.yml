@@ -23,7 +23,7 @@ jwt:
   access-token-expiration-time: 10
   refresh-token-expiration-time: 15
 
-reqruit:
+recruit:
   url: hahathisisurl
 
 event:

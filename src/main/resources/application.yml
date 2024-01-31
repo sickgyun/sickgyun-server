@@ -36,11 +36,11 @@ jwt:
   refresh-token-expiration-time: ${REFRESH_TOKEN_EXPIRATION_TIME}
 
 ---
-#Reqruit
-reqruit:
-  url: ${REQRUIT_URL}
+#recruit
+recruit:
+  url: ${RECRUIT_URL}
 
 ---
 #event
 event:
-  url: ${REQRUIT_URL}
+  url: ${EVENT_URL}

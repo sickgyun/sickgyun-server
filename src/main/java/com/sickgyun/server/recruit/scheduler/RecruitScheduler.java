@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class RecruitScheduler {
-	@Value("${reqruit.url}")
+	@Value("${recruit.url}")
 	private String url;
 	private final RecruitCreator recruitCreator;
 	private final RecruitDeleter recruitDeleter;
