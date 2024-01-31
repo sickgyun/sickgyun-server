@@ -43,4 +43,4 @@ reqruit:
 ---
 #event
 event:
-  url: ${REQRUIT_URL}
+  url: ${EVENT_URL}
