@@ -1,13 +1,24 @@
 package com.sickgyun.server.coffeechat.domain.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sickgyun.server.coffeechat.domain.CoffeeChat;
+import com.sickgyun.server.coffeechat.domain.value.State;
 import com.sickgyun.server.coffeechat.exception.CoffeeChatNotFoundException;
+import com.sickgyun.server.user.domain.User;
 
 public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
+
+	List<CoffeeChat> findByToUserAndStateOrderByIdDesc(User toUser, State state);
+
 	default CoffeeChat getById(Long id) {
 		return findById(id)
 			.orElseThrow(() -> new CoffeeChatNotFoundException(id));
+	}
+
+	default List<CoffeeChat> getByToUser(User toUser, State state) {
+		return findByToUserAndStateOrderByIdDesc(toUser, state);
 	}
 }
