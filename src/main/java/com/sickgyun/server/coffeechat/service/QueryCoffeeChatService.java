@@ -20,6 +20,10 @@ public class QueryCoffeeChatService {
 	private final CoffeeChatReader coffeeChatReader;
 
 	public List<CoffeeChat> getPendingByToUser(User user) {
-		return coffeeChatReader.readByToUser(user, State.PENDING);
+		return coffeeChatReader.readByToUser(user, List.of(State.PENDING));
+	}
+
+	public List<CoffeeChat> getNotPendingByToUser(User user) {
+		return coffeeChatReader.readByToUser(user, List.of(State.ACCEPT, State.REJECT));
 	}
 }

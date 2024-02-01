@@ -11,14 +11,14 @@ import com.sickgyun.server.user.domain.User;
 
 public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
 
-	List<CoffeeChat> findByToUserAndStateOrderByIdDesc(User toUser, State state);
+	List<CoffeeChat> findByToUserAndStateInOrderByIdDesc(User toUser, List<State> states);
 
 	default CoffeeChat getById(Long id) {
 		return findById(id)
 			.orElseThrow(() -> new CoffeeChatNotFoundException(id));
 	}
 
-	default List<CoffeeChat> getByToUser(User toUser, State state) {
-		return findByToUserAndStateOrderByIdDesc(toUser, state);
+	default List<CoffeeChat> getByToUser(User toUser, List<State> states) {
+		return findByToUserAndStateInOrderByIdDesc(toUser, states);
 	}
 }

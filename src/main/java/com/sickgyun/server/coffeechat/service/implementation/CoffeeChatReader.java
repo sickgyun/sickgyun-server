@@ -21,7 +21,7 @@ public class CoffeeChatReader {
 		return coffeeChatRepository.getById(coffeeChatId);
 	}
 
-	public List<CoffeeChat> readByToUser(User user, State state) {
-		return coffeeChatRepository.getByToUser(user, state);
+	public List<CoffeeChat> readByToUser(User user, List<State> states) {
+		return coffeeChatRepository.getByToUser(user, states);
 	}
 }
