@@ -13,6 +13,8 @@ public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
 
 	List<CoffeeChat> findByToUserAndStateInOrderByIdDesc(User toUser, List<State> states);
 
+	List<CoffeeChat> findByFromUserAndStateInOrderByIdDesc(User fromUser, List<State> states);
+
 	default CoffeeChat getById(Long id) {
 		return findById(id)
 			.orElseThrow(() -> new CoffeeChatNotFoundException(id));
@@ -20,5 +22,9 @@ public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
 
 	default List<CoffeeChat> getByToUser(User toUser, List<State> states) {
 		return findByToUserAndStateInOrderByIdDesc(toUser, states);
+	}
+
+	default List<CoffeeChat> getByFromUser(User user, List<State> states) {
+		return findByFromUserAndStateInOrderByIdDesc(user, states);
 	}
 }

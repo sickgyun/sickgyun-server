@@ -69,4 +69,20 @@ public class CoffeeChatController {
 			.map(CoffeeChatResponse::from)
 			.toList();
 	}
+
+	@GetMapping("/my/pending/send")
+	@LoginRequired
+	public List<CoffeeChatResponse> getSendPendingChat() {
+		return queryCoffeeChatService.getPendingByFromUser(authRepository.getCurrentUser()).stream()
+			.map(CoffeeChatResponse::from)
+			.toList();
+	}
+
+	@GetMapping("/my/send")
+	@LoginRequired
+	public List<CoffeeChatResponse> getSendNotPendingChat() {
+		return queryCoffeeChatService.getNotPendingByFromUser(authRepository.getCurrentUser()).stream()
+			.map(CoffeeChatResponse::from)
+			.toList();
+	}
 }

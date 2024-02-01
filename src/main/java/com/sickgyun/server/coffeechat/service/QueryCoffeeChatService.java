@@ -26,4 +26,12 @@ public class QueryCoffeeChatService {
 	public List<CoffeeChat> getNotPendingByToUser(User user) {
 		return coffeeChatReader.readByToUser(user, List.of(State.ACCEPT, State.REJECT));
 	}
+
+	public List<CoffeeChat> getPendingByFromUser(User user) {
+		return coffeeChatReader.readByFromUser(user, List.of(State.PENDING));
+	}
+
+	public List<CoffeeChat> getNotPendingByFromUser(User user) {
+		return coffeeChatReader.readByFromUser(user, List.of(State.ACCEPT, State.REJECT));
+	}
 }
