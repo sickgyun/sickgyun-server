@@ -1,6 +1,9 @@
 package com.sickgyun.server.coffeechat.presentation;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.repository.AuthRepository;
 import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatRequest;
+import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatResponse;
 import com.sickgyun.server.coffeechat.service.CommandCoffeeChatService;
+import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +27,7 @@ import lombok.RequiredArgsConstructor;
 public class CoffeeChatController {
 
 	private final CommandCoffeeChatService commandCoffeeChatService;
+	private final QueryCoffeeChatService queryCoffeeChatService;
 	private final AuthRepository authRepository;
 
 	@PostMapping("/{to-user-id}")
@@ -46,5 +52,37 @@ public class CoffeeChatController {
 	@LoginRequired
 	public void reject(@PathVariable(name = "chat-id") Long coffeeChatId) {
 		commandCoffeeChatService.reject(authRepository.getCurrentUser(), coffeeChatId);
+	}
+
+	@GetMapping("/my/pending/receive")
+	@LoginRequired
+	public List<CoffeeChatResponse> getReceivePendingChat() {
+		return queryCoffeeChatService.getPendingByToUser(authRepository.getCurrentUser()).stream()
+			.map(CoffeeChatResponse::from)
+			.toList();
+	}
+
+	@GetMapping("/my/receive")
+	@LoginRequired
+	public List<CoffeeChatResponse> getReceiveNotPendingChat() {
+		return queryCoffeeChatService.getNotPendingByToUser(authRepository.getCurrentUser()).stream()
+			.map(CoffeeChatResponse::from)
+			.toList();
+	}
+
+	@GetMapping("/my/pending/send")
+	@LoginRequired
+	public List<CoffeeChatResponse> getSendPendingChat() {
+		return queryCoffeeChatService.getPendingByFromUser(authRepository.getCurrentUser()).stream()
+			.map(CoffeeChatResponse::from)
+			.toList();
+	}
+
+	@GetMapping("/my/send")
+	@LoginRequired
+	public List<CoffeeChatResponse> getSendNotPendingChat() {
+		return queryCoffeeChatService.getNotPendingByFromUser(authRepository.getCurrentUser()).stream()
+			.map(CoffeeChatResponse::from)
+			.toList();
 	}
 }
