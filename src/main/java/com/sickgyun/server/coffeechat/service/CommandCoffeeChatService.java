@@ -1,10 +1,11 @@
 package com.sickgyun.server.coffeechat.service;
 
+import static com.sickgyun.server.coffeechat.domain.value.State.*;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.coffeechat.domain.CoffeeChat;
-import com.sickgyun.server.coffeechat.domain.value.State;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatCreator;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatReader;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatUpdater;
@@ -35,13 +36,20 @@ public class CommandCoffeeChatService {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, State.ACCEPT);
+		coffeeChatUpdater.updateState(coffeeChat, ACCEPT);
 	}
 
 	public void reject(User user, Long coffeeChatId) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, State.REJECT);
+		coffeeChatUpdater.updateState(coffeeChat, REJECT);
+	}
+
+	public void timeNotRight(User user, Long coffeeChatId) {
+		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
+		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
+		coffeeChatValidator.shouldBePending(coffeeChat);
+		coffeeChatUpdater.updateState(coffeeChat, TIME);
 	}
 }
