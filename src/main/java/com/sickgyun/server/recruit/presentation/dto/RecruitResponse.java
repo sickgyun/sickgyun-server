@@ -7,7 +7,7 @@ public record RecruitResponse(
 	String company,
 	String imageSrc,
 	String reqruitName,
-	String skills
+	String href
 ) {
 
 	public static RecruitResponse from(Recruit recruit) {
@@ -16,7 +16,7 @@ public record RecruitResponse(
 			recruit.getCompany(),
 			recruit.getImageSrc(),
 			recruit.getReqruitName(),
-			recruit.getSkills()
+			recruit.getHref()
 		);
 	}
 }

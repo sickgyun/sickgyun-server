@@ -42,14 +42,14 @@ public class RecruitScheduler {
 			String imageSrc = rawReqruit.selectFirst("img").attr("src");
 			String company = rawReqruit.getElementsByClass("summary__company-name css-x5ccem").text();
 			String name = rawReqruit.getElementsByClass("summary__title css-5g43jj").text();
-			String stack = rawReqruit.getElementsByClass("css-1py9sy3").text();
+			String href = "https://www.rallit.com" + rawReqruit.getElementsByTag("a").get(0).attr("href");
 
 			recruit.add(
 				new Recruit(
 					company,
 					imageSrc,
 					name,
-					stack
+					href
 				)
 			);
 		}
