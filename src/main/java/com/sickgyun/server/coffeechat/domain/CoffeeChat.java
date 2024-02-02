@@ -49,7 +49,8 @@ public class CoffeeChat {
 		this.toUser = toUser;
 	}
 
-	public void updateState(State state) {
+	public void updateState(State state, String message) {
 		this.state = state;
+		this.message = message;
 	}
 }

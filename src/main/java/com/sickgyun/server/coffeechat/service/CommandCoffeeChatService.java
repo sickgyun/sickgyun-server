@@ -32,24 +32,24 @@ public class CommandCoffeeChatService {
 		coffeeChatCreator.create(coffeeChat);
 	}
 
-	public void accept(User user, Long coffeeChatId) {
+	public void accept(User user, Long coffeeChatId, String message) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, ACCEPT);
+		coffeeChatUpdater.updateState(coffeeChat, ACCEPT, message);
 	}
 
-	public void reject(User user, Long coffeeChatId) {
+	public void reject(User user, Long coffeeChatId, String message) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, REJECT);
+		coffeeChatUpdater.updateState(coffeeChat, REJECT, message);
 	}
 
-	public void timeNotRight(User user, Long coffeeChatId) {
+	public void timeNotRight(User user, Long coffeeChatId, String message) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, TIME);
+		coffeeChatUpdater.updateState(coffeeChat, TIME, message);
 	}
 }
