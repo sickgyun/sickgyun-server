@@ -30,8 +30,7 @@ public class EventScheduler {
 	private String url;
 	private final EventRepository eventRepository;
 
-	// @Scheduled(cron = "0 0 5 ? * MON") // 매주 월요일 5시
-	@Scheduled(cron = "*/10 * * * * *")
+	@Scheduled(cron = "0 0 5 ? * MON") // 매주 월요일 5시
 	@Transactional
 	public void getReqruitInformation() {
 		YearMonth now = YearMonth.now();
