@@ -30,7 +30,8 @@ public class EventScheduler {
 	private String url;
 	private final EventRepository eventRepository;
 
-	@Scheduled(cron = "0 0 5 ? * MON") // 매주 월요일 5시
+	// @Scheduled(cron = "0 0 5 ? * MON") // 매주 월요일 5시
+	@Scheduled(cron = "*/10 * * * * *")
 	@Transactional
 	public void getReqruitInformation() {
 		YearMonth now = YearMonth.now();
@@ -61,6 +62,7 @@ public class EventScheduler {
 			String name = rawReqruit.getElementsByClass("Item_item__content__title___fPQa").text();
 			String host = rawReqruit.getElementsByClass("Item_host__zNXMy").text();
 			String date = rawReqruit.getElementsByClass("Item_date__kVMJZ").text();
+			String href = rawReqruit.getElementsByTag("a").get(0).attr("href");
 			String hashtags = rawReqruit.getElementsByClass("Item_tags___ujeV").text()
 				.replace(" ", "")
 				.replace("#", " #")
@@ -72,6 +74,7 @@ public class EventScheduler {
 					name,
 					host,
 					date,
+					href,
 					hashtags,
 					yearMonth
 				)
