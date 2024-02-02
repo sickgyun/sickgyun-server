@@ -24,17 +24,21 @@ public class Event {
 
 	private String date;
 
+	private String href;
+
 	private String hashTags;
 
 	private int year;
 
 	private int month;
 
-	public Event(String image, String name, String host, String date, String hashTags, YearMonth yearMonth) {
+	public Event(String image, String name, String host, String date, String href, String hashTags,
+		YearMonth yearMonth) {
 		this.image = image;
 		this.name = name;
 		this.host = host;
 		this.date = date;
+		this.href = href;
 		this.hashTags = hashTags;
 		this.year = yearMonth.getYear();
 		this.month = yearMonth.getMonth().getValue();
