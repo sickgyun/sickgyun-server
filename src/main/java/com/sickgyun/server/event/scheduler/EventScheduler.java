@@ -61,6 +61,7 @@ public class EventScheduler {
 			String name = rawReqruit.getElementsByClass("Item_item__content__title___fPQa").text();
 			String host = rawReqruit.getElementsByClass("Item_host__zNXMy").text();
 			String date = rawReqruit.getElementsByClass("Item_date__kVMJZ").text();
+			String href = rawReqruit.getElementsByTag("a").get(0).attr("href");
 			String hashtags = rawReqruit.getElementsByClass("Item_tags___ujeV").text()
 				.replace(" ", "")
 				.replace("#", " #")
@@ -72,6 +73,7 @@ public class EventScheduler {
 					name,
 					host,
 					date,
+					href,
 					hashtags,
 					yearMonth
 				)
