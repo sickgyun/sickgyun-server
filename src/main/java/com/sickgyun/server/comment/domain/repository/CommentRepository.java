@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sickgyun.server.comment.domain.Comment;
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 
 import jakarta.persistence.EntityNotFoundException;
 

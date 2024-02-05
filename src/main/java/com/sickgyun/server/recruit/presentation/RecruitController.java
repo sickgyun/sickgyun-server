@@ -16,15 +16,15 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/reqruit")
+@RequestMapping("/recruit")
 public class RecruitController {
 	private final QueryRecruitService queryRecruitService;
 	private final AuthReader authReader;
 
 	@GetMapping
 	@LoginOrNot
-	public List<RecruitResponse> getReqruits(@RequestParam(defaultValue = "6") Long size) {
-		return queryRecruitService.getReqruits(authReader.getNullableCurrentUser(), size)
+	public List<RecruitResponse> getRecruits(@RequestParam(defaultValue = "6") Long size) {
+		return queryRecruitService.getRecruits(authReader.getNullableCurrentUser(), size)
 			.stream()
 			.map(RecruitResponse::from)
 			.toList();

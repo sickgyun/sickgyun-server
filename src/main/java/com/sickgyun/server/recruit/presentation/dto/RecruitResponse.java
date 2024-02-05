@@ -15,7 +15,7 @@ public record RecruitResponse(
 			recruit.getId(),
 			recruit.getCompany(),
 			recruit.getImageSrc(),
-			recruit.getReqruitName(),
+			recruit.getRecruitName(),
 			recruit.getHref()
 		);
 	}

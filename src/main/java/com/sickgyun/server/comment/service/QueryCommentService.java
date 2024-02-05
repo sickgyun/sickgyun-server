@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.comment.domain.Comment;
 import com.sickgyun.server.comment.service.implementation.CommentReader;
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.qna.service.implementation.QnAReader;
 
 import lombok.RequiredArgsConstructor;

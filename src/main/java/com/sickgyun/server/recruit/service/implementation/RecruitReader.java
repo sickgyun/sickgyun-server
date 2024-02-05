@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class RecruitReader {
 	private final RecruitQueryRepository recruitQueryRepository;
 
-	public List<Recruit> readReqruitsWithoutNoInterest(User user, Long size) {
+	public List<Recruit> readRecruitsWithoutNoInterest(User user, Long size) {
 		return recruitQueryRepository.findWithoutNotInterested(user, size);
 	}
 }

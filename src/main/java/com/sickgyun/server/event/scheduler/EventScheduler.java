@@ -32,7 +32,7 @@ public class EventScheduler {
 
 	@Scheduled(cron = "0 0 5 ? * MON") // 매주 월요일 5시
 	@Transactional
-	public void getReqruitInformation() {
+	public void getRecruitInformation() {
 		YearMonth now = YearMonth.now();
 		YearMonth nextMonth = now.plusMonths(1);
 
@@ -56,13 +56,13 @@ public class EventScheduler {
 	private static List<Event> getAllEvents(Elements rawEvents, YearMonth yearMonth) {
 		List<Event> events = new ArrayList<>();
 
-		for (Element rawReqruit : rawEvents) {
-			String imageSrc = "https://dev-event.vercel.app/" + rawReqruit.select("img").get(2).attr("src");
-			String name = rawReqruit.getElementsByClass("Item_item__content__title___fPQa").text();
-			String host = rawReqruit.getElementsByClass("Item_host__zNXMy").text();
-			String date = rawReqruit.getElementsByClass("Item_date__kVMJZ").text();
-			String href = rawReqruit.getElementsByTag("a").get(0).attr("href");
-			String hashtags = rawReqruit.getElementsByClass("Item_tags___ujeV").text()
+		for (Element rawRecruit : rawEvents) {
+			String imageSrc = "https://dev-event.vercel.app/" + rawRecruit.select("img").get(2).attr("src");
+			String name = rawRecruit.getElementsByClass("Item_item__content__title___fPQa").text();
+			String host = rawRecruit.getElementsByClass("Item_host__zNXMy").text();
+			String date = rawRecruit.getElementsByClass("Item_date__kVMJZ").text();
+			String href = rawRecruit.getElementsByTag("a").get(0).attr("href");
+			String hashtags = rawRecruit.getElementsByClass("Item_tags___ujeV").text()
 				.replace(" ", "")
 				.replace("#", " #")
 				.substring(1);

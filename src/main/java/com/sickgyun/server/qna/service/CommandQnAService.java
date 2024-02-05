@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.comment.service.implementation.CommentDeleter;
 import com.sickgyun.server.like.service.implememtation.LikeDeleter;
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.qna.service.implementation.QnACreator;
 import com.sickgyun.server.qna.service.implementation.QnADeleter;
 import com.sickgyun.server.qna.service.implementation.QnAReader;

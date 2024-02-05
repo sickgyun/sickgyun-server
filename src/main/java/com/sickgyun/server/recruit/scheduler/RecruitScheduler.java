@@ -28,21 +28,21 @@ public class RecruitScheduler {
 	private final RecruitDeleter recruitDeleter;
 
 	@Scheduled(cron = "0 0 5 * * ?") // 매일 오전 5시
-	public void getReqruitInformation() {
+	public void getRecruitInformation() {
 		Document document = connectToServer();
-		Elements rawReqruits = getReqruit(document);
+		Elements rawRecruits = getRecruit(document);
 		recruitDeleter.deleteAll();
-		recruitCreator.createAll(getAllReqruits(rawReqruits));
+		recruitCreator.createAll(getAllRecruits(rawRecruits));
 	}
 
-	private static List<Recruit> getAllReqruits(Elements rawReqruits) {
+	private static List<Recruit> getAllRecruits(Elements rawRecruits) {
 		List<Recruit> recruit = new ArrayList<>();
 
-		for (Element rawReqruit : rawReqruits) {
-			String imageSrc = rawReqruit.selectFirst("img").attr("src");
-			String company = rawReqruit.getElementsByClass("summary__company-name css-x5ccem").text();
-			String name = rawReqruit.getElementsByClass("summary__title css-5g43jj").text();
-			String href = "https://www.rallit.com" + rawReqruit.getElementsByTag("a").get(0).attr("href");
+		for (Element rawRecruit : rawRecruits) {
+			String imageSrc = rawRecruit.selectFirst("img").attr("src");
+			String company = rawRecruit.getElementsByClass("summary__company-name css-x5ccem").text();
+			String name = rawRecruit.getElementsByClass("summary__title css-5g43jj").text();
+			String href = "https://www.rallit.com" + rawRecruit.getElementsByTag("a").get(0).attr("href");
 
 			recruit.add(
 				new Recruit(
@@ -56,7 +56,7 @@ public class RecruitScheduler {
 		return recruit;
 	}
 
-	private static Elements getReqruit(Document document) {
+	private static Elements getRecruit(Document document) {
 		Elements elementsByClass = document.getElementsByClass("css-pw0enp");
 		return elementsByClass;
 	}
