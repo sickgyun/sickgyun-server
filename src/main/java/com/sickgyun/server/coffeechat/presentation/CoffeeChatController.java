@@ -43,15 +43,31 @@ public class CoffeeChatController {
 	@PutMapping("/{chat-id}/accept")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@LoginRequired
-	public void accept(@PathVariable(name = "chat-id") Long coffeeChatId) {
-		commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId);
+	public void accept(
+		@PathVariable(name = "chat-id") Long coffeeChatId,
+		@RequestBody CoffeeChatRequest request
+	) {
+		commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId, request.message());
 	}
 
 	@PutMapping("/{chat-id}/reject")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@LoginRequired
-	public void reject(@PathVariable(name = "chat-id") Long coffeeChatId) {
-		commandCoffeeChatService.reject(authRepository.getCurrentUser(), coffeeChatId);
+	public void reject(
+		@PathVariable(name = "chat-id") Long coffeeChatId,
+		@RequestBody CoffeeChatRequest request
+	) {
+		commandCoffeeChatService.reject(authRepository.getCurrentUser(), coffeeChatId, request.message());
+	}
+
+	@PutMapping("/{chat-id}/time")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@LoginRequired
+	public void timeNotRight(
+		@PathVariable(name = "chat-id") Long coffeeChatId,
+		@RequestBody CoffeeChatRequest request
+	) {
+		commandCoffeeChatService.timeNotRight(authRepository.getCurrentUser(), coffeeChatId, request.message());
 	}
 
 	@GetMapping("/my/pending/receive")
