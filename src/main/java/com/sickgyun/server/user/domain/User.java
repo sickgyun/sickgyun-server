@@ -56,4 +56,8 @@ public class User {
 		this.email = user.getEmail();
 		this.name = user.getName();
 	}
+
+	public void updateContact(Contact contact) {
+		this.contact = contact;
+	}
 }

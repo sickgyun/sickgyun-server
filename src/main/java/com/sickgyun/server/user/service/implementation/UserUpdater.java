@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.sickgyun.server.user.domain.User;
 import com.sickgyun.server.user.domain.repository.UserRepository;
+import com.sickgyun.server.user.domain.value.Contact;
 import com.sickgyun.server.user.exception.UserNotFoundException;
 
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,9 @@ public class UserUpdater {
 		updatableUser.update(user);
 
 		return updatableUser;
+	}
+
+	public void updateContact(User user, Contact contact) {
+		user.updateContact(contact);
 	}
 }
