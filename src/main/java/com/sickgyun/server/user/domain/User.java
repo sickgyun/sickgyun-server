@@ -2,7 +2,9 @@ package com.sickgyun.server.user.domain;
 
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.user.domain.role.Role;
+import com.sickgyun.server.user.domain.value.Contact;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -30,6 +32,9 @@ public class User {
 	private String name;
 
 	private String email;
+
+	@Embedded
+	private Contact contact;
 
 	@OneToOne(
 		fetch = FetchType.LAZY,
