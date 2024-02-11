@@ -13,7 +13,8 @@ public record ProfileResponse(
 	String resume,
 	String portfolio,
 	Boolean isRecruited,
-	String company
+	String company,
+	String introduction
 ) {
 	public static ProfileResponse from(Profile profile) {
 		return new ProfileResponse(
@@ -26,7 +27,8 @@ public record ProfileResponse(
 			profile.getOnlineProfile().getResume(),
 			profile.getOnlineProfile().getPortfolio(),
 			profile.getCompany().getIsRecruited(),
-			profile.getCompany().getCompany()
+			profile.getCompany().getCompany(),
+			profile.getInformation().getIntroduction()
 		);
 	}
 }

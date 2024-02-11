@@ -10,10 +10,15 @@ public record SimpleProfileResponse(
 	String imageUrl,
 	Major major,
 	Boolean isRecruited,
-	String company
-
+	String company,
+	String introduction
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
+		String introduction = profile.getInformation().getIntroduction();
+		if (introduction != null && introduction.length() >= 20) {
+			introduction = introduction.substring(0, 20);
+		}
+
 		return new SimpleProfileResponse(
 			profile.getWriter().getId(),
 			profile.getWriter().getName(),
@@ -21,7 +26,8 @@ public record SimpleProfileResponse(
 			profile.getInformation().getImageUrl(),
 			profile.getInformation().getMajor(),
 			profile.getCompany().getIsRecruited(),
-			profile.getCompany().getCompany()
+			profile.getCompany().getCompany(),
+			introduction
 		);
 	}
 }
