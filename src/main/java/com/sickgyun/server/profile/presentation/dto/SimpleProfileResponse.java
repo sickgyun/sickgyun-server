@@ -8,7 +8,9 @@ public record SimpleProfileResponse(
 	String name,
 	Integer admissionYear,
 	String imageUrl,
-	Major major
+	Major major,
+	Boolean isRecruited,
+	String company
 
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
@@ -17,7 +19,9 @@ public record SimpleProfileResponse(
 			profile.getWriter().getName(),
 			profile.getInformation().getAdmissionYear(),
 			profile.getInformation().getImageUrl(),
-			profile.getInformation().getMajor()
+			profile.getInformation().getMajor(),
+			profile.getCompany().getIsRecruited(),
+			profile.getCompany().getCompany()
 		);
 	}
 }
