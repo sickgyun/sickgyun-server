@@ -8,16 +8,26 @@ public record SimpleProfileResponse(
 	String name,
 	Integer admissionYear,
 	String imageUrl,
-	Major major
-
+	Major major,
+	Boolean isRecruited,
+	String company,
+	String introduction
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
+		String introduction = profile.getInformation().getIntroduction();
+		if (introduction != null) {
+			introduction = introduction.substring(0, 20);
+		}
+
 		return new SimpleProfileResponse(
 			profile.getWriter().getId(),
 			profile.getWriter().getName(),
 			profile.getInformation().getAdmissionYear(),
 			profile.getInformation().getImageUrl(),
-			profile.getInformation().getMajor()
+			profile.getInformation().getMajor(),
+			profile.getCompany().getIsRecruited(),
+			profile.getCompany().getCompany(),
+			introduction
 		);
 	}
 }
