@@ -15,7 +15,7 @@ public record SimpleProfileResponse(
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
 		String introduction = profile.getInformation().getIntroduction();
-		if (introduction != null) {
+		if (introduction != null && introduction.length() >= 20) {
 			introduction = introduction.substring(0, 20);
 		}
 
