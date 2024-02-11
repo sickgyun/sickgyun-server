@@ -21,7 +21,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
 	private static final String ALLOW_ALL_PATH = "/**";
 	private static final String ALLOWED_METHODS = "*";
-	private static final String MAIN_SERVER_DOMAIN = "https://sickgyun.vercel.app/";
+	private static final String MAIN_SERVER_DOMAIN = "https://sickgyun.vercel.app";
 	private static final String FRONTEND_LOCALHOST = "http://localhost:3000";
 	private static final String HTTPS_FRONTEND_LOCALHOST = "https://localhost:3000";
 
