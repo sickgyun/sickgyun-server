@@ -6,6 +6,7 @@ import com.sickgyun.server.profile.domain.value.Major;
 public record ProfileResponse(
 	Long userId,
 	String name,
+	Integer admissionYear,
 	String imageUrl,
 	Major major,
 	String githubUrl,
@@ -18,6 +19,7 @@ public record ProfileResponse(
 		return new ProfileResponse(
 			profile.getWriter().getId(),
 			profile.getWriter().getName(),
+			profile.getInformation().getAdmissionYear(),
 			profile.getInformation().getImageUrl(),
 			profile.getInformation().getMajor(),
 			profile.getOnlineProfile().getGithubUrl(),
