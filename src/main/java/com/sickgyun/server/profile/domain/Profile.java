@@ -25,16 +25,16 @@ public class Profile {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long profileId;
+	private Long profileId;
 
 	@Embedded
-	Information information;
+	private Information information;
 
 	@Embedded
-	Company company;
+	private Company company;
 
 	@Embedded
-	OnlineProfile onlineProfile;
+	private OnlineProfile onlineProfile;
 
 	@OneToOne(
 		cascade = CascadeType.REMOVE,
@@ -42,7 +42,7 @@ public class Profile {
 		fetch = FetchType.LAZY
 	)
 	@JoinColumn(name = "user_id")
-	User writer;
+	private User writer;
 
 	public Profile(Information information, Company company, OnlineProfile onlineProfile) {
 		this.information = information;

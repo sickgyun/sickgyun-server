@@ -22,14 +22,14 @@ public class Recruit {
 
 	private String imageSrc;
 
-	private String reqruitName;
+	private String recruitName;
 
 	private String href;
 
-	public Recruit(String company, String imageSrc, String reqruitName, String href) {
+	public Recruit(String company, String imageSrc, String recruitName, String href) {
 		this.company = company;
 		this.imageSrc = imageSrc;
-		this.reqruitName = reqruitName;
+		this.recruitName = recruitName;
 		this.href = href;
 	}
 }

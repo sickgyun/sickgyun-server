@@ -2,7 +2,7 @@ package com.sickgyun.server.comment.domain;
 
 import java.time.LocalDateTime;
 
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.user.domain.User;
 
 import jakarta.persistence.Column;

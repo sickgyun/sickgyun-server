@@ -8,7 +8,7 @@ import com.sickgyun.server.like.service.implememtation.LikeCreator;
 import com.sickgyun.server.like.service.implememtation.LikeDeleter;
 import com.sickgyun.server.like.service.implememtation.LikeReader;
 import com.sickgyun.server.like.service.implememtation.LikeValidator;
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.qna.service.implementation.QnAReader;
 import com.sickgyun.server.user.domain.User;
 
