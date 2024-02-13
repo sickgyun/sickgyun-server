@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class MailSender {
+public class MailService {
 
 	private final JavaMailSender mailSender;
 	private final SpringTemplateEngine templateEngine;

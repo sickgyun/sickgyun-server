@@ -10,7 +10,7 @@ import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatCreator;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatReader;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatUpdater;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatValidator;
-import com.sickgyun.server.mail.MailSender;
+import com.sickgyun.server.mail.MailService;
 import com.sickgyun.server.user.domain.User;
 import com.sickgyun.server.user.service.implementation.UserReader;
 
@@ -26,13 +26,13 @@ public class CommandCoffeeChatService {
 	private final CoffeeChatValidator coffeeChatValidator;
 	private final CoffeeChatUpdater coffeeChatUpdater;
 	private final UserReader userReader;
-	private final MailSender mailSender;
+	private final MailService mailService;
 
 	public void create(CoffeeChat coffeeChat, Long toUserId) {
 		User toUser = userReader.readUser(toUserId);
 		coffeeChat.updateToUser(toUser);
 		coffeeChatCreator.create(coffeeChat);
-		mailSender.sendMail(coffeeChat.getFromUser(), toUser, PENDING);
+		mailService.sendMail(coffeeChat.getFromUser(), toUser, PENDING);
 	}
 
 	public void accept(User user, Long coffeeChatId, String message) {
@@ -40,7 +40,7 @@ public class CommandCoffeeChatService {
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, ACCEPT, message);
-		mailSender.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), ACCEPT);
+		mailService.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), ACCEPT);
 	}
 
 	public void reject(User user, Long coffeeChatId, String message) {
@@ -48,7 +48,7 @@ public class CommandCoffeeChatService {
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, REJECT, message);
-		mailSender.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), REJECT);
+		mailService.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), REJECT);
 	}
 
 	public void timeNotRight(User user, Long coffeeChatId, String message) {
@@ -56,6 +56,6 @@ public class CommandCoffeeChatService {
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, TIME, message);
-		mailSender.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), TIME);
+		mailService.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), TIME);
 	}
 }
