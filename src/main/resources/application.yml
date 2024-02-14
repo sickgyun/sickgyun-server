@@ -23,10 +23,24 @@ spring:
     hibernate:
       ddl-auto: update
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
 decorator:
   datasource:
     p6spy:
       enable-logging: true
+
+---
+#S3
+aws:
+  s3:
+    bucket: ${S3_BUCKET}
+    access-key: ${S3_ACCESSKEY}
+    secret-key: ${S3_SECRET}
 
 ---
 #JWT
