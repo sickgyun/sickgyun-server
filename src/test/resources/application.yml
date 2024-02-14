@@ -17,6 +17,19 @@ spring:
     console:
       enabled: true
 
+  mail:
+    host: stmp
+    port: 12345
+    username: hahaha
+    password: hahaha
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 
 jwt:
   secret-key: hahathisissecretkeyhahathisissecretkeyhahathisissecretkey
