@@ -47,6 +47,9 @@ dependencies {
 	//p6psy query extractor
 	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
+	//aws s3
+	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.638'
+
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
