@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Filter;
 import com.sickgyun.server.profile.service.implementation.ProfileReader;
+import com.sickgyun.server.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,5 +24,9 @@ public class QueryProfileService {
 
 	public Profile readOne(Long profileId) {
 		return profileReader.readById(profileId);
+	}
+
+	public Profile readMine(User user) {
+		return profileReader.readByUser(user);
 	}
 }

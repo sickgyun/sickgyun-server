@@ -29,4 +29,8 @@ public class ProfileReader {
 	public Profile readById(Long profileId) {
 		return profileRepository.getById(profileId);
 	}
+
+	public Profile readByUser(User user) {
+		return profileRepository.getByWriter(user);
+	}
 }
