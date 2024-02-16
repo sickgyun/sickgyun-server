@@ -1,11 +1,11 @@
-package com.sickgyun.server.qna.repository;
+package com.sickgyun.server.qna.domain.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sickgyun.server.qna.QnA;
-import com.sickgyun.server.qna.value.Category;
+import com.sickgyun.server.qna.domain.QnA;
+import com.sickgyun.server.qna.domain.value.Category;
 
 import jakarta.persistence.EntityNotFoundException;
 

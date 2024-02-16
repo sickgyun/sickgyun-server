@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Mail</title>
+</head>
+<body>
+<div class="back">
+    <div class="content">
+        <h1>SickGyun</h1>
+        <p><span th:text="${touser}"></span> 님, 반갑습니다.</p>
+        <p>안타깝지만, <span th:text="${fromuser}"></span> 님께서 커피챗 요청을 거절하셨습니다.</p>
+    </div>
+</div>
+</body>
+</html>

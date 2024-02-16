@@ -1,6 +1,6 @@
 package com.sickgyun.server.like.domain;
 
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.user.domain.User;
 
 import jakarta.persistence.Column;

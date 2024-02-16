@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.sickgyun.server.like.domain.Like;
 import com.sickgyun.server.like.domain.repository.LikeRepository;
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 
 import lombok.RequiredArgsConstructor;
 

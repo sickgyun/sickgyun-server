@@ -31,7 +31,7 @@ public class RecruitQueryRepositoryImpl implements RecruitQueryRepository {
 			.on(
 				recruit.id.eq(notInterested.partyId),
 				userEq(user),
-				notInterested.partyType.eq(Type.REQRUIT)
+				notInterested.partyType.eq(Type.RECRUIT)
 			)
 			.fetchJoin()
 			.where(

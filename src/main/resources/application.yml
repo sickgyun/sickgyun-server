@@ -29,6 +29,20 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
 
+  #mail
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 decorator:
   datasource:
     p6spy:

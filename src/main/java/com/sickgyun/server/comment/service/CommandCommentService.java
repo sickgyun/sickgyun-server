@@ -9,7 +9,7 @@ import com.sickgyun.server.comment.service.implementation.CommentDeleter;
 import com.sickgyun.server.comment.service.implementation.CommentReader;
 import com.sickgyun.server.comment.service.implementation.CommentUpdater;
 import com.sickgyun.server.comment.service.implementation.CommentValidator;
-import com.sickgyun.server.qna.QnA;
+import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.qna.service.implementation.QnAReader;
 import com.sickgyun.server.user.domain.User;
 

@@ -33,7 +33,7 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			.fetchJoin()
 			.where(
 				majorFilter(filter.majors()),
-				reqruitedFilter(filter.isReqruited()),
+				recruitedFilter(filter.isRecruited()),
 				admissionYearFilter(filter.admissionYear())
 			).fetch();
 	}
@@ -46,12 +46,12 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 		return profile.information.major.in(majors);
 	}
 
-	private BooleanExpression reqruitedFilter(Boolean isReqruited) {
-		if (isReqruited == null) {
+	private BooleanExpression recruitedFilter(Boolean isRecruited) {
+		if (isRecruited == null) {
 			return null;
 		}
 
-		return profile.company.isRecruited.eq(isReqruited);
+		return profile.company.isRecruited.eq(isRecruited);
 	}
 
 	private BooleanExpression admissionYearFilter(String admissionYear) {

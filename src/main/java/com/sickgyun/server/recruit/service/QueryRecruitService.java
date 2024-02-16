@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class QueryRecruitService {
 	private final RecruitReader recruitReader;
 
-	public List<Recruit> getReqruits(User user, Long size) {
-		return recruitReader.readReqruitsWithoutNoInterest(user, size);
+	public List<Recruit> getRecruits(User user, Long size) {
+		return recruitReader.readRecruitsWithoutNoInterest(user, size);
 	}
 }

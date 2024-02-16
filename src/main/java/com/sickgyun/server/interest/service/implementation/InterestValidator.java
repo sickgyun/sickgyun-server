@@ -18,7 +18,7 @@ public class InterestValidator {
 	private final NotInterestedRepository notInterestedRepository;
 
 	public void shouldPartyBeExist(Long partyId, Type partyType) {
-		if (partyType == Type.REQRUIT) {
+		if (partyType == Type.RECRUIT) {
 			recruitValidator.requiredShouldBeExist(partyId);
 			return;
 		}
