@@ -10,8 +10,6 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.sickgyun.server.common.config.S3Bucket;
-import com.sickgyun.server.image.domain.Image;
-import com.sickgyun.server.image.domain.repository.ImageRepository;
 import com.sickgyun.server.image.exception.S3SaveException;
 
 import lombok.RequiredArgsConstructor;
@@ -21,9 +19,8 @@ import lombok.RequiredArgsConstructor;
 public class ImageCreator {
 	private final S3Bucket s3Bucket;
 	private final AmazonS3 amazonS3;
-	private final ImageRepository imageRepository;
 
-	public Image create(MultipartFile multipartFile) {
+	public String create(MultipartFile multipartFile) {
 		String fileName = createFileName(multipartFile);
 
 		try {
@@ -38,9 +35,8 @@ public class ImageCreator {
 		} catch (IOException e) {
 			throw new S3SaveException();
 		}
-		String url = amazonS3.getUrl(s3Bucket.getS3Bucket(), fileName).toString();
 
-		return imageRepository.save(new Image(fileName, url));
+		return amazonS3.getUrl(s3Bucket.getS3Bucket(), fileName).toString();
 	}
 
 	private String createFileName(MultipartFile multipartFile) {
