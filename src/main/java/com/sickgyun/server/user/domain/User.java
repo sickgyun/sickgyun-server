@@ -41,7 +41,7 @@ public class User {
 		mappedBy = "writer"
 	)
 	@JoinColumn(name = "PROFILE")
-	Profile profile;
+	private Profile profile;
 
 	public void updateProfile(Profile profile) {
 		this.profile = profile;
