@@ -21,6 +21,7 @@ import com.sickgyun.server.profile.presentation.dto.ProfileUpdateRequest;
 import com.sickgyun.server.profile.presentation.dto.SimpleProfileResponse;
 import com.sickgyun.server.profile.service.CommandProfileService;
 import com.sickgyun.server.profile.service.QueryProfileService;
+import com.sickgyun.server.user.domain.User;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -60,5 +61,13 @@ public class ProfileController {
 	@ResponseStatus(HttpStatus.OK)
 	public ProfileResponse readOne(@PathVariable(name = "profile-id") Long profileId) {
 		return ProfileResponse.from(queryService.readOne(profileId));
+	}
+
+	@GetMapping("/mine")
+	@LoginRequired
+	@ResponseStatus(HttpStatus.OK)
+	public ProfileResponse readMine() {
+		User currentUser = authRepository.getCurrentUser();
+		return ProfileResponse.from(queryService.readMine(currentUser));
 	}
 }
