@@ -3,6 +3,7 @@ package com.sickgyun.server.mail;
 import static jakarta.mail.Message.RecipientType.*;
 
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
@@ -22,6 +23,7 @@ public class MailService {
 	private final JavaMailSender mailSender;
 	private final SpringTemplateEngine templateEngine;
 
+	@Async
 	public void sendMail(User fromUser, User toUser, State type) {
 		MimeMessage message = mailSender.createMimeMessage();
 
