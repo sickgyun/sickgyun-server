@@ -52,12 +52,20 @@ public class User {
 		this.email = email;
 	}
 
+	public User(String name, String email, Contact contact) {
+		this.name = name;
+		this.email = email;
+		this.contact = contact;
+	}
+
 	public void update(User user) {
 		this.email = user.getEmail();
 		this.name = user.getName();
 	}
 
-	public void updateContact(Contact contact) {
-		this.contact = contact;
+	public void updateUser(User user) {
+		this.email = user.getEmail();
+		this.name = user.getName();
+		this.contact = user.getContact();
 	}
 }
