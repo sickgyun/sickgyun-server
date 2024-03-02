@@ -38,4 +38,10 @@ public class UserController {
 	public UserResponse readById(@PathVariable(name = "user-id") Long id) {
 		return UserResponse.from(queryUserService.readById(id));
 	}
+
+	@GetMapping
+	@LoginRequired
+	public UserResponse readByCurrent() {
+		return UserResponse.from(authReader.getCurrentUser());
+	}
 }
