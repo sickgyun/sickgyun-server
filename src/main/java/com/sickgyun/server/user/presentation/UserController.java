@@ -31,7 +31,7 @@ public class UserController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@LoginRequired
 	public void updateContact(@RequestBody UserRequest request) {
-		commandUserService.updateContact(authReader.getCurrentUser(), request.contact());
+		commandUserService.updateContact(authReader.getCurrentUser(), request.toEntity());
 	}
 
 	@GetMapping("/{user-id}")
