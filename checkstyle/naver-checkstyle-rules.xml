@@ -52,16 +52,6 @@ The following rules in the Naver coding convention cannot be checked by this con
 	</module>
 
 	<module name="TreeWalker">
-		<!-- Start of Naming chapter -->
-
-		<!-- [list-uppercase-abbr] -->
-		<module name="AbbreviationAsWordInName">
-			<property name="ignoreFinal" value="false"/>
-			<property name="allowedAbbreviationLength" value="1"/>
-			<message key="abbreviation.as.word"
-					 value="[list-uppercase-abbr] Abbreviation in name ''{0}'' must contain no more than {1}"/>
-			<property name="allowedAbbreviations" value="DAO,BO"/>
-		</module>
 
 		<!-- [package-lowercase] -->
 		<module name="PackageName">
@@ -76,38 +66,6 @@ The following rules in the Naver coding convention cannot be checked by this con
 			<message key="name.invalidPattern"
 					 value="[class-interface-lower-camelcase] Type name ''{0}'' must match pattern ''{1}''."/>
 		</module>
-
-		<!-- [method-lower-camelcase] -->
-		<module name="MethodName">
-			<property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
-			<message key="name.invalidPattern"
-					 value="[method-lower-camelcase] Method name ''{0}'' must match pattern ''{1}''."/>
-		</module>
-
-		<!-- [var-lower-camelcase] -->
-		<module name="MemberName">
-			<property name="format" value="^[a-z][a-zA-Z0-9][a-zA-Z0-9]*$"/>
-			<message key="name.invalidPattern"
-					 value="[var-lower-camelcase] Member name ''{0}'' must match pattern ''{1}''."/>
-		</module>
-		<module name="ParameterName">
-			<property name="format" value="^[a-z][a-zA-Z0-9][a-zA-Z0-9]*$"/>
-			<message key="name.invalidPattern"
-					 value="[var-lower-camelcase] Parameter name ''{0}'' must match pattern ''{1}''."/>
-		</module>
-
-		<!-- [var-lower-camelcase], [avoid-1-char-var] -->
-		<module name="LocalVariableName">
-			<property name="tokens" value="VARIABLE_DEF"/>
-			<property name="format" value="^[a-z][a-zA-Z0-9][a-zA-Z0-9]*$"/>
-			<property name="allowOneCharVarInForLoop" value="true"/>
-			<message key="name.invalidPattern"
-					 value="[var-lower-camelcase][avoid-1-char-var] Local variable name ''{0}'' must match pattern ''{1}''."/>
-		</module>
-
-		<!-- End of Naming chapter -->
-
-		<!-- Start of Declarations chapter -->
 
 		<!-- [1-top-level-class] -->
 		<module name="OneTopLevelClass"/>
