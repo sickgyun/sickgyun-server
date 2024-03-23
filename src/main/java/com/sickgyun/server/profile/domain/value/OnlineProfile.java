@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OnlineProfile {
-	String githubUrl;
-	String resume;
-	String portfolio;
+	private String githubId;
+	private String resumeUrl;
+	private String portfolioUrl;
 }

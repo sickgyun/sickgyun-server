@@ -13,9 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Information {
-	String imageUrl;
-	String introduction;
+	private String imageUrl;
+	private String introduction;
 	@Enumerated(EnumType.STRING)
-	Major major;
-	Integer admissionYear;
+	private Major major;
 }
