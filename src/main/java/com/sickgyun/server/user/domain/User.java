@@ -36,6 +36,10 @@ public class User {
 	@Embedded
 	private Contact contact;
 
+	private Boolean isGraduated;
+
+	private Long cardinal;
+
 	@OneToOne(
 		fetch = FetchType.LAZY,
 		mappedBy = "writer"
@@ -52,10 +56,12 @@ public class User {
 		this.email = email;
 	}
 
-	public User(String name, String email, Contact contact) {
+	public User(String name, String email, Contact contact, Boolean isGraduated, Long cardinal) {
 		this.name = name;
 		this.email = email;
 		this.contact = contact;
+		this.isGraduated = isGraduated;
+		this.cardinal = cardinal;
 	}
 
 	public void update(User user) {
@@ -67,5 +73,7 @@ public class User {
 		this.email = user.getEmail();
 		this.name = user.getName();
 		this.contact = user.getContact();
+		this.isGraduated = user.getIsGraduated();
+		this.cardinal = user.getCardinal();
 	}
 }

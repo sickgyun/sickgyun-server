@@ -24,5 +24,6 @@ public class UserUpdater {
 
 	public void update(User updatableUser, User user) {
 		updatableUser.updateUser(user);
+		userRepository.save(updatableUser);
 	}
 }

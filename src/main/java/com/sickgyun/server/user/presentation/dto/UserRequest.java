@@ -6,10 +6,12 @@ import com.sickgyun.server.user.domain.value.Contact;
 public record UserRequest(
 	String name,
 	String email,
-	Contact contact
+	Contact contact,
+	Long cardinal,
+	Boolean isGraduated
 ) {
 
 	public User toEntity() {
-		return new User(name, email, contact);
+		return new User(name, email, contact, isGraduated, cardinal);
 	}
 }
