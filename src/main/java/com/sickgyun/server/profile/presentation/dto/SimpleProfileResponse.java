@@ -4,9 +4,8 @@ import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Major;
 
 public record SimpleProfileResponse(
-	Long userId,
+	Long id,
 	String name,
-	Integer admissionYear,
 	String imageUrl,
 	Major major,
 	Boolean isRecruited,
@@ -20,9 +19,8 @@ public record SimpleProfileResponse(
 		}
 
 		return new SimpleProfileResponse(
-			profile.getWriter().getId(),
+			profile.getId(),
 			profile.getWriter().getName(),
-			profile.getInformation().getAdmissionYear(),
 			profile.getInformation().getImageUrl(),
 			profile.getInformation().getMajor(),
 			profile.getCompany().getIsRecruited(),

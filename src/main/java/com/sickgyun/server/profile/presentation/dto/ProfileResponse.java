@@ -4,30 +4,32 @@ import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Major;
 
 public record ProfileResponse(
-	Long userId,
+	Long id,
 	String name,
-	Integer admissionYear,
 	String imageUrl,
+	Boolean isGraduated,
 	Major major,
-	String githubUrl,
-	String resume,
-	String portfolio,
+	String githubId,
+	String resumeUrl,
+	String portfolioUrl,
 	Boolean isRecruited,
 	String company,
+	Long cardinal,
 	String introduction
 ) {
 	public static ProfileResponse from(Profile profile) {
 		return new ProfileResponse(
-			profile.getWriter().getId(),
+			profile.getId(),
 			profile.getWriter().getName(),
-			profile.getInformation().getAdmissionYear(),
 			profile.getInformation().getImageUrl(),
+			profile.getWriter().getIsGraduated(),
 			profile.getInformation().getMajor(),
-			profile.getOnlineProfile().getGithubUrl(),
-			profile.getOnlineProfile().getResume(),
-			profile.getOnlineProfile().getPortfolio(),
+			profile.getOnlineProfile().getGithubId(),
+			profile.getOnlineProfile().getResumeUrl(),
+			profile.getOnlineProfile().getPortfolioUrl(),
 			profile.getCompany().getIsRecruited(),
 			profile.getCompany().getCompany(),
+			profile.getWriter().getCardinal(),
 			profile.getInformation().getIntroduction()
 		);
 	}
