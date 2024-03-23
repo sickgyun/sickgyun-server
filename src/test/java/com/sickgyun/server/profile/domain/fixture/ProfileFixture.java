@@ -11,7 +11,7 @@ public class ProfileFixture {
 
 	public static User 유저 = new User(
 		"사용자",
-		"이메일"
+		"2022061@bssm.hs.kr"
 	);
 
 	public static Profile 프로필_백엔드() {
