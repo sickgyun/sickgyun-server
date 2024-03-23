@@ -1,5 +1,7 @@
 package com.sickgyun.server.user.domain;
 
+import java.time.LocalDateTime;
+
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.user.domain.role.Role;
 
@@ -54,6 +56,12 @@ public class User {
 			this.cardinal = Long.parseLong(email.substring(2, 4)) - 20L;
 		} else {
 			this.cardinal = firstTwo - 20L;
+		}
+
+		if (LocalDateTime.now().getYear() - this.cardinal >= 2023) {
+			this.isGraduated = true;
+		} else {
+			this.isGraduated = false;
 		}
 	}
 

@@ -54,7 +54,7 @@ public class CommandProfileServiceTest extends ServiceTest {
 	}
 
 	private Optional<Profile> 프로필_조회(Profile 저장할_프로필) {
-		return profileRepository.findById(저장할_프로필.getProfileId());
+		return profileRepository.findById(저장할_프로필.getId());
 	}
 
 	private User 유저_저장(User 유저) {
