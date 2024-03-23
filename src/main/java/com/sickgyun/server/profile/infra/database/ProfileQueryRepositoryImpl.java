@@ -34,7 +34,7 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			.where(
 				majorFilter(filter.majors()),
 				recruitedFilter(filter.isRecruited()),
-				admissionYearFilter(filter.admissionYear())
+				admissionYearFilter(filter.cardinals())
 			).fetch();
 	}
 
@@ -63,6 +63,6 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			.map(Integer::parseInt)
 			.toList();
 
-		return profile.information.admissionYear.between(list.get(0), list.get(1));
+		return user.cardinal.between(list.get(0), list.get(1));
 	}
 }
