@@ -32,7 +32,6 @@ public class CommandAuthService {
 
 	public Token login(String accessToken) {
 		User user = googleOauthFeign.getInfo(accessToken).toUser();
-		;
 		authValidator.shouldBeBssmEmail(user);
 
 		User updatedUser;

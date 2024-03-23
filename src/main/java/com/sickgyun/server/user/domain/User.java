@@ -54,6 +54,12 @@ public class User {
 	public User(String name, String email) {
 		this.name = name;
 		this.email = email;
+		long firstTwo = Long.parseLong(email.substring(0, 2));
+		if (firstTwo == 20L) {
+			this.cardinal = Long.parseLong(email.substring(2, 4)) - 20L;
+		} else {
+			this.cardinal = firstTwo - 20L;
+		}
 	}
 
 	public User(String name, String email, Contact contact, Boolean isGraduated, Long cardinal) {
