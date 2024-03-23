@@ -2,9 +2,7 @@ package com.sickgyun.server.user.domain;
 
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.user.domain.role.Role;
-import com.sickgyun.server.user.domain.value.Contact;
 
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -33,9 +31,6 @@ public class User {
 
 	private String email;
 
-	@Embedded
-	private Contact contact;
-
 	private Boolean isGraduated;
 
 	private Long cardinal;
@@ -62,10 +57,9 @@ public class User {
 		}
 	}
 
-	public User(String name, String email, Contact contact, Boolean isGraduated, Long cardinal) {
+	public User(String name, String email, Boolean isGraduated, Long cardinal) {
 		this.name = name;
 		this.email = email;
-		this.contact = contact;
 		this.isGraduated = isGraduated;
 		this.cardinal = cardinal;
 	}
@@ -78,7 +72,6 @@ public class User {
 	public void updateUser(User user) {
 		this.email = user.getEmail();
 		this.name = user.getName();
-		this.contact = user.getContact();
 		this.isGraduated = user.getIsGraduated();
 		this.cardinal = user.getCardinal();
 	}
