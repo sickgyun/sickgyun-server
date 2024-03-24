@@ -8,7 +8,6 @@ public record SimpleProfileResponse(
 	String name,
 	String imageUrl,
 	Major major,
-	Boolean isRecruited,
 	String company,
 	String introduction
 ) {
@@ -23,8 +22,7 @@ public record SimpleProfileResponse(
 			profile.getWriter().getName(),
 			profile.getInformation().getImageUrl(),
 			profile.getInformation().getMajor(),
-			profile.getCompany().getIsRecruited(),
-			profile.getCompany().getCompany(),
+			profile.getCompany(),
 			introduction
 		);
 	}

@@ -51,7 +51,7 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			return null;
 		}
 
-		return profile.company.isRecruited.eq(isRecruited);
+		return profile.company.isNotEmpty();
 	}
 
 	private BooleanExpression admissionYearFilter(String admissionYear) {

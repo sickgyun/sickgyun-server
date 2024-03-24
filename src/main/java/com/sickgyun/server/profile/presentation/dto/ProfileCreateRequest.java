@@ -1,7 +1,6 @@
 package com.sickgyun.server.profile.presentation.dto;
 
 import com.sickgyun.server.profile.domain.Profile;
-import com.sickgyun.server.profile.domain.value.Company;
 import com.sickgyun.server.profile.domain.value.Information;
 import com.sickgyun.server.profile.domain.value.Major;
 import com.sickgyun.server.profile.domain.value.OnlineProfile;
@@ -38,7 +37,7 @@ public record ProfileCreateRequest(
 	public Profile toEntity() {
 		return new Profile(
 			new Information(imageUrl, introduction, major),
-			new Company(isRecruited, company),
+			company,
 			new OnlineProfile(githubId, resumeUrl, portfolioUrl)
 		);
 	}

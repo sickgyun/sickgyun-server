@@ -12,7 +12,6 @@ public record ProfileResponse(
 	String githubId,
 	String resumeUrl,
 	String portfolioUrl,
-	Boolean isRecruited,
 	String company,
 	Long cardinal,
 	String introduction
@@ -27,8 +26,7 @@ public record ProfileResponse(
 			profile.getOnlineProfile().getGithubId(),
 			profile.getOnlineProfile().getResumeUrl(),
 			profile.getOnlineProfile().getPortfolioUrl(),
-			profile.getCompany().getIsRecruited(),
-			profile.getCompany().getCompany(),
+			profile.getCompany(),
 			profile.getWriter().getCardinal(),
 			profile.getInformation().getIntroduction()
 		);

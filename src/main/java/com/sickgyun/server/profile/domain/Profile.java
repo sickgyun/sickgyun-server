@@ -1,6 +1,5 @@
 package com.sickgyun.server.profile.domain;
 
-import com.sickgyun.server.profile.domain.value.Company;
 import com.sickgyun.server.profile.domain.value.Information;
 import com.sickgyun.server.profile.domain.value.OnlineProfile;
 import com.sickgyun.server.user.domain.User;
@@ -30,8 +29,7 @@ public class Profile {
 	@Embedded
 	private Information information;
 
-	@Embedded
-	private Company company;
+	private String company;
 
 	@Embedded
 	private OnlineProfile onlineProfile;
@@ -44,7 +42,7 @@ public class Profile {
 	@JoinColumn(name = "user_id")
 	private User writer;
 
-	public Profile(Information information, Company company, OnlineProfile onlineProfile) {
+	public Profile(Information information, String company, OnlineProfile onlineProfile) {
 		this.information = information;
 		this.company = company;
 		this.onlineProfile = onlineProfile;
