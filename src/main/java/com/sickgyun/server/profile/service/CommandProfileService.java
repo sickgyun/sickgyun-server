@@ -8,6 +8,7 @@ import com.sickgyun.server.profile.service.implementation.ProfileCreator;
 import com.sickgyun.server.profile.service.implementation.ProfileReader;
 import com.sickgyun.server.profile.service.implementation.ProfileValidator;
 import com.sickgyun.server.user.domain.User;
+import com.sickgyun.server.user.service.implementation.UserUpdater;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,9 +19,12 @@ public class CommandProfileService {
 	private final ProfileCreator profileCreator;
 	private final ProfileValidator profileValidator;
 	private final ProfileReader profileReader;
+	private final UserUpdater userUpdater;
 
 	public void create(Profile profile, User writer) {
 		profileValidator.shouldHaveAnotherProfile(writer);
+
+		userUpdater.updateHasCreatedProfile(writer);
 
 		profileCreator.create(profile, writer);
 	}

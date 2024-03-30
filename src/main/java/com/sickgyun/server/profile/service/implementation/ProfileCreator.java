@@ -14,7 +14,7 @@ public class ProfileCreator {
 	private final ProfileRepository profileRepository;
 
 	public void create(Profile profile, User writer) {
-		profileRepository.save(profile);
 		profile.updateWriter(writer);
+		profileRepository.save(profile);
 	}
 }

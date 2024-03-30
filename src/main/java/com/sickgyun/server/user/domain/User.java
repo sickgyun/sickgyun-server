@@ -37,6 +37,8 @@ public class User {
 
 	private Long cardinal;
 
+	private boolean hasCreatedProfile;
+
 	@OneToOne(
 		fetch = FetchType.LAZY,
 		mappedBy = "writer"
@@ -52,19 +54,17 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.role = Role.USER;
+		this.hasCreatedProfile = false;
 
 		long firstTwo = Long.parseLong(email.substring(0, 2));
+
 		if (firstTwo == 20L) {
 			this.cardinal = Long.parseLong(email.substring(2, 4)) - 20L;
 		} else {
 			this.cardinal = firstTwo - 20L;
 		}
 
-		if (LocalDateTime.now().getYear() - this.cardinal >= 2023) {
-			this.isGraduated = true;
-		} else {
-			this.isGraduated = false;
-		}
+		this.isGraduated = LocalDateTime.now().getYear() - this.cardinal >= 2023;
 	}
 
 	public User(String name, String email, Boolean isGraduated, Long cardinal) {
@@ -77,6 +77,7 @@ public class User {
 	public void update(User user) {
 		this.email = user.getEmail();
 		this.name = user.getName();
+		this.isGraduated = user.getIsGraduated();
 	}
 
 	public void updateUser(User user) {
@@ -84,5 +85,9 @@ public class User {
 		this.name = user.getName();
 		this.isGraduated = user.getIsGraduated();
 		this.cardinal = user.getCardinal();
+	}
+
+	public void hasCreatedProfile() {
+		this.hasCreatedProfile = true;
 	}
 }
