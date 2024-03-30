@@ -72,3 +72,6 @@ recruit:
 #event
 event:
   url: ${EVENT_URL}
+
+admin:
+  password: ${ADMIN_PASSWORD}

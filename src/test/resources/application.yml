@@ -48,3 +48,6 @@ recruit:
 
 event:
   url: hahathisisurl
+
+admin:
+  password: hahathisispassword

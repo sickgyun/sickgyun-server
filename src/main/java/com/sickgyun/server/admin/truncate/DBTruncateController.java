@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class DBTruncateController {
 	private final JdbcTemplate jdbcTemplate;
 
-	@Value("${ADMIN_PASSWORD}")
+	@Value("${admin.password}")
 	private String password;
 
 	@PostMapping
