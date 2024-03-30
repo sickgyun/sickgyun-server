@@ -7,11 +7,12 @@ public record UserResponse(
 	String name,
 	String email,
 	Boolean isGraduated,
-	Long cardinal
+	Long cardinal,
+	Boolean hasCreatedProfile
 ) {
 
 	public static UserResponse from(User user) {
 		return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getIsGraduated(),
-			user.getCardinal());
+			user.getCardinal(), user.getHasCreatedProfile());
 	}
 }

@@ -37,7 +37,7 @@ public class User {
 
 	private Long cardinal;
 
-	private boolean hasCreatedProfile;
+	private Boolean hasCreatedProfile;
 
 	@OneToOne(
 		fetch = FetchType.LAZY,
