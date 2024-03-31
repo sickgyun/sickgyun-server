@@ -5,10 +5,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.service.implementation.ProfileCreator;
+import com.sickgyun.server.profile.service.implementation.ProfileDeleter;
 import com.sickgyun.server.profile.service.implementation.ProfileReader;
 import com.sickgyun.server.profile.service.implementation.ProfileValidator;
 import com.sickgyun.server.user.domain.User;
-import com.sickgyun.server.user.service.implementation.UserUpdater;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,12 +19,10 @@ public class CommandProfileService {
 	private final ProfileCreator profileCreator;
 	private final ProfileValidator profileValidator;
 	private final ProfileReader profileReader;
-	private final UserUpdater userUpdater;
+	private final ProfileDeleter profileDeleter;
 
 	public void create(Profile profile, User writer) {
 		profileValidator.shouldHaveAnotherProfile(writer);
-
-		userUpdater.updateHasCreatedProfile(writer);
 
 		profileCreator.create(profile, writer);
 	}
@@ -33,5 +31,9 @@ public class CommandProfileService {
 		Profile updatableProfile = profileReader.findProfileByWriter(writer);
 
 		updatableProfile.update(profile);
+	}
+
+	public void deleteByUser(User currentUser) {
+		profileDeleter.deleteByUser(currentUser);
 	}
 }

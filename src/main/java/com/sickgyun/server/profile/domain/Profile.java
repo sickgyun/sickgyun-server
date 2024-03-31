@@ -4,7 +4,6 @@ import com.sickgyun.server.profile.domain.value.Information;
 import com.sickgyun.server.profile.domain.value.OnlineProfile;
 import com.sickgyun.server.user.domain.User;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -35,8 +34,6 @@ public class Profile {
 	private OnlineProfile onlineProfile;
 
 	@OneToOne(
-		cascade = CascadeType.REMOVE,
-		orphanRemoval = true,
 		fetch = FetchType.LAZY
 	)
 	@JoinColumn(name = "user_id")

@@ -37,10 +37,8 @@ public class User {
 
 	private Long cardinal;
 
-	private Boolean hasCreatedProfile;
-
 	@OneToOne(
-		fetch = FetchType.LAZY,
+		fetch = FetchType.EAGER,
 		mappedBy = "writer"
 	)
 	@JoinColumn(name = "PROFILE")
@@ -54,7 +52,6 @@ public class User {
 		this.name = name;
 		this.email = email;
 		this.role = Role.USER;
-		this.hasCreatedProfile = false;
 
 		long firstTwo = Long.parseLong(email.substring(0, 2));
 
@@ -85,9 +82,5 @@ public class User {
 		this.name = user.getName();
 		this.isGraduated = user.getIsGraduated();
 		this.cardinal = user.getCardinal();
-	}
-
-	public void hasCreatedProfile() {
-		this.hasCreatedProfile = true;
 	}
 }

@@ -14,7 +14,7 @@ public record UserResponse(
 
 	public static UserResponse from(User user) {
 		return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getIsGraduated(),
-			user.getCardinal(), user.getHasCreatedProfile(),
+			user.getCardinal(), user.getProfile() != null,
 			user.getProfile() == null ? null : user.getProfile().getId());
 	}
 }

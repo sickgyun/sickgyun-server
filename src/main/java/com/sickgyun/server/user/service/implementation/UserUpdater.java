@@ -26,10 +26,4 @@ public class UserUpdater {
 		updatableUser.updateUser(user);
 		userRepository.save(updatableUser);
 	}
-
-	public void updateHasCreatedProfile(User writer) {
-		User updatableUser = userRepository.getById(writer.getId());
-
-		updatableUser.hasCreatedProfile();
-	}
 }
