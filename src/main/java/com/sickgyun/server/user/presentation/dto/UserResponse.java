@@ -8,11 +8,13 @@ public record UserResponse(
 	String email,
 	Boolean isGraduated,
 	Long cardinal,
-	Boolean hasCreatedProfile
+	Boolean hasCreatedProfile,
+	Long profileId
 ) {
 
 	public static UserResponse from(User user) {
 		return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getIsGraduated(),
-			user.getCardinal(), user.getHasCreatedProfile());
+			user.getCardinal(), user.getHasCreatedProfile(),
+			user.getProfile() == null ? null : user.getProfile().getId());
 	}
 }
