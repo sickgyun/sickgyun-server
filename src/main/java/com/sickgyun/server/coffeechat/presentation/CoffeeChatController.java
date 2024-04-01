@@ -60,36 +60,11 @@ public class CoffeeChatController {
 		commandCoffeeChatService.reject(authRepository.getCurrentUser(), coffeeChatId, request.message());
 	}
 
-	@PutMapping("/{chat-id}/time")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@LoginRequired
-	public void timeNotRight(
-		@PathVariable(name = "chat-id") Long coffeeChatId,
-		@RequestBody CoffeeChatRequest request
-	) {
-		commandCoffeeChatService.timeNotRight(authRepository.getCurrentUser(), coffeeChatId, request.message());
-	}
-
-	@GetMapping("/my/pending/receive")
-	@LoginRequired
-	public List<CoffeeChatResponse> getReceivePendingChat() {
-		return queryCoffeeChatService.getPendingByToUser(authRepository.getCurrentUser()).stream()
-			.map(CoffeeChatResponse::from)
-			.toList();
-	}
 
 	@GetMapping("/my/receive")
 	@LoginRequired
 	public List<CoffeeChatResponse> getReceiveNotPendingChat() {
-		return queryCoffeeChatService.getNotPendingByToUser(authRepository.getCurrentUser()).stream()
-			.map(CoffeeChatResponse::from)
-			.toList();
-	}
-
-	@GetMapping("/my/pending/send")
-	@LoginRequired
-	public List<CoffeeChatResponse> getSendPendingChat() {
-		return queryCoffeeChatService.getPendingByFromUser(authRepository.getCurrentUser()).stream()
+		return queryCoffeeChatService.getByToUser(authRepository.getCurrentUser()).stream()
 			.map(CoffeeChatResponse::from)
 			.toList();
 	}
@@ -97,7 +72,7 @@ public class CoffeeChatController {
 	@GetMapping("/my/send")
 	@LoginRequired
 	public List<CoffeeChatResponse> getSendNotPendingChat() {
-		return queryCoffeeChatService.getNotPendingByFromUser(authRepository.getCurrentUser()).stream()
+		return queryCoffeeChatService.getByFromUser(authRepository.getCurrentUser()).stream()
 			.map(CoffeeChatResponse::from)
 			.toList();
 	}

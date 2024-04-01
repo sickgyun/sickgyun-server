@@ -50,12 +50,4 @@ public class CommandCoffeeChatService {
 		coffeeChatUpdater.updateState(coffeeChat, REJECT, message);
 		mailService.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), REJECT);
 	}
-
-	public void timeNotRight(User user, Long coffeeChatId, String message) {
-		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
-		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
-		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, TIME, message);
-		mailService.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), TIME);
-	}
 }

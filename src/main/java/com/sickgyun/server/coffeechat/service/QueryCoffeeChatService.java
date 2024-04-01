@@ -20,19 +20,17 @@ public class QueryCoffeeChatService {
 
 	private final CoffeeChatReader coffeeChatReader;
 
-	public List<CoffeeChat> getPendingByToUser(User user) {
-		return coffeeChatReader.readByToUser(user, List.of(PENDING));
+	public List<CoffeeChat> getByToUser(User user) {
+		List<CoffeeChat> coffeeChats = coffeeChatReader.readByToUser(user, List.of(PENDING));
+		coffeeChats.addAll(coffeeChatReader.readByToUser(user, List.of(ACCEPT, REJECT)));
+
+		return coffeeChats;
 	}
 
-	public List<CoffeeChat> getNotPendingByToUser(User user) {
-		return coffeeChatReader.readByToUser(user, List.of(ACCEPT, REJECT, TIME));
-	}
+	public List<CoffeeChat> getByFromUser(User user) {
+		List<CoffeeChat> coffeeChats = coffeeChatReader.readByFromUser(user, List.of(PENDING));
+		coffeeChats.addAll(coffeeChatReader.readByFromUser(user, List.of(ACCEPT, REJECT)));
 
-	public List<CoffeeChat> getPendingByFromUser(User user) {
-		return coffeeChatReader.readByFromUser(user, List.of(PENDING));
-	}
-
-	public List<CoffeeChat> getNotPendingByFromUser(User user) {
-		return coffeeChatReader.readByFromUser(user, List.of(ACCEPT, REJECT, TIME));
+		return coffeeChats;
 	}
 }
