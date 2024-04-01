@@ -22,7 +22,7 @@ import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/coffee")
+@RequestMapping("/coffeechat")
 @RequiredArgsConstructor
 public class CoffeeChatController {
 
