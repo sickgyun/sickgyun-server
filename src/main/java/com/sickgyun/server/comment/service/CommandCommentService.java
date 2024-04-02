@@ -30,6 +30,7 @@ public class CommandCommentService {
 	public void createComment(Long qnaId, User writer, Comment comment) {
 		QnA qnA = qnAReader.read(qnaId);
 		commentCreator.create(comment, qnA, writer);
+		qnA.increaseCommentCount();
 	}
 
 	public void updateComment(Long commentId, Comment comment, User writer) {
@@ -42,5 +43,6 @@ public class CommandCommentService {
 		Comment comment = commentReader.read(commentId);
 		commentValidator.shouldBeSameUser(comment.getWriter(), writer);
 		commentDeleter.delete(comment);
+		qnAReader.read(comment.getQnA().getId()).decreaseCommentCount();
 	}
 }

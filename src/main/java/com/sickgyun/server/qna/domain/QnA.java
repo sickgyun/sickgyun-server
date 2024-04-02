@@ -36,6 +36,10 @@ public class QnA {
 
 	private LocalDateTime createTime;
 
+	private Long likeCount = 0L;
+
+	private Long commentCount = 0L;
+
 	@Enumerated(EnumType.STRING)
 	private Category category;
 
@@ -58,5 +62,21 @@ public class QnA {
 
 	public void updateWriter(User user) {
 		this.writer = user;
+	}
+
+	public void increaseCommentCount() {
+		this.commentCount++;
+	}
+
+	public void decreaseCommentCount() {
+		this.commentCount--;
+	}
+
+	public void increaseLikeCount() {
+		this.likeCount++;
+	}
+
+	public void decreaseLikeCount() {
+		this.likeCount--;
 	}
 }

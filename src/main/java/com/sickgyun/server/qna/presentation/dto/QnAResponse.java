@@ -10,10 +10,20 @@ public record QnAResponse(
 	String title,
 	String content,
 	Category category,
-	LocalDateTime createTime
+	LocalDateTime createTime,
+	Long likeCount,
+	Long commentCount
 ) {
 
 	public static QnAResponse from(QnA qnA) {
-		return new QnAResponse(qnA.getId(), qnA.getTitle(), qnA.getContent(), qnA.getCategory(), qnA.getCreateTime());
+		return new QnAResponse(
+			qnA.getId(),
+			qnA.getTitle(),
+			qnA.getContent(),
+			qnA.getCategory(),
+			qnA.getCreateTime(),
+			qnA.getLikeCount(),
+			qnA.getCommentCount()
+		);
 	}
 }
