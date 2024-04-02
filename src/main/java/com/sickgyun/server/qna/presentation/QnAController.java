@@ -39,8 +39,10 @@ public class QnAController {
 
 	@GetMapping
 	public List<QnAResponse> findAll(
-		@RequestParam(name = "category", required = false, defaultValue = "ALL") String category) {
-		return queryQnAService.findAllByCategory(category).stream()
+		@RequestParam(name = "category", required = false, defaultValue = "ALL") String category,
+		@RequestParam(name = "criteria", required = false, defaultValue = "id") String criteria
+	) {
+		return queryQnAService.findAllByCategory(category, criteria).stream()
 			.map(QnAResponse::from)
 			.toList();
 	}

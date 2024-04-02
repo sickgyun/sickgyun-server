@@ -17,9 +17,16 @@ public class QueryQnAService {
 
 	private final QnAReader qnAReader;
 
-	public List<QnA> findAllByCategory(String category) {
+	public List<QnA> findAllByCategory(String category, String criteria) {
 		if (category.equals("ALL")) {
+			if (criteria.equals("like")) {
+				return qnAReader.readAllOrderByLike();
+			}
 			return qnAReader.readAll();
+		}
+
+		if (criteria.equals("like")) {
+			return qnAReader.readAllByCategoryOrderByLike(category);
 		}
 		return qnAReader.readAllByCategory(category);
 	}

@@ -13,7 +13,11 @@ public interface QnARepository extends JpaRepository<QnA, Long> {
 
 	List<QnA> findAllByOrderByIdDesc();
 
+	List<QnA> findAllByOrderByLikeCountDescIdDesc();
+
 	List<QnA> findByCategoryOrderByIdDesc(Category category);
+
+	List<QnA> findByCategoryOrderByLikeCountDescIdDesc(Category category);
 
 	default QnA getById(Long qnAId) {
 		return findById(qnAId)
