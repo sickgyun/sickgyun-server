@@ -3,6 +3,7 @@ package com.sickgyun.server.coffeechat.presentation;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,5 +76,11 @@ public class CoffeeChatController {
 		return queryCoffeeChatService.getByFromUser(authRepository.getCurrentUser()).stream()
 			.map(CoffeeChatResponse::from)
 			.toList();
+	}
+
+	@DeleteMapping("{id}")
+	@LoginRequired
+	public void cancelCoffeeChat(@PathVariable Long id) {
+		commandCoffeeChatService.cancelCoffeeChat(authRepository.getCurrentUser(), id);
 	}
 }

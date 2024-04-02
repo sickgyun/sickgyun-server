@@ -50,6 +50,8 @@ public class MailService {
 			return templateEngine.process("accept-mail", context);
 		} else if (type.equals(State.REJECT)) {
 			return templateEngine.process("reject-mail", context);
+		} else if (type.equals(State.CANCELLED)) {
+			return templateEngine.process("cancelled-mail", context);
 		}
 		return templateEngine.process("application-mail", context);
 	}
