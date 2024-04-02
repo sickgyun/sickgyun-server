@@ -3,6 +3,7 @@ package com.sickgyun.server.qna.domain;
 import java.time.LocalDateTime;
 
 import com.sickgyun.server.qna.domain.value.Category;
+import com.sickgyun.server.user.domain.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +12,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,6 +39,10 @@ public class QnA {
 	@Enumerated(EnumType.STRING)
 	private Category category;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User writer;
+
 	public QnA(String title, String content, Category category) {
 		this.title = title;
 		this.content = content;
@@ -47,5 +54,9 @@ public class QnA {
 		this.title = qnA.getTitle();
 		this.content = qnA.getContent();
 		this.category = qnA.getCategory();
+	}
+
+	public void updateWriter(User user) {
+		this.writer = user;
 	}
 }

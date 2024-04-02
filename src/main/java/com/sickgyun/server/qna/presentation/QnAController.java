@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sickgyun.server.auth.service.implementation.AuthReader;
 import com.sickgyun.server.qna.presentation.dto.CreateQnARequest;
 import com.sickgyun.server.qna.presentation.dto.QnAResponse;
 import com.sickgyun.server.qna.service.CommandQnAService;
@@ -28,11 +29,12 @@ public class QnAController {
 
 	private final CommandQnAService commandQnAService;
 	private final QueryQnAService queryQnAService;
+	private final AuthReader authReader;
 
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
 	public void createQnA(@RequestBody CreateQnARequest request) {
-		commandQnAService.createQnA(request.toEntity());
+		commandQnAService.createQnA(request.toEntity(), authReader.getCurrentUser());
 	}
 
 	@GetMapping
@@ -54,12 +56,12 @@ public class QnAController {
 		@PathVariable(name = "qna-id") Long qnAId,
 		@RequestBody CreateQnARequest request
 	) {
-		commandQnAService.updateQnA(qnAId, request.toEntity());
+		commandQnAService.updateQnA(qnAId, request.toEntity(), authReader.getCurrentUser());
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{qna-id}")
 	public void deleteQnA(@PathVariable(name = "qna-id") Long qnAId) {
-		commandQnAService.deleteQnA(qnAId);
+		commandQnAService.deleteQnA(qnAId, authReader.getCurrentUser());
 	}
 }
