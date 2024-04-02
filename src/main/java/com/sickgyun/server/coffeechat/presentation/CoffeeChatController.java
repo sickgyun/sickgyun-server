@@ -3,6 +3,7 @@ package com.sickgyun.server.coffeechat.presentation;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,11 +47,10 @@ public class CoffeeChatController {
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@LoginRequired
 	public MessageResponse accept(
-		@PathVariable(name = "chat-id") Long coffeeChatId,
-		@RequestBody CoffeeChatRequest request
+		@PathVariable(name = "chat-id") Long coffeeChatId
 	) {
 		return MessageResponse.from(
-			commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId, request.message())
+			commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId)
 		);
 	}
 
@@ -59,7 +59,7 @@ public class CoffeeChatController {
 	@LoginRequired
 	public void reject(
 		@PathVariable(name = "chat-id") Long coffeeChatId,
-		@RequestBody CoffeeChatRequest request
+		@RequestBody @Validated CoffeeChatRequest request
 	) {
 		commandCoffeeChatService.reject(authRepository.getCurrentUser(), coffeeChatId, request.message());
 	}

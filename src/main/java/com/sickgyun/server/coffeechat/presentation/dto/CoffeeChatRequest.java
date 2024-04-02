@@ -4,7 +4,10 @@ import com.sickgyun.server.coffeechat.domain.CoffeeChat;
 import com.sickgyun.server.coffeechat.domain.value.State;
 import com.sickgyun.server.user.domain.User;
 
+import jakarta.validation.constraints.NotNull;
+
 public record CoffeeChatRequest(
+	@NotNull
 	String message
 ) {
 

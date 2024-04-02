@@ -14,4 +14,8 @@ public class CoffeeChatUpdater {
 	public void updateState(CoffeeChat coffeeChat, State state, String message) {
 		coffeeChat.updateState(state, message);
 	}
+
+	public void updateState(CoffeeChat coffeeChat, State state) {
+		coffeeChat.updateState(state);
+	}
 }

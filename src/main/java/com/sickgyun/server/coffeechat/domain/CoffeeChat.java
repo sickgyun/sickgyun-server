@@ -53,4 +53,8 @@ public class CoffeeChat {
 		this.state = state;
 		this.message = message;
 	}
+
+	public void updateState(State state) {
+		this.state = state;
+	}
 }
