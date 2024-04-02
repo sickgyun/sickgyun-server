@@ -37,12 +37,13 @@ public class CommandCoffeeChatService {
 		mailService.sendMail(coffeeChat.getFromUser(), toUser, PENDING);
 	}
 
-	public void accept(User user, Long coffeeChatId, String message) {
+	public String accept(User user, Long coffeeChatId, String message) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, ACCEPT, message);
 		mailService.sendMail(coffeeChat.getToUser(), coffeeChat.getFromUser(), ACCEPT);
+		return coffeeChat.getMessage();
 	}
 
 	public void reject(User user, Long coffeeChatId, String message) {
