@@ -10,7 +10,8 @@ public record SimpleProfileResponse(
 	Major major,
 	String company,
 	String introduction,
-	Long cardinal
+	Long cardinal,
+	Long userId
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
 		String introduction = profile.getInformation().getIntroduction();
@@ -25,7 +26,8 @@ public record SimpleProfileResponse(
 			profile.getInformation().getMajor(),
 			profile.getCompany(),
 			introduction,
-			profile.getWriter().getCardinal()
+			profile.getWriter().getCardinal(),
+			profile.getWriter().getId()
 		);
 	}
 }

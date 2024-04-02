@@ -34,7 +34,7 @@ public class Profile {
 	private OnlineProfile onlineProfile;
 
 	@OneToOne(
-		fetch = FetchType.LAZY
+		fetch = FetchType.EAGER
 	)
 	@JoinColumn(name = "user_id")
 	private User writer;
