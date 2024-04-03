@@ -28,4 +28,8 @@ public class CoffeeChatReader {
 	public List<CoffeeChat> readByFromUser(User user, List<State> states) {
 		return coffeeChatRepository.getByFromUser(user, states);
 	}
+
+	public Boolean hasPendingCoffeeChatRequest(User currentUser) {
+		return coffeeChatRepository.existsByToUserAndState(currentUser, State.PENDING);
+	}
 }

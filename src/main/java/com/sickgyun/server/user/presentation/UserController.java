@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.service.implementation.AuthReader;
+import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
+import com.sickgyun.server.user.presentation.dto.UserAndAlarmResponse;
 import com.sickgyun.server.user.presentation.dto.UserRequest;
 import com.sickgyun.server.user.presentation.dto.UserResponse;
 import com.sickgyun.server.user.service.CommandUserService;
@@ -25,6 +27,7 @@ public class UserController {
 
 	private final CommandUserService commandUserService;
 	private final QueryUserService queryUserService;
+	private final QueryCoffeeChatService queryCoffeeChatService;
 	private final AuthReader authReader;
 
 	@PutMapping
@@ -41,7 +44,10 @@ public class UserController {
 
 	@GetMapping
 	@LoginRequired
-	public UserResponse readByCurrent() {
-		return UserResponse.from(authReader.getCurrentUser());
+	public UserAndAlarmResponse readByCurrent() {
+		return UserAndAlarmResponse.of(
+			authReader.getCurrentUser(),
+			queryCoffeeChatService.hasPendingCoffeeChatRequest(authReader.getCurrentUser())
+		);
 	}
 }

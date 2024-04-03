@@ -33,4 +33,8 @@ public class QueryCoffeeChatService {
 
 		return coffeeChats;
 	}
+
+	public Boolean hasPendingCoffeeChatRequest(User currentUser) {
+		return coffeeChatReader.hasPendingCoffeeChatRequest(currentUser);
+	}
 }

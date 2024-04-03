@@ -27,4 +27,6 @@ public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
 	default List<CoffeeChat> getByFromUser(User user, List<State> states) {
 		return findByFromUserAndStateInOrderByIdDesc(user, states);
 	}
+
+	Boolean existsByToUserAndState(User currentUser, State state);
 }
