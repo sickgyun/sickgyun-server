@@ -10,6 +10,8 @@ import com.sickgyun.server.qna.service.implementation.QnACreator;
 import com.sickgyun.server.qna.service.implementation.QnADeleter;
 import com.sickgyun.server.qna.service.implementation.QnAReader;
 import com.sickgyun.server.qna.service.implementation.QnAUpdater;
+import com.sickgyun.server.qna.service.implementation.QnAValidator;
+import com.sickgyun.server.user.domain.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,20 +24,23 @@ public class CommandQnAService {
 	private final QnAUpdater qnAUpdater;
 	private final QnAReader qnAReader;
 	private final QnADeleter qnADeleter;
+	private final QnAValidator qnAValidator;
 	private final CommentDeleter commentDeleter;
 	private final LikeDeleter likeDeleter;
 
-	public void createQnA(QnA qnA) {
-		qnACreator.create(qnA);
+	public void createQnA(QnA qnA, User user) {
+		qnACreator.create(qnA, user);
 	}
 
-	public void updateQnA(Long qnAId, QnA qnA) {
+	public void updateQnA(Long qnAId, QnA qnA, User user) {
 		QnA updatableQnA = qnAReader.read(qnAId);
+		qnAValidator.shouldBeSameUser(qnA.getWriter(), user);
 		qnAUpdater.update(updatableQnA, qnA);
 	}
 
-	public void deleteQnA(Long qnAId) {
+	public void deleteQnA(Long qnAId, User user) {
 		QnA qnA = qnAReader.read(qnAId);
+		qnAValidator.shouldBeSameUser(qnA.getWriter(), user);
 		qnADeleter.delete(qnA);
 		commentDeleter.deleteByQnA(qnA);
 		likeDeleter.deleteByQnA(qnA);

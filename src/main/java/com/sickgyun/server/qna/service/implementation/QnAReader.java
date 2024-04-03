@@ -20,8 +20,16 @@ public class QnAReader {
 		return qnARepository.findAllByOrderByIdDesc();
 	}
 
+	public List<QnA> readAllOrderByLike() {
+		return qnARepository.findAllByOrderByLikeCountDescIdDesc();
+	}
+
 	public List<QnA> readAllByCategory(String category) {
 		return qnARepository.findByCategoryOrderByIdDesc(Category.valueOf(category));
+	}
+
+	public List<QnA> readAllByCategoryOrderByLike(String category) {
+		return qnARepository.findByCategoryOrderByLikeCountDescIdDesc(Category.valueOf(category));
 	}
 
 	public QnA read(Long qnAId) {
