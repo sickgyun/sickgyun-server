@@ -36,7 +36,8 @@ public class CommentController {
 		@PathVariable(name = "qna-id") Long qnAId,
 		@RequestBody CreateCommentRequest request
 	) {
-		commandCommentService.createComment(qnAId, authRepository.getCurrentUser(), request.toEntity());
+		commandCommentService.createComment(qnAId, authRepository.getCurrentUser(), request.toEntity(),
+			request.parentId());
 	}
 
 	@ResponseStatus(HttpStatus.NO_CONTENT)

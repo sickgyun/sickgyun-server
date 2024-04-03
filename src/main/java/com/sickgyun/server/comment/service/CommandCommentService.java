@@ -27,9 +27,14 @@ public class CommandCommentService {
 	private final CommentDeleter commentDeleter;
 	private final CommentValidator commentValidator;
 
-	public void createComment(Long qnaId, User writer, Comment comment) {
+	public void createComment(Long qnaId, User writer, Comment comment, Long parentId) {
 		QnA qnA = qnAReader.read(qnaId);
-		commentCreator.create(comment, qnA, writer);
+		commentCreator.create(
+			comment,
+			qnA,
+			writer,
+			parentId != null ? commentReader.read(parentId) : null
+		);
 		qnA.increaseCommentCount();
 	}
 
