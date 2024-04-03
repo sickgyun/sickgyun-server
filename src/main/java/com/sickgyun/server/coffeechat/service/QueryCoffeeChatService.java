@@ -22,14 +22,14 @@ public class QueryCoffeeChatService {
 
 	public List<CoffeeChat> getByToUser(User user) {
 		List<CoffeeChat> coffeeChats = coffeeChatReader.readByToUser(user, List.of(PENDING));
-		coffeeChats.addAll(coffeeChatReader.readByToUser(user, List.of(ACCEPT, REJECT)));
+		coffeeChats.addAll(coffeeChatReader.readByToUser(user, List.of(ACCEPT, REJECT, CANCELLED)));
 
 		return coffeeChats;
 	}
 
 	public List<CoffeeChat> getByFromUser(User user) {
 		List<CoffeeChat> coffeeChats = coffeeChatReader.readByFromUser(user, List.of(PENDING));
-		coffeeChats.addAll(coffeeChatReader.readByFromUser(user, List.of(ACCEPT, REJECT)));
+		coffeeChats.addAll(coffeeChatReader.readByFromUser(user, List.of(ACCEPT, REJECT, CANCELLED)));
 
 		return coffeeChats;
 	}

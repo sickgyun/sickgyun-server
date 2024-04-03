@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 
+import com.sickgyun.server.coffeechat.domain.CoffeeChat;
 import com.sickgyun.server.coffeechat.domain.value.State;
 import com.sickgyun.server.mail.exception.EmailNotExistException;
-import com.sickgyun.server.user.domain.User;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -24,13 +24,15 @@ public class MailService {
 	private final SpringTemplateEngine templateEngine;
 
 	@Async
-	public void sendMail(User fromUser, User toUser, State type) {
+	public void sendMail(CoffeeChat coffeeChat) {
 		MimeMessage message = mailSender.createMimeMessage();
 
 		try {
-			message.addRecipients(TO, toUser.getEmail());
+			message.addRecipients(TO, coffeeChat.getToUser().getEmail());
 			message.setSubject("안녕하세요. 식견입니다.");
-			message.setText(setContext(fromUser, toUser, type), "utf-8", "html");
+			message.setText(setContext(coffeeChat), "utf-8", "html");
+
+			message.setFrom(coffeeChat.getFromUser().getEmail());
 		} catch (MessagingException e) {
 			throw new EmailNotExistException();
 		}
@@ -38,14 +40,15 @@ public class MailService {
 		mailSender.send(message);
 	}
 
-	private String setContext(User fromUser, User toUser, State type) {
+	private String setContext(CoffeeChat coffeeChat) {
 		Context context = new Context();
-		context.setVariable("fromuser", fromUser.getName());
-		context.setVariable("touser", toUser.getName());
-		return checkType(type, context);
+		context.setVariable("fromuser", coffeeChat.getFromUser().getName());
+		context.setVariable("touser", coffeeChat.getToUser().getName());
+		context.setVariable("message", coffeeChat.getMessage());
+		return checkState(coffeeChat.getState(), context);
 	}
 
-	private String checkType(State type, Context context) {
+	private String checkState(State type, Context context) {
 		if (type.equals(State.ACCEPT)) {
 			return templateEngine.process("accept-mail", context);
 		} else if (type.equals(State.REJECT)) {
