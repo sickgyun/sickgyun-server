@@ -81,9 +81,9 @@ public class CoffeeChatController {
 			.toList();
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{chat-id}")
 	@LoginRequired
-	public void cancelCoffeeChat(@PathVariable Long id) {
-		commandCoffeeChatService.cancelCoffeeChat(authRepository.getCurrentUser(), id);
+	public void deleteCoffeeChat(@PathVariable(name = "chat-id") Long coffeeChatId) {
+		commandCoffeeChatService.deleteCoffeeChat(authRepository.getCurrentUser(), coffeeChatId);
 	}
 }

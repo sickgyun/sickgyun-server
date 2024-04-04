@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sickgyun.server.coffeechat.domain.CoffeeChat;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatCreator;
+import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatDeleter;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatReader;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatUpdater;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatValidator;
@@ -25,6 +26,7 @@ public class CommandCoffeeChatService {
 	private final CoffeeChatReader coffeeChatReader;
 	private final CoffeeChatValidator coffeeChatValidator;
 	private final CoffeeChatUpdater coffeeChatUpdater;
+	private final CoffeeChatDeleter coffeeChatDeleter;
 	private final UserReader userReader;
 	private final MailService mailService;
 
@@ -52,11 +54,10 @@ public class CommandCoffeeChatService {
 		mailService.sendMail(coffeeChat);
 	}
 
-	public void cancelCoffeeChat(User currentUser, Long id) {
-		CoffeeChat coffeeChat = coffeeChatReader.read(id);
+	public void deleteCoffeeChat(User currentUser, Long coffeeChatId) {
+		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(currentUser, coffeeChat.getFromUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, CANCELLED);
-		mailService.sendMail(coffeeChat);
+		coffeeChatDeleter.delete(coffeeChat);
 	}
 }
