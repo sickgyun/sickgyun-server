@@ -19,6 +19,7 @@ import com.sickgyun.server.auth.repository.AuthRepository;
 import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatRequest;
 import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatResponse;
 import com.sickgyun.server.coffeechat.presentation.dto.MessageResponse;
+import com.sickgyun.server.coffeechat.presentation.dto.ReceivedCoffeeChatResponse;
 import com.sickgyun.server.coffeechat.service.CommandCoffeeChatService;
 import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
 
@@ -66,15 +67,15 @@ public class CoffeeChatController {
 
 	@GetMapping("/my/receive")
 	@LoginRequired
-	public List<CoffeeChatResponse> getReceiveNotPendingChat() {
+	public List<ReceivedCoffeeChatResponse> getReceiveCoffeeChat() {
 		return queryCoffeeChatService.getByToUser(authRepository.getCurrentUser()).stream()
-			.map(CoffeeChatResponse::from)
+			.map(ReceivedCoffeeChatResponse::from)
 			.toList();
 	}
 
 	@GetMapping("/my/send")
 	@LoginRequired
-	public List<CoffeeChatResponse> getSendNotPendingChat() {
+	public List<CoffeeChatResponse> getSendPendingChat() {
 		return queryCoffeeChatService.getByFromUser(authRepository.getCurrentUser()).stream()
 			.map(CoffeeChatResponse::from)
 			.toList();
