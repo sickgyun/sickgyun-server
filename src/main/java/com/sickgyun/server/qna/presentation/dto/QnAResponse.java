@@ -4,16 +4,17 @@ import java.time.LocalDateTime;
 
 import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.qna.domain.value.Category;
+import com.sickgyun.server.user.presentation.dto.UserResponse;
 
 public record QnAResponse(
 	Long id,
 	String title,
 	String content,
-	String writer,
 	Category category,
 	LocalDateTime createTime,
 	Long likeCount,
-	Long commentCount
+	Long commentCount,
+	UserResponse writer
 ) {
 
 	public static QnAResponse from(QnA qnA) {
@@ -21,11 +22,11 @@ public record QnAResponse(
 			qnA.getId(),
 			qnA.getTitle(),
 			qnA.getContent(),
-			qnA.getWriter().getName(),
 			qnA.getCategory(),
 			qnA.getCreateTime(),
 			qnA.getLikeCount(),
-			qnA.getCommentCount()
+			qnA.getCommentCount(),
+			UserResponse.from(qnA.getWriter())
 		);
 	}
 }
