@@ -34,7 +34,7 @@ public class CommandQnAService {
 
 	public void updateQnA(Long qnAId, QnA qnA, User user) {
 		QnA updatableQnA = qnAReader.read(qnAId);
-		qnAValidator.shouldBeSameUser(qnA.getWriter(), user);
+		qnAValidator.shouldBeSameUser(updatableQnA.getWriter(), user);
 		qnAUpdater.update(updatableQnA, qnA);
 	}
 
