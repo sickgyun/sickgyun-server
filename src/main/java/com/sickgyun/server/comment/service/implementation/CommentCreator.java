@@ -15,9 +15,10 @@ public class CommentCreator {
 
 	private final CommentRepository commentRepository;
 
-	public void create(Comment comment, QnA qnA, User writer) {
+	public void create(Comment comment, QnA qnA, User writer, Comment parent) {
 		comment.updateQnA(qnA);
 		comment.updateWriter(writer);
+		comment.updateParent(parent);
 		commentRepository.save(comment);
 	}
 }

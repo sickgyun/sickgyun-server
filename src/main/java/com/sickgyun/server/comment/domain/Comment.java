@@ -1,6 +1,8 @@
 package com.sickgyun.server.comment.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.sickgyun.server.qna.domain.QnA;
 import com.sickgyun.server.user.domain.User;
@@ -13,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -39,6 +42,13 @@ public class Comment {
 	@JoinColumn(name = "qna_id")
 	private QnA qnA;
 
+	@ManyToOne
+	@JoinColumn(name = "parent_id")
+	private Comment parent;
+
+	@OneToMany(mappedBy = "parent", orphanRemoval = true)
+	private List<Comment> children = new ArrayList<>();
+
 	public Comment(String content) {
 		this.content = content;
 		this.createTime = LocalDateTime.now();
@@ -50,6 +60,10 @@ public class Comment {
 
 	public void updateWriter(User writer) {
 		this.writer = writer;
+	}
+
+	public void updateParent(Comment parent) {
+		this.parent = parent;
 	}
 
 	public void update(Comment comment) {

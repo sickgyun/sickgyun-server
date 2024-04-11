@@ -3,7 +3,8 @@ package com.sickgyun.server.comment.presentation.dto;
 import com.sickgyun.server.comment.domain.Comment;
 
 public record CreateCommentRequest(
-	String content
+	String content,
+	Long parentId
 ) {
 
 	public Comment toEntity() {
