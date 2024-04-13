@@ -23,9 +23,9 @@ public record CurrentUserResponse(
 			user.getContact().getPhoneNumber(),
 			user.getContact().getInstagramId(),
 			user.getContact().getKakaoId(),
-			user.getContact().getPhoneNumber().isBlank() &&
-				user.getContact().getInstagramId().isBlank() &&
-				user.getContact().getKakaoId().isBlank()
+			user.getContact().getPhoneNumber().isBlank()
+				&& user.getContact().getInstagramId().isBlank()
+				&& user.getContact().getKakaoId().isBlank()
 		);
 	}
 }
