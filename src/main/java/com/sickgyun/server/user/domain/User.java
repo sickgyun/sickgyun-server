@@ -2,6 +2,8 @@ package com.sickgyun.server.user.domain;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.DynamicInsert;
+
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.user.domain.role.Role;
 import com.sickgyun.server.user.domain.value.Contact;
@@ -22,6 +24,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@DynamicInsert
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 	@Id

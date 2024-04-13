@@ -1,6 +1,7 @@
 package com.sickgyun.server.user.presentation;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,7 +15,6 @@ import com.sickgyun.server.auth.service.implementation.AuthReader;
 import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
 import com.sickgyun.server.user.presentation.dto.ContactRequest;
 import com.sickgyun.server.user.presentation.dto.UserAndAlarmResponse;
-import com.sickgyun.server.user.presentation.dto.UserRequest;
 import com.sickgyun.server.user.presentation.dto.UserResponse;
 import com.sickgyun.server.user.service.CommandUserService;
 import com.sickgyun.server.user.service.QueryUserService;
@@ -34,7 +34,7 @@ public class UserController {
 	@PutMapping("/contact")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@LoginRequired
-	public void updateContact(@RequestBody ContactRequest request) {
+	public void updateContact(@RequestBody @Validated ContactRequest request) {
 		commandUserService.updateContact(authReader.getCurrentUser(), request.toEntity());
 	}
 
