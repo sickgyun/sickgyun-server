@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.user.domain.role.Role;
+import com.sickgyun.server.user.domain.value.Contact;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -37,16 +39,15 @@ public class User {
 
 	private Long cardinal;
 
+	@Embedded
+	private Contact contact;
+
 	@OneToOne(
 		fetch = FetchType.EAGER,
 		mappedBy = "writer"
 	)
 	@JoinColumn(name = "PROFILE")
 	private Profile profile;
-
-	public void updateProfile(Profile profile) {
-		this.profile = profile;
-	}
 
 	public User(String name, String email) {
 		this.name = name;
@@ -69,6 +70,14 @@ public class User {
 		this.email = email;
 		this.isGraduated = isGraduated;
 		this.cardinal = cardinal;
+	}
+
+	public void updateProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+	public void updateContact(Contact contact) {
+		this.contact = contact;
 	}
 
 	public void update(User user) {

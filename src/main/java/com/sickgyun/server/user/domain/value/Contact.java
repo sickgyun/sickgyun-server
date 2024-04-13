@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Contact {
-	String phone;
-	String instagram;
-	String kakao;
+	private String phone;
+	private String instagram;
+	private String kakao;
 }

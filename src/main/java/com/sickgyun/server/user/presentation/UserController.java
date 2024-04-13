@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.service.implementation.AuthReader;
 import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
+import com.sickgyun.server.user.presentation.dto.ContactRequest;
 import com.sickgyun.server.user.presentation.dto.UserAndAlarmResponse;
 import com.sickgyun.server.user.presentation.dto.UserRequest;
 import com.sickgyun.server.user.presentation.dto.UserResponse;
@@ -30,10 +31,10 @@ public class UserController {
 	private final QueryCoffeeChatService queryCoffeeChatService;
 	private final AuthReader authReader;
 
-	@PutMapping
+	@PutMapping("/contact")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@LoginRequired
-	public void updateContact(@RequestBody UserRequest request) {
+	public void updateContact(@RequestBody ContactRequest request) {
 		commandUserService.updateContact(authReader.getCurrentUser(), request.toEntity());
 	}
 
