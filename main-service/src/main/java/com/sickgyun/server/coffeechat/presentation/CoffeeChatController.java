@@ -18,7 +18,7 @@ import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.repository.AuthRepository;
 import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatRequest;
 import com.sickgyun.server.coffeechat.presentation.dto.CoffeeChatResponse;
-import com.sickgyun.server.coffeechat.presentation.dto.MessageResponse;
+import com.sickgyun.server.coffeechat.presentation.dto.ContactResponse;
 import com.sickgyun.server.coffeechat.presentation.dto.ReceivedCoffeeChatResponse;
 import com.sickgyun.server.coffeechat.service.CommandCoffeeChatService;
 import com.sickgyun.server.coffeechat.service.QueryCoffeeChatService;
@@ -47,10 +47,10 @@ public class CoffeeChatController {
 	@PutMapping("/{chat-id}/accept")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@LoginRequired
-	public MessageResponse accept(
+	public ContactResponse accept(
 		@PathVariable(name = "chat-id") Long coffeeChatId
 	) {
-		return MessageResponse.from(
+		return ContactResponse.from(
 			commandCoffeeChatService.accept(authRepository.getCurrentUser(), coffeeChatId)
 		);
 	}

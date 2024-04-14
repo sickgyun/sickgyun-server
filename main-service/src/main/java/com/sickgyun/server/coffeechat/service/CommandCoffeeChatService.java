@@ -13,6 +13,7 @@ import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatUpdater;
 import com.sickgyun.server.coffeechat.service.implementation.CoffeeChatValidator;
 import com.sickgyun.server.mail.MailService;
 import com.sickgyun.server.user.domain.User;
+import com.sickgyun.server.user.domain.value.Contact;
 import com.sickgyun.server.user.service.implementation.UserReader;
 
 import lombok.RequiredArgsConstructor;
@@ -37,13 +38,13 @@ public class CommandCoffeeChatService {
 		mailService.sendMail(coffeeChat);
 	}
 
-	public String accept(User user, Long coffeeChatId) {
+	public Contact accept(User user, Long coffeeChatId) {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
 		coffeeChatUpdater.updateState(coffeeChat, ACCEPT);
 		mailService.sendMail(coffeeChat);
-		return coffeeChat.getMessage();
+		return coffeeChat.getFromUser().getContact();
 	}
 
 	public void reject(User user, Long coffeeChatId, String message) {
