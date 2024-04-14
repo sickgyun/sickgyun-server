@@ -1,0 +1,53 @@
+dependencies {
+    implementation project(":logging")
+
+    //querydsl
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+    //openFeign
+    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
+
+    //jwt
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    //html parser
+    implementation 'org.jsoup:jsoup:1.17.2'
+
+    //email sender
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    //aws s3
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.638'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+}
+
+//queryDsl
+def generated = 'src/main/generated'
+
+tasks.withType(JavaCompile) {
+    options.getGeneratedSourceOutputDirectory().set(file(generated))
+}
+
+sourceSets {
+    main.java.srcDirs += [generated]
+}
+
+clean {
+    delete file(generated)
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}

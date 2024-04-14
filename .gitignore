@@ -37,3 +37,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/main-service/src/main/generated/com/sickgyun/server
