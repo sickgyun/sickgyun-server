@@ -1,4 +1,4 @@
-package com.sickgyun.server.comment.infra.database;
+package com.sickgyun.server.comment.infra;
 
 import static com.sickgyun.server.comment.domain.QComment.*;
 

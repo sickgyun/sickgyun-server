@@ -1,0 +1,22 @@
+subprojects {
+    apply plugin: 'checkstyle'
+
+    //checkStyle
+    compileJava.options.encoding = 'UTF-8'
+    compileTestJava.options.encoding = 'UTF-8'
+
+    tasks.withType(Checkstyle) {
+        reports {
+            xml.required = true
+            html.required = true
+        }
+    }
+
+    checkstyle {
+        maxWarnings = 0
+        configFile = file("../checkstyle/naver-checkstyle-rules.xml")
+        configProperties = ["suppressionFile": "../checkstyle/naver-checkstyle-suppressions.xml"]
+    }
+
+    checkstyleMain.source = "src/main/java"
+}

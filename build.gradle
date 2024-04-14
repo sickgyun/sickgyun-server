@@ -1,100 +1,68 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.1'
-    id 'io.spring.dependency-management' version '1.1.4'
-    id 'checkstyle'
-}
-
-group = 'com.sickgyun'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    sourceCompatibility = '21'
-}
-
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
+buildscript {
+    ext {
+        springBootVersion = '3.2.1'
     }
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+    }
+
 }
 
-repositories {
-    mavenCentral()
-}
+subprojects {
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    java {
+        sourceCompatibility = '21'
+    }
 
-    //openFeign
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.0'
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    //querydsl
-    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
-    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
-    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+        //p6psy query extractor
+        implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
 
-    //jwt
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    //html parser
-    implementation 'org.jsoup:jsoup:1.17.2'
+        testRuntimeOnly 'com.h2database:h2'
 
-    //email sender
-    implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        repositories {
+            mavenCentral()
+        }
+    }
 
-    //p6psy query extractor
-    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
+    test {
+        useJUnitPlatform()
+    }
 
-    compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.mysql:mysql-connector-j'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	//aws s3
-	implementation 'com.amazonaws:aws-java-sdk-s3:1.12.638'
-
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    testRuntimeOnly 'com.h2database:h2'
-}
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
 //openFeign
-ext {
-    set('springCloudVersion', "2023.0.0")
-}
+    ext {
+        set('springCloudVersion', "2023.0.0")
+    }
 
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
     }
 }
 
-
-//checkStyle
-compileJava.options.encoding = 'UTF-8'
-compileTestJava.options.encoding = 'UTF-8'
-
-tasks.withType(Checkstyle) {
-    reports {
-        xml.required = true
-        html.required = true
-    }
-}
-
-checkstyle {
-    maxWarnings = 0
-    configFile = file("checkstyle/naver-checkstyle-rules.xml")
-    configProperties = ["suppressionFile": "checkstyle/naver-checkstyle-suppressions.xml"]
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
+fileTree(dir: 'setting', include: '*.gradle').each { file ->
+    apply from: file
 }
