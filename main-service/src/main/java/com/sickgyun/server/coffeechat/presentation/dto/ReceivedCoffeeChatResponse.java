@@ -9,7 +9,8 @@ public record ReceivedCoffeeChatResponse(
 	State state,
 	UserResponse toUser,
 	UserResponse fromUser,
-	String message
+	String message,
+	ContactResponse contact
 ) {
 
 	public static ReceivedCoffeeChatResponse from(CoffeeChat coffeeChat) {
@@ -18,7 +19,8 @@ public record ReceivedCoffeeChatResponse(
 			coffeeChat.getState(),
 			UserResponse.from(coffeeChat.getToUser()),
 			UserResponse.from(coffeeChat.getFromUser()),
-			coffeeChat.getMessage()
+			coffeeChat.getMessage(),
+			coffeeChat.getState() == State.ACCEPT ? ContactResponse.from(coffeeChat.getFromUser().getContact()) : null
 		);
 	}
 }
