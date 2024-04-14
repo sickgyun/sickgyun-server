@@ -18,7 +18,7 @@ public record ReceivedCoffeeChatResponse(
 			coffeeChat.getState(),
 			UserResponse.from(coffeeChat.getToUser()),
 			UserResponse.from(coffeeChat.getFromUser()),
-			coffeeChat.getState() == State.ACCEPT ? coffeeChat.getMessage() : null
+			coffeeChat.getMessage()
 		);
 	}
 }
