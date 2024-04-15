@@ -1,0 +1,10 @@
+server:
+  port: 8081
+  servlet:
+    contextPath: /api
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_URL}
+      database: ${MONGO_DB}

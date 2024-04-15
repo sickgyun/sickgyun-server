@@ -1,4 +1,4 @@
-package com.sickgyun.server.domain;
+package com.sickgyun.server.domain.logging;
 
 import java.util.Map;
 

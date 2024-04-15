@@ -1,4 +1,4 @@
-package com.sickgyun.server.domain;
+package com.sickgyun.server.domain.logging;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
