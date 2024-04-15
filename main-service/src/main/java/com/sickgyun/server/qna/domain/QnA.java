@@ -68,8 +68,8 @@ public class QnA {
 		this.commentCount++;
 	}
 
-	public void decreaseCommentCount() {
-		this.commentCount--;
+	public void decreaseCommentCount(Long count) {
+		this.commentCount -= count;
 	}
 
 	public void increaseLikeCount() {

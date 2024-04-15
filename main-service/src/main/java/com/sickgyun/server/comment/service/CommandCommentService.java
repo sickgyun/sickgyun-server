@@ -48,6 +48,6 @@ public class CommandCommentService {
 		Comment comment = commentReader.read(commentId);
 		commentValidator.shouldBeSameUser(comment.getWriter(), writer);
 		commentDeleter.delete(comment);
-		qnAReader.read(comment.getQnA().getId()).decreaseCommentCount();
+		qnAReader.read(comment.getQnA().getId()).decreaseCommentCount(comment.getChildren().size() + 1L);
 	}
 }
