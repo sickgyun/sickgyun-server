@@ -10,7 +10,6 @@ import com.sickgyun.server.coffeechat.exception.CoffeeChatNotFoundException;
 import com.sickgyun.server.user.domain.User;
 
 public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
-
 	List<CoffeeChat> findByToUserAndStateInOrderByIdDesc(User toUser, List<State> states);
 
 	List<CoffeeChat> findByFromUserAndStateInOrderByIdDesc(User fromUser, List<State> states);
@@ -29,4 +28,6 @@ public interface CoffeeChatRepository extends JpaRepository<CoffeeChat, Long> {
 	}
 
 	Boolean existsByToUserAndState(User currentUser, State state);
+
+	Boolean existsByToUserAndFromUserAndState(User toUser, User fromUser, State state);
 }

@@ -32,6 +32,7 @@ public class CommandCoffeeChatService {
 
 	public void create(CoffeeChat coffeeChat, Long toUserId) {
 		User toUser = userReader.readUser(toUserId);
+		coffeeChatValidator.shouldNotExistSameCoffeeChatPending(coffeeChat, toUser);
 		coffeeChat.updateToUser(toUser);
 		coffeeChatCreator.create(coffeeChat);
 		mailService.sendMail(coffeeChat);
