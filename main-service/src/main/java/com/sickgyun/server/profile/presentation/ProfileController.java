@@ -44,6 +44,7 @@ public class ProfileController {
 	}
 
 	@PutMapping
+	@LoginRequired
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@Valid @RequestBody ProfileUpdateRequest requestDto) {
 		commandService.update(requestDto.toEntity(), authRepository.getCurrentUser());
