@@ -25,8 +25,13 @@ jobs:
       - name: Build with Gradle Wrapper
         run: ./gradlew clean build -x test
 
+  deploy:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: Deploy to server
-        uses: appleboy/scp-action@master
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_NAME }}
