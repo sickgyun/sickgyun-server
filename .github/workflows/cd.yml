@@ -4,9 +4,6 @@ on:
   push:
     branches: [ "master" ]
 
-env:
-  TARGET_PATH: ${{ secrets.DIST_PATH }}
-
 jobs:
   build:
 
@@ -33,6 +30,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Check directory contents
+        run: |
+          ls -l ${{ secrets.DIST_PATH }}
+          ls
+
       - name: Deploy to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -40,12 +43,7 @@ jobs:
           username: ${{ secrets.SERVER_NAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: ${{ secrets.SOURCE_PATH }}
-          target: ${{ env.TARGET_PATH }}
-
-      - name: Check directory contents
-        run: |
-          ls -l ${{ env.TARGET_PATH }}
-          ls
+          target: ${{ secrets.DIST_PATH }}
 
       - name: Execute jar file
         uses: appleboy/ssh-action@master
