@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "master" ]
 
+env:
+  TARGET_PATH: ${{ secrets.DIST_PATH }}
+
 jobs:
   build:
 
@@ -37,7 +40,7 @@ jobs:
           username: ${{ secrets.SERVER_NAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: ${{ secrets.SOURCE_PATH }}
-          target: ${{ secrets.DIST_PATH }}
+          target: ${{ env.TARGET_PATH }}
 
       - name: Execute jar file
         uses: appleboy/ssh-action@master
@@ -49,4 +52,4 @@ jobs:
             PID=$(lsof -ti:8080)
             if [ -n "$PID" ]; then
               kill $PID
-            nohup java -jar $${{ secrets.JAR_FILE }}
+            nohup java -jar ${{ secrets.JAR_FILE }}
