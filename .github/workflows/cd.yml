@@ -31,8 +31,8 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_NAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          source: ${{ SOURCE_PATH }}
-          target: ${{ DIST_PATH }}
+          source: ${{ secrets.SOURCE_PATH }}
+          target: ${{ secrets.DIST_PATH }}
 
       - name: Execute jar file
         uses: appleboy/ssh-action@master
