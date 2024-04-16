@@ -25,21 +25,11 @@ jobs:
       - name: Build with Gradle Wrapper
         run: ./gradlew clean build -x test
 
-      - name: Check directory contents
-        run: |
-          pwd
-          ls -l
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Check directory contents
-        run: |
-          pwd
-          ls -l
 
       - name: Deploy to server
         uses: appleboy/scp-action@v0.1.7
@@ -47,7 +37,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_NAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          source: ${{ secrets.SOURCE_PATH }}
+          source: "build/libs"
           target: ${{ secrets.DIST_PATH }}
 
       - name: Execute jar file
