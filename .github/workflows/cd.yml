@@ -42,6 +42,11 @@ jobs:
           source: ${{ secrets.SOURCE_PATH }}
           target: ${{ env.TARGET_PATH }}
 
+      - name: Check directory contents
+        run: |
+          ls -l ${{ env.TARGET_PATH }}
+          ls
+
       - name: Execute jar file
         uses: appleboy/ssh-action@master
         with:
