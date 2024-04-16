@@ -37,7 +37,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_NAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          source: "build/libs"
+          source: ${{ secrets.SOURCE_PATH }}
           target: ${{ secrets.DIST_PATH }}
 
       - name: Execute jar file
