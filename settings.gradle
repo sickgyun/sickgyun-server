@@ -1,3 +1,3 @@
 rootProject.name = 'server'
-include 'logging'
-include 'main-service'
+include 'logging-server'
+include 'main-server'

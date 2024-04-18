@@ -1,4 +1,4 @@
-package com.sickgyun.server.domain;
+package com.sickgyun.server.domain.logging;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
