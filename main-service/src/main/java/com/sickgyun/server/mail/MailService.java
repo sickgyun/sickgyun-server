@@ -28,16 +28,24 @@ public class MailService {
 		MimeMessage message = mailSender.createMimeMessage();
 
 		try {
-			message.addRecipients(TO, coffeeChat.getToUser().getEmail());
+			setRecipientsAndFrom(coffeeChat, message);
 			message.setSubject(setSubjectWithCoffeeChat(coffeeChat));
 			message.setText(setContext(coffeeChat), "utf-8", "html");
-
-			message.setFrom(coffeeChat.getFromUser().getEmail());
 		} catch (MessagingException e) {
 			throw new EmailNotExistException();
 		}
 
 		mailSender.send(message);
+	}
+
+	private void setRecipientsAndFrom(CoffeeChat coffeeChat, MimeMessage message) throws MessagingException {
+		if (coffeeChat.getState().equals(State.PENDING)) {
+			message.addRecipients(TO, coffeeChat.getToUser().getEmail());
+			message.setFrom(coffeeChat.getFromUser().getEmail());
+		} else {
+			message.addRecipients(TO, coffeeChat.getFromUser().getEmail());
+			message.setFrom(coffeeChat.getToUser().getEmail());
+		}
 	}
 
 	private String setSubjectWithCoffeeChat(CoffeeChat coffeeChat) {
