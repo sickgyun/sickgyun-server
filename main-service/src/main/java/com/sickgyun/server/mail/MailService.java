@@ -29,7 +29,7 @@ public class MailService {
 
 		try {
 			message.addRecipients(TO, coffeeChat.getToUser().getEmail());
-			message.setSubject("안녕하세요. 식견입니다.");
+			message.setSubject(setSubjectWithCoffeeChat(coffeeChat));
 			message.setText(setContext(coffeeChat), "utf-8", "html");
 
 			message.setFrom(coffeeChat.getFromUser().getEmail());
@@ -38,6 +38,18 @@ public class MailService {
 		}
 
 		mailSender.send(message);
+	}
+
+	private String setSubjectWithCoffeeChat(CoffeeChat coffeeChat) {
+		String fromUserName = coffeeChat.getFromUser().getName();
+		String toUserName = coffeeChat.getToUser().getName();
+
+		if (coffeeChat.getState() == State.ACCEPT) {
+			return toUserName + "님께서 " + fromUserName + "님의 커피챗 요청을 수락하셨어요.";
+		} else if (coffeeChat.getState() == State.REJECT) {
+			return toUserName + "님께서 " + fromUserName + "님의 커피챗 요청을 거절하셨어요...ㅠ";
+		}
+		return fromUserName + "님으로부터 커피챗 요청이 왔어요.";
 	}
 
 	private String setContext(CoffeeChat coffeeChat) {
