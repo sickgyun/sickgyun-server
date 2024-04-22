@@ -5,30 +5,32 @@
     <title>Send Mail</title>
 </head>
 <body>
-<div class="back">
-    <div class="content">
+<div class="back" style="width: 480px; height: 480px;">
+    <div>
         <img src="https://sickgyun.s3.ap-northeast-2.amazonaws.com/file1317437e-d407-4cd6-be35-0e45ed8c1b2b"
-             class="logo" style="width: 110px;" alt="logo">
-        <h2 class="coffeeChat" style="margin-top: 20px; color: black;">
-            <span th:text="${fromuser}"></span>님께서<br>
-            커피챗 요청을 수락하셨습니다.
+             style="display: block; width: 141px; height: 48px; margin: 0 auto;" alt="Logo">
+        <h2 style="font-size: 24px; font-weight: 700; text-align: center; margin-top: 40px; margin-bottom: 35px;">
+            <span th:text="${touser}"></span>님이 커피챗 요청을 수락했어요.<br>
         </h2>
     </div>
-</div>
-<a href="https://sickgyun.vercel.app/" style="text-decoration-line: none;">
-    <div class="coffeeChatButton" style="
+    <a href="https://sickgyun.com" style="text-decoration-line: none;">
+        <div class="coffeeChatButton" style="
+            display: block;
+            margin-top: 20px;
             background-color: #7046f7;
-            width: 287px;
-            height: 45px;
+            width: 100%;
+            height: 55px;
             border-radius: 8px;
             color: white;
             cursor: pointer;
             font-size: 16px;
             text-align: center;
-            line-height: 45px;
+            line-height: 55px;
+            padding: 0 20px;
     ">
-        식견 바로가기
-    </div>
-</a>
+            식견에서 확인하기
+        </div>
+    </a>
+</div>
 </body>
 </html>
