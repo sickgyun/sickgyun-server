@@ -10,9 +10,13 @@ import jakarta.validation.constraints.Size;
 
 public record ProfileUpdateRequest(
 	String imageUrl,
-	@Size(max = 1000) @NotNull String introduction,
-	@NotNull String githubId,
-	@NotNull Major major,
+	@Size(max = 1000, message = "소개는 1000자 이하여야합니다.")
+	@NotNull(message = "소개는 필수값입니다.")
+	String introduction,
+	@NotNull(message = "githubId는 필수값입니다.")
+	String githubId,
+	@NotNull(message = "전공은 필수값입니다.")
+	Major major,
 	String resumeUrl,
 	Boolean isRecruited,
 	String company,
