@@ -6,10 +6,11 @@ import com.sickgyun.server.profile.domain.value.Major;
 import com.sickgyun.server.profile.domain.value.OnlineProfile;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public record ProfileCreateRequest(
 	String imageUrl,
-	@NotNull String introduction,
+	@NotNull @Size(max = 1000) String introduction,
 	@NotNull String githubId,
 	@NotNull Major major,
 	String resumeUrl,
