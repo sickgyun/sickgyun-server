@@ -32,7 +32,7 @@ jobs:
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
             chmod +x ~/script/deploy-main-server.sh
-            sh ~/script/deploy-main-server.sh
+            zsh ~/script/deploy-main-server.sh
 
       - name: deploy logging-server
         #        if: steps.changes.outputs.logging == 'true'
@@ -44,5 +44,5 @@ jobs:
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: |
             chmod +x ~/script/deploy-logging-server.sh
-            sh ~/script/deploy-logging-server.sh
+            zsh ~/script/deploy-logging-server.sh
 
