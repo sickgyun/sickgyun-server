@@ -1,6 +1,7 @@
 package com.sickgyun.server.common.exception;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -15,6 +16,22 @@ public class GlobalExceptionHandler {
 
 		return ResponseEntity.status(exception.getStatus())
 			.body(new ErrorResponse(exception.getStatus().value(), exception.getMessage()));
+	}
+
+	@ExceptionHandler({MethodArgumentNotValidException.class})
+	public ResponseEntity<ErrorResponse> handleDefineException(MethodArgumentNotValidException exception) {
+		LoggingUtils.warn(exception);
+
+		String message;
+
+		if (exception.getFieldError() == null) {
+			message = "";
+		} else {
+			message = exception.getFieldError().getDefaultMessage();
+		}
+
+		return ResponseEntity.status(400)
+			.body(new ErrorResponse(400, message));
 	}
 
 	@ExceptionHandler({RuntimeException.class})
