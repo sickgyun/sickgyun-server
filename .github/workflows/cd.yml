@@ -23,7 +23,7 @@ jobs:
               - 'logging-server/**'
 
       - name: deploy main-server
-        #        if: steps.changes.outputs.main == 'true'
+        if: steps.changes.outputs.main == 'true'
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -35,7 +35,7 @@ jobs:
             zsh ~/script/deploy-main-server.sh
 
       - name: deploy logging-server
-        #        if: steps.changes.outputs.logging == 'true'
+        if: steps.changes.outputs.logging == 'true'
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
