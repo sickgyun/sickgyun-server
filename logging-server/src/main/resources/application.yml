@@ -8,3 +8,9 @@ spring:
     mongodb:
       uri: ${MONGO_URL}
       database: ${MONGO_DB}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "prometheus"

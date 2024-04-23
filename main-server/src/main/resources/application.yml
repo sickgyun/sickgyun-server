@@ -49,6 +49,12 @@ decorator:
     p6spy:
       enable-logging: true
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "prometheus"
+
 ---
 #S3
 aws:
