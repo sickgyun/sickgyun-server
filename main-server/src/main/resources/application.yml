@@ -4,10 +4,6 @@ server:
     contextPath: /api
 
 spring:
-  data:
-    mongodb:
-      uri: ${MONGO_URL}
-      database: ${MONGO_DB}
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
