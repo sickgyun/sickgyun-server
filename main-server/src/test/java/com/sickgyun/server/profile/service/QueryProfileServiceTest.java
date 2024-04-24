@@ -39,7 +39,7 @@ public class QueryProfileServiceTest extends ServiceTest {
 		List<Profile> 취업한_사람_조회 = 취업한_사람만_조회();
 		// List<Profile> 입학년도가_2021인_사람 = 입학년도가_2021년인_사람_조회();
 		List<Profile> 전공이_ETC인_사람 = 전공이_ETC인_사람();
-		List<Profile> 전공이_GAME_혹은_BACKEND_이고_취업한_사람 = 전공이_GAME_혹은_BACKEND_이고_취업한_사람();
+		List<Profile> 전공이_GAME_혹은_BACKEND_이고_취업한_사람 = 전공이_BACKEND_이고_취업한_사람();
 
 		//then
 		assertAll(
@@ -94,15 +94,15 @@ public class QueryProfileServiceTest extends ServiceTest {
 	}
 
 	private List<Profile> 전공이_ETC인_사람() {
-		return queryProfileService.readAll(new Filter(null, List.of(Major.ETC), null));
+		return queryProfileService.readAll(new Filter(null, Major.ETC, null));
 	}
 
-	private List<Profile> 전공이_GAME_혹은_BACKEND_이고_취업한_사람() {
-		return queryProfileService.readAll(new Filter(true, List.of(Major.GAME, Major.BACKEND), null));
+	private List<Profile> 전공이_BACKEND_이고_취업한_사람() {
+		return queryProfileService.readAll(new Filter(true, Major.BACKEND, null));
 	}
 
-	private List<Profile> 입학년도가_2021년인_사람_조회() {
-		return queryProfileService.readAll(new Filter(null, null, "2021-2021"));
+	private List<Profile> 기수가_1인_사람_조회() {
+		return queryProfileService.readAll(new Filter(null, null, 1L));
 	}
 
 	private List<Profile> 취업한_사람만_조회() {
