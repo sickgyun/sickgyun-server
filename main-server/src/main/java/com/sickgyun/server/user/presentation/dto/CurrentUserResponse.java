@@ -1,5 +1,7 @@
 package com.sickgyun.server.user.presentation.dto;
 
+import java.time.LocalDateTime;
+
 import com.sickgyun.server.user.domain.User;
 
 public record CurrentUserResponse(
@@ -17,7 +19,11 @@ public record CurrentUserResponse(
 ) {
 
 	public static CurrentUserResponse from(User user) {
-		return new CurrentUserResponse(user.getId(), user.getName(), user.getEmail(), user.getIsGraduated(),
+		return new CurrentUserResponse(
+			user.getId(),
+			user.getName(),
+			user.getEmail(),
+			LocalDateTime.now().getYear() - user.getCardinal() >= 2023,
 			user.getCardinal(), user.getProfile() != null,
 			user.getProfile() == null ? null : user.getProfile().getId(),
 			user.getContact().getPhoneNumber(),

@@ -1,7 +1,5 @@
 package com.sickgyun.server.user.domain;
 
-import java.time.LocalDateTime;
-
 import org.hibernate.annotations.DynamicInsert;
 
 import com.sickgyun.server.profile.domain.Profile;
@@ -38,8 +36,6 @@ public class User {
 
 	private String email;
 
-	private Boolean isGraduated;
-
 	private Long cardinal;
 
 	@Embedded
@@ -64,14 +60,11 @@ public class User {
 		} else {
 			this.cardinal = firstTwo - 20L;
 		}
-
-		this.isGraduated = LocalDateTime.now().getYear() - this.cardinal >= 2023;
 	}
 
-	public User(String name, String email, Boolean isGraduated, Long cardinal) {
+	public User(String name, String email, Long cardinal) {
 		this.name = name;
 		this.email = email;
-		this.isGraduated = isGraduated;
 		this.cardinal = cardinal;
 	}
 
@@ -86,13 +79,5 @@ public class User {
 	public void update(User user) {
 		this.email = user.getEmail();
 		this.name = user.getName();
-		this.isGraduated = user.getIsGraduated();
-	}
-
-	public void updateUser(User user) {
-		this.email = user.getEmail();
-		this.name = user.getName();
-		this.isGraduated = user.getIsGraduated();
-		this.cardinal = user.getCardinal();
 	}
 }

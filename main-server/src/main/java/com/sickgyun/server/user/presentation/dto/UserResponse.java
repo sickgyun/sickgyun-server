@@ -1,5 +1,7 @@
 package com.sickgyun.server.user.presentation.dto;
 
+import java.time.LocalDateTime;
+
 import com.sickgyun.server.user.domain.User;
 
 public record UserResponse(
@@ -13,8 +15,13 @@ public record UserResponse(
 ) {
 
 	public static UserResponse from(User user) {
-		return new UserResponse(user.getId(), user.getName(), user.getEmail(), user.getIsGraduated(),
+		return new UserResponse(
+			user.getId(),
+			user.getName(),
+			user.getEmail(),
+			LocalDateTime.now().getYear() - user.getCardinal() >= 2023,
 			user.getCardinal(), user.getProfile() != null,
-			user.getProfile() == null ? null : user.getProfile().getId());
+			user.getProfile() == null ? null : user.getProfile().getId()
+		);
 	}
 }
