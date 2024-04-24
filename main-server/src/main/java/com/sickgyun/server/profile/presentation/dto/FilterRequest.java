@@ -9,17 +9,17 @@ import com.sickgyun.server.profile.domain.value.Major;
 
 public record FilterRequest(
 	@RequestParam(required = false)
-	Boolean isReqruited,
+	Boolean isRecruited,
 	@RequestParam(required = false)
-	List<Major> majors,
+	Major major,
 	@RequestParam(required = false)
-	String cardinals
+	Long cardinal
 ) {
 	public Filter toDomain() {
 		return new Filter(
-			isReqruited,
-			majors,
-			cardinals
+			isRecruited,
+			major,
+			cardinal
 		);
 	}
 }

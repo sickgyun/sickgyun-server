@@ -32,18 +32,18 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			.leftJoin(profile.writer, user)
 			.fetchJoin()
 			.where(
-				majorFilter(filter.majors()),
+				majorFilter(filter.major()),
 				recruitedFilter(filter.isRecruited()),
-				admissionYearFilter(filter.cardinals())
+				cardinalFilter(filter.cardinal())
 			).fetch();
 	}
 
-	private BooleanExpression majorFilter(List<Major> majors) {
-		if (majors == null) {
+	private BooleanExpression majorFilter(Major major) {
+		if (major == null) {
 			return null;
 		}
 
-		return profile.information.major.in(majors);
+		return profile.information.major.eq(major);
 	}
 
 	private BooleanExpression recruitedFilter(Boolean isRecruited) {
@@ -54,15 +54,11 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 		return profile.company.isNotEmpty();
 	}
 
-	private BooleanExpression admissionYearFilter(String admissionYear) {
-		if (admissionYear == null) {
+	private BooleanExpression cardinalFilter(Long cardinal) {
+		if (cardinal == null) {
 			return null;
 		}
 
-		List<Integer> list = Arrays.stream(admissionYear.split("-"))
-			.map(Integer::parseInt)
-			.toList();
-
-		return user.cardinal.between(list.get(0), list.get(1));
+		return user.cardinal.eq(cardinal);
 	}
 }
