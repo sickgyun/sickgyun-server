@@ -18,13 +18,12 @@ public record ProfileCreateRequest(
 	@NotNull(message = "전공은 필수값입니다.")
 	Major major,
 	String resumeUrl,
-	Boolean isRecruited,
 	String company,
 	String portfolioUrl
 ) {
 
 	public ProfileCreateRequest(String imageUrl, @NotNull String introduction, @NotNull String githubId,
-		@NotNull Major major, String resumeUrl, Boolean isRecruited, String company, String portfolioUrl) {
+		@NotNull Major major, String resumeUrl, String company, String portfolioUrl) {
 		if (imageUrl == null || imageUrl.isEmpty()) {
 			this.imageUrl = "https://sickgyun.s3.ap-northeast-2.amazonaws.com/filef531b003-1bf7-4a0e-bf3b-c06e8471db05";
 		} else {
@@ -34,7 +33,6 @@ public record ProfileCreateRequest(
 		this.githubId = githubId;
 		this.major = major;
 		this.resumeUrl = resumeUrl;
-		this.isRecruited = isRecruited;
 		this.company = company;
 		this.portfolioUrl = portfolioUrl;
 	}

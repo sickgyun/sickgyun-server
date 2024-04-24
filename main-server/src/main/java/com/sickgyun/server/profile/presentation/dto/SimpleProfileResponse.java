@@ -11,7 +11,8 @@ public record SimpleProfileResponse(
 	String company,
 	String introduction,
 	Long cardinal,
-	Long userId
+	Long userId,
+	Boolean isRecruited
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
 		String introduction = profile.getInformation().getIntroduction();
@@ -27,7 +28,8 @@ public record SimpleProfileResponse(
 			profile.getCompany(),
 			introduction,
 			profile.getWriter().getCardinal(),
-			profile.getWriter().getId()
+			profile.getWriter().getId(),
+			!(profile.getCompany().isBlank() || profile.getCompany().isEmpty())
 		);
 	}
 }

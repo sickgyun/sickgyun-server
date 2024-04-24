@@ -1,5 +1,7 @@
 package com.sickgyun.server.profile.presentation.dto;
 
+import java.time.LocalDateTime;
+
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Major;
 
@@ -8,6 +10,7 @@ public record ProfileResponse(
 	String name,
 	String imageUrl,
 	Boolean isGraduated,
+	Boolean isRecruited,
 	Major major,
 	String githubId,
 	String resumeUrl,
@@ -21,7 +24,8 @@ public record ProfileResponse(
 			profile.getId(),
 			profile.getWriter().getName(),
 			profile.getInformation().getImageUrl(),
-			profile.getWriter().getIsGraduated(),
+			LocalDateTime.now().getYear() - profile.getWriter().getCardinal() >= 2023,
+			!(profile.getCompany().isBlank() || profile.getCompany().isEmpty()),
 			profile.getInformation().getMajor(),
 			profile.getOnlineProfile().getGithubId(),
 			profile.getOnlineProfile().getResumeUrl(),
