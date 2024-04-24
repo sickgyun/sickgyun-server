@@ -51,7 +51,7 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			return null;
 		}
 
-		return profile.company.isNotEmpty();
+		return profile.company.isNotNull();
 	}
 
 	private BooleanExpression cardinalFilter(Long cardinal) {
