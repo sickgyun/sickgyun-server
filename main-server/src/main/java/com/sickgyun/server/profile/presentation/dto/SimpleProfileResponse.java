@@ -1,5 +1,7 @@
 package com.sickgyun.server.profile.presentation.dto;
 
+import org.jsoup.internal.StringUtil;
+
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Major;
 
@@ -29,7 +31,7 @@ public record SimpleProfileResponse(
 			introduction,
 			profile.getWriter().getCardinal(),
 			profile.getWriter().getId(),
-			!(profile.getCompany().isBlank() || profile.getCompany().isEmpty())
+			!StringUtil.isBlank(profile.getCompany())
 		);
 	}
 }

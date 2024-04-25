@@ -2,6 +2,8 @@ package com.sickgyun.server.profile.presentation.dto;
 
 import java.time.LocalDateTime;
 
+import org.jsoup.internal.StringUtil;
+
 import com.sickgyun.server.profile.domain.Profile;
 import com.sickgyun.server.profile.domain.value.Major;
 
@@ -25,7 +27,7 @@ public record ProfileResponse(
 			profile.getWriter().getName(),
 			profile.getInformation().getImageUrl(),
 			LocalDateTime.now().getYear() - profile.getWriter().getCardinal() >= 2023,
-			!(profile.getCompany().isBlank() || profile.getCompany().isEmpty()),
+			!StringUtil.isBlank(profile.getCompany()),
 			profile.getInformation().getMajor(),
 			profile.getOnlineProfile().getGithubId(),
 			profile.getOnlineProfile().getResumeUrl(),
