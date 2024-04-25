@@ -9,7 +9,7 @@ import com.sickgyun.server.profile.domain.value.Major;
 
 public record FilterRequest(
 	@RequestParam(required = false)
-	Boolean isReqruited,
+	Boolean isRecruited,
 	@RequestParam(required = false)
 	List<Major> majors,
 	@RequestParam(required = false)
@@ -17,7 +17,7 @@ public record FilterRequest(
 ) {
 	public Filter toDomain() {
 		return new Filter(
-			isReqruited,
+			isRecruited,
 			majors,
 			cardinal
 		);
