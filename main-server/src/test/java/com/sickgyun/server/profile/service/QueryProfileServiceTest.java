@@ -102,7 +102,7 @@ public class QueryProfileServiceTest extends ServiceTest {
 	}
 
 	private List<Profile> 입학년도가_2021년인_사람_조회() {
-		return queryProfileService.readAll(new Filter(null, null, "2021-2021"));
+		return queryProfileService.readAll(new Filter(null, null, 2L));
 	}
 
 	private List<Profile> 취업한_사람만_조회() {
