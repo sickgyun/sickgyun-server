@@ -94,11 +94,11 @@ public class QueryProfileServiceTest extends ServiceTest {
 	}
 
 	private List<Profile> 전공이_ETC인_사람() {
-		return queryProfileService.readAll(new Filter(null, List.of(Major.ETC), null));
+		return queryProfileService.readAll(new Filter(null, Major.ETC, null));
 	}
 
 	private List<Profile> 전공이_GAME_혹은_BACKEND_이고_취업한_사람() {
-		return queryProfileService.readAll(new Filter(true, List.of(Major.GAME, Major.BACKEND), null));
+		return queryProfileService.readAll(new Filter(true, Major.GAME, null));
 	}
 
 	private List<Profile> 입학년도가_2021년인_사람_조회() {

@@ -31,18 +31,18 @@ public class QueryProfileRepositoryImpl implements QueryProfileRepository {
 			.leftJoin(profile.writer, user)
 			.fetchJoin()
 			.where(
-				majorFilter(filter.majors()),
+				majorFilter(filter.major()),
 				recruitedFilter(filter.isRecruited()),
 				cardinalFilter(filter.cardinal())
 			).fetch();
 	}
 
-	private BooleanExpression majorFilter(List<Major> majors) {
-		if (majors == null) {
+	private BooleanExpression majorFilter(Major major) {
+		if (major == null) {
 			return null;
 		}
 
-		return profile.information.major.in(majors);
+		return profile.information.major.eq(major);
 	}
 
 	private BooleanExpression recruitedFilter(Boolean isRecruited) {
