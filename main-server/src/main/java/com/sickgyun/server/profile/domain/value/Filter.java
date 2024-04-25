@@ -5,6 +5,6 @@ import java.util.List;
 public record Filter(
 	Boolean isRecruited,
 	List<Major> majors,
-	String cardinals
+	Long cardinal
 ) {
 }

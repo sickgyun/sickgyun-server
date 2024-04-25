@@ -13,13 +13,13 @@ public record FilterRequest(
 	@RequestParam(required = false)
 	List<Major> majors,
 	@RequestParam(required = false)
-	String cardinals
+	Long cardinal
 ) {
 	public Filter toDomain() {
 		return new Filter(
 			isReqruited,
 			majors,
-			cardinals
+			cardinal
 		);
 	}
 }

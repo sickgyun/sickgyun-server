@@ -3,7 +3,6 @@ package com.sickgyun.server.profile.infra.database;
 import static com.sickgyun.server.profile.domain.QProfile.*;
 import static com.sickgyun.server.user.domain.QUser.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -12,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sickgyun.server.profile.domain.Profile;
-import com.sickgyun.server.profile.domain.repository.ProfileQueryRepository;
+import com.sickgyun.server.profile.domain.repository.QueryProfileRepository;
 import com.sickgyun.server.profile.domain.value.Filter;
 import com.sickgyun.server.profile.domain.value.Major;
 
@@ -21,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @Repository
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
+public class QueryProfileRepositoryImpl implements QueryProfileRepository {
 
 	private final JPAQueryFactory queryFactory;
 
@@ -34,7 +33,7 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 			.where(
 				majorFilter(filter.majors()),
 				recruitedFilter(filter.isRecruited()),
-				admissionYearFilter(filter.cardinals())
+				cardinalFilter(filter.cardinal())
 			).fetch();
 	}
 
@@ -47,22 +46,18 @@ public class ProfileQueryRepositoryImpl implements ProfileQueryRepository {
 	}
 
 	private BooleanExpression recruitedFilter(Boolean isRecruited) {
-		if (isRecruited == null) {
+		if (isRecruited == null || !isRecruited) {
 			return null;
 		}
 
 		return profile.company.isNotEmpty();
 	}
 
-	private BooleanExpression admissionYearFilter(String admissionYear) {
-		if (admissionYear == null) {
+	private BooleanExpression cardinalFilter(Long cardinal) {
+		if (cardinal == null) {
 			return null;
 		}
 
-		List<Integer> list = Arrays.stream(admissionYear.split("-"))
-			.map(Integer::parseInt)
-			.toList();
-
-		return user.cardinal.between(list.get(0), list.get(1));
+		return user.cardinal.eq(cardinal);
 	}
 }
