@@ -18,7 +18,8 @@ public record MySentCoffeeChatResponse(
 			coffeeChat.getId(),
 			coffeeChat.getState(),
 			coffeeChat.getMessage(),
-			coffeeChat.getState().equals(State.ACCEPT) ? ContactResponse.from(coffeeChat.getToUser().getContact()) : null,
+			coffeeChat.getState().equals(State.ACCEPT)
+				? ContactResponse.from(coffeeChat.getToUser().getContact()) : null,
 			UserResponse.from(coffeeChat.getToUser()),
 			UserResponse.from(coffeeChat.getFromUser())
 		);
