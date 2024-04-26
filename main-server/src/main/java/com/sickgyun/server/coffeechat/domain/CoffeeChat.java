@@ -26,7 +26,9 @@ public class CoffeeChat {
 	@Column(name = "coffee_chat_id")
 	private Long id;
 
-	private String message;
+	private String sendMessage;
+
+	private String rejectMessage;
 
 	@Enumerated(EnumType.STRING)
 	private State state;
@@ -39,8 +41,8 @@ public class CoffeeChat {
 	@JoinColumn(name = "from_user_id")
 	private User fromUser;
 
-	public CoffeeChat(String message, State state, User fromUser) {
-		this.message = message;
+	public CoffeeChat(String sendMessage, State state, User fromUser) {
+		this.sendMessage = sendMessage;
 		this.state = state;
 		this.fromUser = fromUser;
 	}
@@ -49,9 +51,9 @@ public class CoffeeChat {
 		this.toUser = toUser;
 	}
 
-	public void updateState(State state, String message) {
+	public void reject(State state, String rejectMessage) {
 		this.state = state;
-		this.message = message;
+		this.rejectMessage = rejectMessage;
 	}
 
 	public void updateState(State state) {

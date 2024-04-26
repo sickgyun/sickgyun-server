@@ -11,8 +11,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CoffeeChatUpdater {
 
-	public void updateState(CoffeeChat coffeeChat, State state, String message) {
-		coffeeChat.updateState(state, message);
+	public void reject(CoffeeChat coffeeChat, State state, String message) {
+		coffeeChat.reject(state, message);
 	}
 
 	public void updateState(CoffeeChat coffeeChat, State state) {

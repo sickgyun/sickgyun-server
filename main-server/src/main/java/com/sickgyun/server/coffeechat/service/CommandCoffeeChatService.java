@@ -51,7 +51,7 @@ public class CommandCoffeeChatService {
 		CoffeeChat coffeeChat = coffeeChatReader.read(coffeeChatId);
 		coffeeChatValidator.shouldBeSameUser(user, coffeeChat.getToUser());
 		coffeeChatValidator.shouldBePending(coffeeChat);
-		coffeeChatUpdater.updateState(coffeeChat, REJECT, message);
+		coffeeChatUpdater.reject(coffeeChat, REJECT, message);
 		mailService.sendMail(coffeeChat);
 	}
 
