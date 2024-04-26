@@ -2,6 +2,9 @@ server:
   port: 8080
   servlet:
     contextPath: /api
+  tomcat:
+    mbeanregistry:
+      enabled: true
 
 spring:
 
