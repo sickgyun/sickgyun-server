@@ -64,7 +64,9 @@ public class MailService {
 		Context context = new Context();
 		context.setVariable("fromuser", coffeeChat.getFromUser().getName());
 		context.setVariable("touser", coffeeChat.getToUser().getName());
-		context.setVariable("message", coffeeChat.getMessage());
+		context.setVariable("message",
+			coffeeChat.getState().equals(State.REJECT)
+				? coffeeChat.getRejectMessage() : coffeeChat.getSendMessage());
 		return checkState(coffeeChat.getState(), context);
 	}
 

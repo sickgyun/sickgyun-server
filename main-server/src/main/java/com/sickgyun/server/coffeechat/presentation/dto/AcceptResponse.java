@@ -10,7 +10,7 @@ public record AcceptResponse(
 	public static AcceptResponse from(CoffeeChat accept) {
 		return new AcceptResponse(
 			ContactResponse.from(accept.getFromUser().getContact()),
-			accept.getMessage()
+			accept.getSendMessage()
 		);
 	}
 }

@@ -7,7 +7,8 @@ import com.sickgyun.server.user.presentation.dto.UserResponse;
 public record MySentCoffeeChatResponse(
 	Long id,
 	State state,
-	String message,
+	String sendMessage,
+	String rejectMessage,
 	ContactResponse contact,
 	UserResponse toUser,
 	UserResponse fromUser
@@ -17,7 +18,8 @@ public record MySentCoffeeChatResponse(
 		return new MySentCoffeeChatResponse(
 			coffeeChat.getId(),
 			coffeeChat.getState(),
-			coffeeChat.getMessage(),
+			coffeeChat.getSendMessage(),
+			coffeeChat.getRejectMessage(),
 			coffeeChat.getState().equals(State.ACCEPT)
 				? ContactResponse.from(coffeeChat.getToUser().getContact()) : null,
 			UserResponse.from(coffeeChat.getToUser()),
