@@ -49,7 +49,7 @@ public class User {
 	private Profile profile;
 
 	public User(String name, String email) {
-		this.name = name;
+		this.name = delete24InName(name);
 		this.email = email;
 		this.role = Role.USER;
 
@@ -62,10 +62,8 @@ public class User {
 		}
 	}
 
-	public User(String name, String email, Long cardinal) {
-		this.name = name;
-		this.email = email;
-		this.cardinal = cardinal;
+	private String delete24InName(String name) {
+		return name.replace("24", "");
 	}
 
 	public void updateProfile(Profile profile) {
@@ -77,7 +75,7 @@ public class User {
 	}
 
 	public void update(User user) {
-		this.email = user.getEmail();
 		this.name = user.getName();
+		this.email = user.getEmail();
 	}
 }
