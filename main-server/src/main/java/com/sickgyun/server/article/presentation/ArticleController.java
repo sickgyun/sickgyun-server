@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +21,10 @@ import com.sickgyun.server.article.service.QueryArticleService;
 import com.sickgyun.server.auth.annotation.LoginRequired;
 import com.sickgyun.server.auth.service.implementation.AuthReader;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
+@Valid
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/articles")
@@ -34,7 +37,7 @@ public class ArticleController {
 	@PostMapping
 	@LoginRequired
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create(ArticleCreateRequest creatRequest) {
+	public void create(@RequestBody ArticleCreateRequest creatRequest) {
 		commandService.create(
 			creatRequest.toEntity(
 				authReader.getCurrentUser()
@@ -70,7 +73,7 @@ public class ArticleController {
 	@LoginRequired
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void update(ArticleUpdateRequest updateRequest, @PathVariable Long id) {
+	public void update(@RequestBody ArticleUpdateRequest updateRequest, @PathVariable Long id) {
 		commandService.update(
 			updateRequest.toEntity(
 				authReader.getCurrentUser()
