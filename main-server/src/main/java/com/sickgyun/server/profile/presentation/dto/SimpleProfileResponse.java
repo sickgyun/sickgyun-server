@@ -14,7 +14,10 @@ public record SimpleProfileResponse(
 	String introduction,
 	Long cardinal,
 	Long userId,
-	Boolean isRecruited
+	Boolean isRecruited,
+	String githubId,
+	String resumeUrl,
+	String portfolioUrl
 ) {
 	public static SimpleProfileResponse from(Profile profile) {
 		String introduction = profile.getInformation().getIntroduction();
@@ -31,7 +34,10 @@ public record SimpleProfileResponse(
 			introduction,
 			profile.getWriter().getCardinal(),
 			profile.getWriter().getId(),
-			!StringUtil.isBlank(profile.getCompany())
+			!StringUtil.isBlank(profile.getCompany()),
+			profile.getOnlineProfile().getGithubId(),
+			profile.getOnlineProfile().getResumeUrl(),
+			profile.getOnlineProfile().getPortfolioUrl()
 		);
 	}
 }
