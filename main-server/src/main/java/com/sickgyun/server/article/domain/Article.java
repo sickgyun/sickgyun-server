@@ -36,6 +36,7 @@ public class Article {
 		this.imgUrl = imgUrl;
 		this.url = url;
 		this.user = user;
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public void update(Article article) {
