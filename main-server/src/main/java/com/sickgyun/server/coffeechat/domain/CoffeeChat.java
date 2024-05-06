@@ -1,5 +1,9 @@
 package com.sickgyun.server.coffeechat.domain;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.sickgyun.server.coffeechat.domain.value.State;
 import com.sickgyun.server.user.domain.User;
 
@@ -41,10 +45,16 @@ public class CoffeeChat {
 	@JoinColumn(name = "from_user_id")
 	private User fromUser;
 
+	@CreationTimestamp
+	private LocalDateTime createdAt;
+
+	private LocalDateTime statedChangedTime;
+
 	public CoffeeChat(String sendMessage, State state, User fromUser) {
 		this.sendMessage = sendMessage;
 		this.state = state;
 		this.fromUser = fromUser;
+		this.createdAt = LocalDateTime.now();
 	}
 
 	public void updateToUser(User toUser) {
@@ -54,9 +64,11 @@ public class CoffeeChat {
 	public void reject(State state, String rejectMessage) {
 		this.state = state;
 		this.rejectMessage = rejectMessage;
+		statedChangedTime = LocalDateTime.now();
 	}
 
 	public void updateState(State state) {
 		this.state = state;
+		statedChangedTime = LocalDateTime.now();
 	}
 }
